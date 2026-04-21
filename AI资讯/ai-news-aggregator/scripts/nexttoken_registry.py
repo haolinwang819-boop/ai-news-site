@@ -1,11 +1,14 @@
 """
-Nexttoken 来源注册表解析。
+Nexttoken source registry.
 
-将仓库根目录的 Nexttoken.docx 解析为结构化来源列表，作为 collection 层的
-source-of-truth 输入，避免在代码中手写局部子集。
+Production reads the committed JSON snapshot so GitHub Actions does not need the
+large local Word document. Local development can still rebuild that snapshot from
+Nexttoken.docx when the document is available.
 """
 from __future__ import annotations
 
+import json
+import os
 import re
 import zipfile
 from functools import lru_cache
@@ -15,7 +18,15 @@ from urllib.parse import urlparse
 from xml.etree import ElementTree
 
 
-DOCX_PATH = Path(__file__).resolve().parents[3] / "Nexttoken.docx"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+JSON_PATH = REPO_ROOT / "data" / "nexttoken_sources.json"
+DOCX_CANDIDATES = [
+    Path(os.environ["NEXTTOKEN_DOCX_PATH"]).expanduser()
+    if os.environ.get("NEXTTOKEN_DOCX_PATH")
+    else None,
+    REPO_ROOT / "Nexttoken.docx",
+    REPO_ROOT / "_archive" / "Nexttoken.docx",
+]
 WORD_NS = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
 
 SECTION_HEADERS = {
@@ -115,10 +126,14 @@ IMAGE_PLACEHOLDERS = {"[image]", "image"}
 
 
 def _read_docx_lines() -> List[str]:
-    if not DOCX_PATH.exists():
-        raise FileNotFoundError(f"Nexttoken.docx not found: {DOCX_PATH}")
+    docx_path = next((path for path in DOCX_CANDIDATES if path and path.exists()), None)
+    if docx_path is None:
+        searched = ", ".join(str(path) for path in DOCX_CANDIDATES if path)
+        raise FileNotFoundError(
+            f"Nexttoken source registry not found. Expected {JSON_PATH} or one of: {searched}"
+        )
 
-    with zipfile.ZipFile(DOCX_PATH) as archive:
+    with zipfile.ZipFile(docx_path) as archive:
         document_xml = archive.read("word/document.xml")
 
     root = ElementTree.fromstring(document_xml)
@@ -127,6 +142,16 @@ def _read_docx_lines() -> List[str]:
         text = "".join(node.text or "" for node in paragraph.findall(".//w:t", WORD_NS))
         lines.append(text.replace("\xa0", " ").strip())
     return lines
+
+
+def _read_json_registry() -> Dict[str, List[Dict[str, object]]]:
+    with JSON_PATH.open("r", encoding="utf-8") as file:
+        registry = json.load(file)
+
+    return {
+        section: list(registry.get(section, []))
+        for section in SECTION_HEADERS
+    }
 
 
 def _normalize_header(line: str) -> str:
@@ -415,6 +440,9 @@ def _parse_section(section: str, lines: Iterable[str]) -> List[Dict[str, object]
 
 @lru_cache(maxsize=1)
 def load_nexttoken_registry() -> Dict[str, List[Dict[str, object]]]:
+    if JSON_PATH.exists():
+        return _read_json_registry()
+
     sections = _split_sections(_read_docx_lines())
     return {name: _parse_section(name, section_lines) for name, section_lines in sections.items()}
 
