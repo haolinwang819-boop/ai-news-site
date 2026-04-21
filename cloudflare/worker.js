@@ -249,6 +249,32 @@ async function handleHealth(env) {
   });
 }
 
+async function serveAsset(request, env) {
+  const response = await env.ASSETS.fetch(request);
+  const pathname = new URL(request.url).pathname;
+  const shouldAvoidCache = (
+    pathname === "/" ||
+    pathname.endsWith(".html") ||
+    pathname === "/data/site-data.js" ||
+    pathname.startsWith("/data/digests/")
+  );
+
+  if (!shouldAvoidCache) {
+    return response;
+  }
+
+  const headers = new Headers(response.headers);
+  headers.set("Cache-Control", "no-store, max-age=0, must-revalidate");
+  headers.set("Pragma", "no-cache");
+  headers.set("Expires", "0");
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 async function handleSubscriptions(request, env) {
   if (request.method === "GET") {
     return jsonResponse({
@@ -368,6 +394,6 @@ export default {
       return handleUnsubscribe(request, env);
     }
 
-    return env.ASSETS.fetch(request);
+    return serveAsset(request, env);
   },
 };

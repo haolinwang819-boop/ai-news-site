@@ -118,6 +118,7 @@ jobs:
           python3 "AI资讯/ai-news-aggregator/scripts/build_nexttoken_site.py" "website/data/digests/digest_$TARGET_DATE.json" --archive-dir "website/data/digests" --output "website/data/site-data.js"
 
       - name: Commit site update
+        id: commit_site_update
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -125,10 +126,24 @@ jobs:
           git add "website/data/site-data.js" "website/data/digests"
           if git diff --cached --quiet; then
             echo "No site data changes to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "Update daily AI brief for $TARGET_DATE"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy site to Cloudflare
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::warning::Cloudflare deploy secrets are missing, so the site update was committed but direct deployment was skipped."
+            exit 0
+          fi
+          npx wrangler deploy
 
   send:
     name: Send yesterday's brief to subscribers
