@@ -70,7 +70,7 @@ EMAIL_CONFIG = {
 
 # X平台API配置（可选）
 X_API_CONFIG = {
-    "enabled": bool(os.environ.get("X_API_KEY") or os.environ.get("X_BEARER_TOKEN")),
+    "enabled": bool(os.environ.get("X_API_KEY")),
     "api_key": os.environ.get("X_API_KEY", ""),
     "base_url": os.environ.get("X_API_BASE_URL", "https://api.twitterapi.io"),
     "bearer_token": os.environ.get("X_BEARER_TOKEN", ""),
