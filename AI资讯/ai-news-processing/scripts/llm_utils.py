@@ -41,7 +41,7 @@ def get_llm_invoker() -> Callable[[str], str]:
     default_models = {
         "openai": "gpt-4o-mini",
         "anthropic": "claude-3-5-haiku-latest",
-        "gemini": "gemini-3.1-pro",
+        "gemini": "gemini-3.1-pro-preview",
     }
     model = LLM_CONFIG.get("model") or default_models.get(provider, "gpt-4o-mini")
     api_key = LLM_CONFIG.get("api_key") or ""

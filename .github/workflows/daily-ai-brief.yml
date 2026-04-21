@@ -34,7 +34,7 @@ permissions:
 env:
   BRIEF_TIMEZONE: America/New_York
   LLM_PROVIDER: gemini
-  LLM_MODEL: gemini-3.1-pro
+  LLM_MODEL: gemini-3.1-pro-preview
   LLM_TIMEOUT_SECONDS: 240
   LLM_MAX_TOKENS: 8192
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
