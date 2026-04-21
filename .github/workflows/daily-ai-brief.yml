@@ -1,0 +1,165 @@
+name: Daily AI Brief
+
+on:
+  schedule:
+    # 6 AM New York. Two UTC entries handle daylight saving time.
+    - cron: "0 10 * * *"
+    - cron: "0 11 * * *"
+    # 8 AM New York. Two UTC entries handle daylight saving time.
+    - cron: "0 12 * * *"
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to run"
+        required: true
+        default: "generate"
+        type: choice
+        options:
+          - generate
+          - send
+      date:
+        description: "Digest date YYYY-MM-DD. Leave blank to use yesterday in New York."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+env:
+  BRIEF_TIMEZONE: America/New_York
+  LLM_PROVIDER: ${{ vars.LLM_PROVIDER || 'gemini' }}
+  LLM_MODEL: ${{ vars.LLM_MODEL || '' }}
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  SMTP_SERVER: ${{ secrets.SMTP_SERVER || 'smtp.gmail.com' }}
+  SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+  SMTP_USE_TLS: ${{ secrets.SMTP_USE_TLS || 'true' }}
+  SMTP_SENDER_EMAIL: ${{ secrets.SMTP_SENDER_EMAIL }}
+  SMTP_SENDER_PASSWORD: ${{ secrets.SMTP_SENDER_PASSWORD }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+  UNSUBSCRIBE_SECRET: ${{ secrets.UNSUBSCRIBE_SECRET }}
+  SITE_BROWSER_PATH: ""
+
+jobs:
+  generate:
+    name: Generate yesterday's brief and update site
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.mode == 'generate' ||
+      github.event_name == 'schedule' && (github.event.schedule == '0 10 * * *' || github.event.schedule == '0 11 * * *')
+    steps:
+      - name: Gate 6 AM New York run
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          local_hour="$(TZ="$BRIEF_TIMEZONE" date +%H)"
+          if [ "$local_hour" = "06" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Skipping because New York hour is $local_hour, not 06."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.should_run == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.should_run == 'true'
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r "AI资讯/ai-news-aggregator/requirements.txt" -r "AI资讯/ai-news-processing/requirements.txt"
+          python -m playwright install chromium
+
+      - name: Resolve digest date
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          target_date="${{ inputs.date }}"
+          if [ -z "$target_date" ]; then
+            target_date="$(python3 -c 'from datetime import datetime, timedelta; from zoneinfo import ZoneInfo; print((datetime.now(ZoneInfo("America/New_York")).date() - timedelta(days=1)).isoformat())')"
+          fi
+          echo "TARGET_DATE=$target_date" >> "$GITHUB_ENV"
+
+      - name: Generate digest and site data
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          export OUTPUT_DIR="output/runs/$TARGET_DATE"
+          export PRODUCT_HUNT_LEADERBOARD_DATE="$TARGET_DATE"
+          python3 "AI资讯/ai-news-aggregator/scripts/run_split_pipeline.py" --dry-run --date "$TARGET_DATE"
+          mkdir -p "website/data/digests"
+          cp "output/runs/$TARGET_DATE/digest.json" "website/data/digests/digest_$TARGET_DATE.json"
+          python3 "AI资讯/ai-news-aggregator/scripts/build_nexttoken_site.py" "website/data/digests/digest_$TARGET_DATE.json" --archive-dir "website/data/digests" --output "website/data/site-data.js"
+
+      - name: Commit site update
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "website/data/site-data.js" "website/data/digests"
+          if git diff --cached --quiet; then
+            echo "No site data changes to commit."
+            exit 0
+          fi
+          git commit -m "Update daily AI brief for $TARGET_DATE"
+          git push
+
+  send:
+    name: Send yesterday's brief to subscribers
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.mode == 'send' ||
+      github.event_name == 'schedule' && (github.event.schedule == '0 12 * * *' || github.event.schedule == '0 13 * * *')
+    steps:
+      - name: Gate 8 AM New York run
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          local_hour="$(TZ="$BRIEF_TIMEZONE" date +%H)"
+          if [ "$local_hour" = "08" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Skipping because New York hour is $local_hour, not 08."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.should_run == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.should_run == 'true'
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r "AI资讯/ai-news-aggregator/requirements.txt" -r "AI资讯/ai-news-processing/requirements.txt"
+
+      - name: Resolve digest date
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          target_date="${{ inputs.date }}"
+          if [ -z "$target_date" ]; then
+            target_date="$(python3 -c 'from datetime import datetime, timedelta; from zoneinfo import ZoneInfo; print((datetime.now(ZoneInfo("America/New_York")).date() - timedelta(days=1)).isoformat())')"
+          fi
+          echo "TARGET_DATE=$target_date" >> "$GITHUB_ENV"
+
+      - name: Send digest
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python3 "AI资讯/ai-news-aggregator/scripts/dispatch_digest.py" --date "$TARGET_DATE"

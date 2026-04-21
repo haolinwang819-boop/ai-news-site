@@ -42,6 +42,22 @@ def _load_root_env_file():
 
 _load_root_env_file()
 
+
+def _safe_source_list(name, builder):
+    try:
+        return builder()
+    except FileNotFoundError as exc:
+        print(f"⚠️ Nexttoken source registry unavailable for {name}: {exc}")
+        return []
+
+
+def _safe_registry_counts():
+    try:
+        return build_registry_counts()
+    except FileNotFoundError as exc:
+        print(f"⚠️ Nexttoken source registry unavailable: {exc}")
+        return {}
+
 # 邮件配置
 EMAIL_CONFIG = {
     "smtp_server": os.environ.get("SMTP_SERVER", "smtp.gmail.com"),  # SMTP服务器地址
@@ -71,17 +87,17 @@ X_API_CONFIG = {
         "Sora"
     ]
 }
-X_SOURCES = build_x_sources()
+X_SOURCES = _safe_source_list("x", build_x_sources)
 if X_API_CONFIG["max_sources"] > 0:
     X_SOURCES = X_SOURCES[: X_API_CONFIG["max_sources"]]
 
-NEXTTOKEN_SOURCE_COUNTS = build_registry_counts()
-INSTAGRAM_SOURCES = build_instagram_sources()
-XIAOHONGSHU_SOURCES = build_xiaohongshu_sources()
-WECHAT_SOURCES = build_wechat_sources()
-TOOL_SITE_SOURCES = build_tool_sources()
-NEWS_SITE_SOURCES = build_news_sources()
-REDDIT_SOURCES = build_reddit_sources()
+NEXTTOKEN_SOURCE_COUNTS = _safe_registry_counts()
+INSTAGRAM_SOURCES = _safe_source_list("instagram", build_instagram_sources)
+XIAOHONGSHU_SOURCES = _safe_source_list("xiaohongshu", build_xiaohongshu_sources)
+WECHAT_SOURCES = _safe_source_list("wechat", build_wechat_sources)
+TOOL_SITE_SOURCES = _safe_source_list("tools", build_tool_sources)
+NEWS_SITE_SOURCES = _safe_source_list("news", build_news_sources)
+REDDIT_SOURCES = _safe_source_list("reddit", build_reddit_sources)
 MANUAL_SITE_SOURCES = [
     {
         "source_name": "Anthropic News",
@@ -215,4 +231,4 @@ TIME_RANGE_HOURS = 24
 MAX_ITEMS_PER_CATEGORY = 10
 
 # 输出设置
-OUTPUT_DIR = "output"  # 临时输出目录
+OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "output")  # 临时输出目录

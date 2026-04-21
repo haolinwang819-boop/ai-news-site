@@ -92,7 +92,7 @@ def _run_group_mode(group: str) -> None:
     print(f"📦 分段结果已保存: {path} ({len(items)} 条)")
 
 
-def _run_pipeline_mode(groups: list[str], dry_run: bool, recipient: str | None) -> None:
+def _run_pipeline_mode(groups: list[str], dry_run: bool, recipient: str | None, digest_date: str | None = None) -> None:
     config = load_config()
     if recipient:
         config.EMAIL_CONFIG["recipient_email"] = recipient
@@ -122,7 +122,7 @@ def _run_pipeline_mode(groups: list[str], dry_run: bool, recipient: str | None) 
     print(f"\n📦 合并原始条目: {len(merged_items)} 条")
     print(f"📦 合并文件已保存: {raw_items_path}")
 
-    digest_path = run_processing_pipeline(raw_items_path, output_dir)
+    digest_path = run_processing_pipeline(raw_items_path, output_dir, digest_date=digest_date)
     digest = load_digest(digest_path)
     sender = EmailSender(config.EMAIL_CONFIG)
     sender.build_preview_assets(digest, output_dir=output_dir)
@@ -163,6 +163,7 @@ def main() -> None:
     )
     parser.add_argument("--dry-run", action="store_true", help="仅采集和生成预览，不发送邮件")
     parser.add_argument("--recipient", help="覆盖收件人邮箱")
+    parser.add_argument("--date", help="日报日期 YYYY-MM-DD；缺省为今天")
     args = parser.parse_args()
 
     if args.group:
@@ -170,7 +171,7 @@ def main() -> None:
         return
 
     groups = [part.strip() for part in (args.groups or ",".join(GROUPS)).split(",") if part.strip()]
-    _run_pipeline_mode(groups, dry_run=args.dry_run, recipient=args.recipient)
+    _run_pipeline_mode(groups, dry_run=args.dry_run, recipient=args.recipient, digest_date=args.date)
 
 
 if __name__ == "__main__":

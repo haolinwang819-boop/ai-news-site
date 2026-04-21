@@ -42,14 +42,18 @@ def load_config():
         sys.exit(1)
 
 
-def run_processing_pipeline(raw_items_path: Path, output_dir: Path) -> Path:
+def run_processing_pipeline(raw_items_path: Path, output_dir: Path, digest_date: str | None = None) -> Path:
     """调用 ai-news-processing 的规范流水线，生成 digest JSON。"""
     processing_root = Path(__file__).resolve().parents[2] / "ai-news-processing"
     runner_path = processing_root / "run.py"
     digest_path = output_dir / "digest.json"
 
+    command = [sys.executable, str(runner_path), str(raw_items_path), "-o", str(digest_path)]
+    if digest_date:
+        command.extend(["--date", digest_date])
+
     result = subprocess.run(
-        [sys.executable, str(runner_path), str(raw_items_path), "-o", str(digest_path)],
+        command,
         capture_output=True,
         text=True,
         check=True,
@@ -70,6 +74,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="仅采集处理，不发送邮件")
     parser.add_argument("--test-email", action="store_true", help="发送测试邮件")
     parser.add_argument("--sources", help="逗号分隔采集源：rss,x,product_hunt,site,xiaohongshu,wechat,instagram,reddit")
+    parser.add_argument("--date", help="日报日期 YYYY-MM-DD；缺省为今天")
     args = parser.parse_args()
     
     print("=" * 50)
@@ -169,7 +174,7 @@ def main():
     # 2. 处理
     print("\n🧠 运行处理流水线...")
     print("-" * 50)
-    digest_path = run_processing_pipeline(raw_items_path, raw_output_dir)
+    digest_path = run_processing_pipeline(raw_items_path, raw_output_dir, digest_date=args.date)
     digest = load_digest(digest_path)
     print(f"📰 规范 digest 已生成: {digest_path}")
 
