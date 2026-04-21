@@ -45,6 +45,12 @@ body {
   overflow-x: hidden;
 }
 
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -247,6 +253,16 @@ a {
   max-width: 100%;
 }
 
+.hero__title,
+.brandmark__name,
+.module-card__title,
+.stage-feature__title,
+.result-card__title,
+.stage-list__item h4,
+.explore-hero__copy h1 {
+  overflow-wrap: anywhere;
+}
+
 .hero__heading {
   display: grid;
   gap: 10px;
@@ -271,6 +287,7 @@ a {
   background: linear-gradient(135deg, #ffffff 0%, #98dcff 34%, #7af7d6 68%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
+  max-width: 100%;
 }
 
 .hero__pulse {
@@ -1015,12 +1032,39 @@ a {
 }
 
 @media (max-width: 720px) {
+  body {
+    overflow-x: clip;
+  }
+
   .shell {
-    width: min(100vw - 24px, 1180px);
+    width: min(100vw - 20px, 1180px);
   }
 
   .topbar {
-    padding-top: 18px;
+    align-items: flex-start;
+    gap: 14px;
+    padding-top: 16px;
+  }
+
+  .brandmark__name {
+    font-size: 22px;
+    letter-spacing: 0.08em;
+  }
+
+  .brandmark__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+
+  .topnav {
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .topnav__link,
+  .topnav__button {
+    padding: 9px 12px;
+    font-size: 13px;
   }
 
   .panel--hero,
@@ -1034,10 +1078,120 @@ a {
   }
 
   .hero__title {
-    font-size: clamp(42px, 18vw, 76px);
+    font-size: clamp(38px, 14.5vw, 64px);
+    letter-spacing: 0.045em;
+    line-height: 1;
+  }
+
+  .hero__actions,
+  .stage-feature__actions,
+  .result-card__actions,
+  .module-card__footer,
+  .footer,
+  .controls-bar,
+  .subscribe-band__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero__actions .primary-button,
+  .hero__actions .ghost-button,
+  .stage-feature__actions .primary-button,
+  .stage-feature__actions .ghost-button,
+  .result-card__actions .inline-link,
+  .module-card__footer .inline-link,
+  .footer__links a {
+    width: 100%;
+  }
+
+  .stat-chip,
+  .subscribe-band__badge,
+  .search-shell,
+  .results-meta {
+    width: 100%;
+  }
+
+  .module-tab,
+  .date-tab,
+  .chip {
+    width: 100%;
   }
 
   .results-grid {
     grid-template-columns: 1fr;
+  }
+
+  .result-card__title {
+    font-size: 24px;
+  }
+
+  .stage-feature__title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 460px) {
+  .shell {
+    width: min(100vw - 16px, 1180px);
+  }
+
+  .page-flow {
+    gap: 20px;
+  }
+
+  .topbar {
+    flex-direction: column;
+  }
+
+  .topnav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .topnav__link,
+  .topnav__button {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .panel--hero,
+  .panel--stage,
+  .panel--controls,
+  .subscribe-band,
+  .stage-feature,
+  .result-card,
+  .module-card {
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  .hero__title {
+    font-size: clamp(34px, 13.5vw, 54px);
+    letter-spacing: 0.025em;
+  }
+
+  .subscribe-band__copy h2,
+  .section-head h2,
+  .explore-hero__copy h1 {
+    font-size: 28px;
+  }
+
+  .primary-button,
+  .ghost-button,
+  .inline-link {
+    width: 100%;
+    padding-inline: 14px;
+  }
+
+  .visual-logo,
+  .card-logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+  }
+
+  .stage-feature__visual {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

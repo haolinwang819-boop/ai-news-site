@@ -77,7 +77,7 @@
         return `
           <button class="module-tab${activeClass}" type="button" data-section-id="${escapeHtml(section.id)}">
             <strong>${escapeHtml(section.label)}</strong>
-            <span>${escapeHtml(section.cnLabel)} · ${section.count} stories</span>
+            <span>${section.count} stories</span>
           </button>
         `;
       })
@@ -131,9 +131,16 @@
     return `<ul class="key-point-list">${points.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul>`;
   }
 
+  function displaySourceLabel(value) {
+    const sourceMap = {
+      "量子位": "QbitAI",
+    };
+    return sourceMap[value] || value || "";
+  }
+
   function resultCard(item, section) {
     const badges = [
-      item.sourceLabel,
+      displaySourceLabel(item.sourceLabel),
       item.dateLabel,
       item.productRank ? `Rank #${item.productRank}` : "",
       item.modelTrack || "",
@@ -200,7 +207,7 @@
     container.innerHTML = archiveSections
       .map((section) => `
         <article class="module-card">
-          <div class="module-card__kicker">${escapeHtml(section.cnLabel)}</div>
+          <div class="module-card__kicker">${escapeHtml(section.shortLabel || section.label)}</div>
           <h3 class="module-card__title">${escapeHtml(section.label)}</h3>
           <p class="module-card__text">${escapeHtml(section.description)}</p>
           <div class="module-card__footer">
@@ -222,7 +229,7 @@
     const feature = (section.items || [])[0];
     const rest = (section.items || []).slice(1, 5);
     if (meta) {
-      meta.textContent = `${section.count} stories · ${section.cnLabel} · ${digest.date || ""}`;
+      meta.textContent = `${section.count} stories · ${section.label} · ${digest.date || ""}`;
     }
 
     if (!feature) {
@@ -235,8 +242,8 @@
         <div class="stage-feature__visual">
           ${logoMarkup(feature, "visual-logo")}
           <div>
-            <p class="eyebrow ${sectionAccent(section)}">${escapeHtml(section.cnLabel)}</p>
-            <h3 style="margin:0;font-size:24px;">${escapeHtml(feature.sourceLabel)}</h3>
+            <p class="eyebrow ${sectionAccent(section)}">${escapeHtml(section.shortLabel || section.label)}</p>
+            <h3 style="margin:0;font-size:24px;">${escapeHtml(displaySourceLabel(feature.sourceLabel))}</h3>
             <p class="hero__lede">${escapeHtml(feature.dateLabel)}</p>
           </div>
         </div>
@@ -247,7 +254,7 @@
       <article class="stage-feature">
         <div class="stage-feature__meta">
           <span class="micro-badge">${escapeHtml(section.label)}</span>
-          <span>${escapeHtml(feature.sourceLabel)}</span>
+          <span>${escapeHtml(displaySourceLabel(feature.sourceLabel))}</span>
           <span>${escapeHtml(feature.dateLabel)}</span>
         </div>
         <h3 class="stage-feature__title">${escapeHtml(feature.title)}</h3>
@@ -263,7 +270,7 @@
         ${rest.map((item) => `
           <article class="stage-list__item">
             <div class="stage-feature__meta">
-              <span>${escapeHtml(item.sourceLabel)}</span>
+              <span>${escapeHtml(displaySourceLabel(item.sourceLabel))}</span>
               <span>${escapeHtml(item.dateLabel)}</span>
             </div>
             <h4 style="margin:0;font-size:20px;line-height:1.2;">${escapeHtml(item.title)}</h4>
@@ -353,12 +360,12 @@
       {
         id: "all",
         label: "Full Brief",
-        cnLabel: "全部订阅",
+        helper: "All modules",
       },
       ...(latestDigest.sections || []).map((section) => ({
         id: section.id,
         label: section.label,
-        cnLabel: section.cnLabel,
+        helper: section.shortLabel || "Module",
       })),
     ];
 
@@ -368,7 +375,7 @@
           <button type="button" class="chip${selected.has(option.id) ? " chip--active" : ""}" data-chip-id="${escapeHtml(option.id)}">
             <div class="chip__meta">
               <strong>${escapeHtml(option.label)}</strong>
-              <span>${escapeHtml(option.cnLabel)}</span>
+              <span>${escapeHtml(option.helper)}</span>
             </div>
           </button>
         `)
