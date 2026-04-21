@@ -1,0 +1,8 @@
+name = "ai-news-site"
+main = "./cloudflare/worker.js"
+compatibility_date = "2026-04-20"
+
+[assets]
+directory = "./website"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
