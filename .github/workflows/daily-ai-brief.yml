@@ -22,6 +22,11 @@ on:
         description: "Digest date YYYY-MM-DD. Leave blank to use yesterday in New York."
         required: false
         type: string
+      dry_run:
+        description: "Preview send without emailing subscribers. Only applies to manual send runs."
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -162,4 +167,8 @@ jobs:
       - name: Send digest
         if: steps.gate.outputs.should_run == 'true'
         run: |
-          python3 "AI资讯/ai-news-aggregator/scripts/dispatch_digest.py" --date "$TARGET_DATE"
+          dry_run_flag=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            dry_run_flag="--dry-run"
+          fi
+          python3 "AI资讯/ai-news-aggregator/scripts/dispatch_digest.py" --date "$TARGET_DATE" $dry_run_flag
