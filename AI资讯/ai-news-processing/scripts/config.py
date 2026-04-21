@@ -62,5 +62,7 @@ LLM_CONFIG = {
         or os.environ.get("ANTHROPIC_API_KEY", "")
     ),
     "temperature": 0.1,
+    "max_tokens": int(os.environ.get("LLM_MAX_TOKENS", "8192")),
+    "timeout_seconds": int(os.environ.get("LLM_TIMEOUT_SECONDS", "240")),
 }
 

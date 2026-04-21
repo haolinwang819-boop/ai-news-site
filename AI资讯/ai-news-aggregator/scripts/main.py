@@ -56,12 +56,13 @@ def run_processing_pipeline(raw_items_path: Path, output_dir: Path, digest_date:
         command,
         capture_output=True,
         text=True,
-        check=True,
     )
     if result.stdout.strip():
         print(result.stdout.strip())
     if result.stderr.strip():
         print(result.stderr.strip(), file=sys.stderr)
+    if result.returncode != 0:
+        raise subprocess.CalledProcessError(result.returncode, result.args)
     return digest_path
 
 

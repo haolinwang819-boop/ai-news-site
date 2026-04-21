@@ -58,6 +58,13 @@ def _safe_registry_counts():
         print(f"⚠️ Nexttoken source registry unavailable: {exc}")
         return {}
 
+
+def _env_flag(name: str, default: bool) -> bool:
+    raw_value = os.environ.get(name)
+    if raw_value is None:
+        return default
+    return raw_value.strip().lower() not in {"0", "false", "no", "off"}
+
 # 邮件配置
 EMAIL_CONFIG = {
     "smtp_server": os.environ.get("SMTP_SERVER", "smtp.gmail.com"),  # SMTP服务器地址
@@ -114,14 +121,19 @@ MANUAL_SITE_SOURCES = [
         "priority_hint": 0,
     },
 ]
+INSTAGRAM_COOKIE = os.environ.get("INSTAGRAM_COOKIE", "")
 INSTAGRAM_CONFIG = {
-    "enabled": os.environ.get("INSTAGRAM_CRAWLER_ENABLED", "true").lower() != "false",
+    "enabled": _env_flag("INSTAGRAM_CRAWLER_ENABLED", bool(INSTAGRAM_COOKIE)),
     "user_agent": os.environ.get("INSTAGRAM_USER_AGENT", "Mozilla/5.0"),
+    "cookie": INSTAGRAM_COOKIE,
     "app_id": os.environ.get("INSTAGRAM_APP_ID", "936619743392459"),
     "timeout_seconds": int(os.environ.get("INSTAGRAM_TIMEOUT_SECONDS", "30")),
     "max_items_per_source": int(os.environ.get("INSTAGRAM_ITEMS_PER_SOURCE", "3")),
     "max_sources": int(os.environ.get("INSTAGRAM_MAX_SOURCES", "0")),
-    "max_workers": int(os.environ.get("INSTAGRAM_MAX_WORKERS", "6")),
+    "max_workers": int(os.environ.get("INSTAGRAM_MAX_WORKERS", "1")),
+    "request_delay_seconds": float(os.environ.get("INSTAGRAM_REQUEST_DELAY_SECONDS", "8")),
+    "retry_attempts": int(os.environ.get("INSTAGRAM_RETRY_ATTEMPTS", "2")),
+    "retry_backoff_seconds": float(os.environ.get("INSTAGRAM_RETRY_BACKOFF_SECONDS", "30")),
 }
 if INSTAGRAM_CONFIG["max_sources"] > 0:
     INSTAGRAM_SOURCES = INSTAGRAM_SOURCES[: INSTAGRAM_CONFIG["max_sources"]]

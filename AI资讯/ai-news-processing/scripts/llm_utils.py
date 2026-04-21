@@ -47,6 +47,7 @@ def get_llm_invoker() -> Callable[[str], str]:
     api_key = LLM_CONFIG.get("api_key") or ""
     temperature = LLM_CONFIG.get("temperature", 0.1)
     max_tokens = LLM_CONFIG.get("max_tokens", 8192)
+    timeout_seconds = int(LLM_CONFIG.get("timeout_seconds", 240))
 
     if not api_key:
         raise ValueError("请设置环境变量 GEMINI_API_KEY、OPENAI_API_KEY 或 ANTHROPIC_API_KEY")
@@ -75,7 +76,7 @@ def get_llm_invoker() -> Callable[[str], str]:
                 params={"key": api_key},
                 headers={"Content-Type": "application/json"},
                 json=payload,
-                timeout=60,
+                timeout=timeout_seconds,
             )
             response.raise_for_status()
             data = response.json()

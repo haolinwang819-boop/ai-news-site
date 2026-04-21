@@ -5,6 +5,7 @@ Instagram 来源采集器。
 """
 from __future__ import annotations
 
+import time
 from typing import List
 
 import requests
@@ -22,7 +23,10 @@ class InstagramCrawler(BaseCrawler):
         self.sources = sources
         self.timeout_seconds = int(config.get("timeout_seconds", 30))
         self.max_items_per_source = int(config.get("max_items_per_source", 3))
-        self.max_workers = int(config.get("max_workers", 6))
+        self.max_workers = int(config.get("max_workers", 1))
+        self.request_delay_seconds = float(config.get("request_delay_seconds", 8))
+        self.retry_attempts = int(config.get("retry_attempts", 2))
+        self.retry_backoff_seconds = float(config.get("retry_backoff_seconds", 30))
         self.session = requests.Session()
         self.session.headers.update(
             {
@@ -32,6 +36,8 @@ class InstagramCrawler(BaseCrawler):
                 "Referer": "https://www.instagram.com/",
             }
         )
+        if config.get("cookie"):
+            self.session.headers.update({"Cookie": config["cookie"]})
 
     def crawl(self, hours: int = 24) -> List[NewsItem]:
         return self._crawl_sources_in_parallel(
@@ -43,12 +49,27 @@ class InstagramCrawler(BaseCrawler):
 
     def _crawl_single_source(self, source: dict, hours: int) -> List[NewsItem]:
         username = source.get("author_handle") or source.get("name", "").lstrip("@")
-        response = requests.get(
-            self.PROFILE_API,
-            params={"username": username},
-            headers=dict(self.session.headers),
-            timeout=self.timeout_seconds,
-        )
+        response = None
+
+        for attempt in range(1, self.retry_attempts + 1):
+            if self.request_delay_seconds > 0:
+                time.sleep(self.request_delay_seconds)
+
+            response = requests.get(
+                self.PROFILE_API,
+                params={"username": username},
+                headers=dict(self.session.headers),
+                timeout=self.timeout_seconds,
+            )
+
+            if response.status_code != 429 or attempt == self.retry_attempts:
+                break
+
+            time.sleep(self.retry_backoff_seconds * attempt)
+
+        if response is None:
+            return []
+
         response.raise_for_status()
 
         user = ((response.json().get("data") or {}).get("user")) or {}
