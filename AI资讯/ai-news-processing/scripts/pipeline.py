@@ -287,30 +287,27 @@ def normalize_node(state: PipelineState, prompt_loader: Any, invoker: Callable[[
     input_list = state.get("input_items") or []
     if not input_list:
         return {"normalized_items": [], "error": None}
-    try:
-        text = _run_prompt(prompt_loader, invoker, "normalize", json.dumps(input_list, ensure_ascii=False))
-        data = parse_json_from_model_output(text)
-        items = json_list_to_items(data) if data else []
-        if not items:
-            items = _fallback_normalize_items(input_list)
-        raw_by_url = {
-            str(raw.get("url") or "").strip(): raw
-            for raw in input_list
-            if str(raw.get("url") or "").strip()
-        }
-        for it in items:
-            it.category = None
-            raw = raw_by_url.get(it.url)
-            if raw and raw.get("product_rank") is not None and it.product_rank is None:
-                try:
-                    it.product_rank = int(raw.get("product_rank"))
-                except (TypeError, ValueError):
-                    pass
-            if raw and raw.get("logo_url") and not it.logo_url:
-                it.logo_url = str(raw.get("logo_url")).strip() or None
-        return {"normalized_items": items, "error": None}
-    except Exception as e:
-        return {"normalized_items": _fallback_normalize_items(input_list), "error": None}
+    text = _run_prompt(prompt_loader, invoker, "normalize", json.dumps(input_list, ensure_ascii=False))
+    data = parse_json_from_model_output(text)
+    items = json_list_to_items(data) if data else []
+    if not items:
+        raise RuntimeError("normalize returned no items; refusing to use fallback output")
+    raw_by_url = {
+        str(raw.get("url") or "").strip(): raw
+        for raw in input_list
+        if str(raw.get("url") or "").strip()
+    }
+    for it in items:
+        it.category = None
+        raw = raw_by_url.get(it.url)
+        if raw and raw.get("product_rank") is not None and it.product_rank is None:
+            try:
+                it.product_rank = int(raw.get("product_rank"))
+            except (TypeError, ValueError):
+                pass
+        if raw and raw.get("logo_url") and not it.logo_url:
+            it.logo_url = str(raw.get("logo_url")).strip() or None
+    return {"normalized_items": items, "error": None}
 
 
 def classify_node(state: PipelineState, prompt_loader: Any, invoker: Callable[[str], str]) -> Dict[str, Any]:
@@ -318,20 +315,17 @@ def classify_node(state: PipelineState, prompt_loader: Any, invoker: Callable[[s
     items = state.get("normalized_items") or []
     if not items:
         return {"categorized_items": [], "error": None}
-    try:
-        text = _run_prompt(prompt_loader, invoker, "classify", json.dumps(items_to_json_list(items), ensure_ascii=False))
-        data = parse_json_from_model_output(text)
-        categorized_items = json_list_to_items(data) if data else []
-        if not categorized_items:
-            categorized_items = _fallback_classify_items(items)
-        original_by_url = {it.url: it for it in items if it.url}
-        for it in categorized_items:
-            original = original_by_url.get(it.url)
-            if original and original.logo_url and not it.logo_url:
-                it.logo_url = original.logo_url
-        return {"categorized_items": categorized_items, "error": None}
-    except Exception as e:
-        return {"categorized_items": _fallback_classify_items(items), "error": None}
+    text = _run_prompt(prompt_loader, invoker, "classify", json.dumps(items_to_json_list(items), ensure_ascii=False))
+    data = parse_json_from_model_output(text)
+    categorized_items = json_list_to_items(data) if data else []
+    if not categorized_items:
+        raise RuntimeError("classify returned no items; refusing to use fallback output")
+    original_by_url = {it.url: it for it in items if it.url}
+    for it in categorized_items:
+        original = original_by_url.get(it.url)
+        if original and original.logo_url and not it.logo_url:
+            it.logo_url = original.logo_url
+    return {"categorized_items": categorized_items, "error": None}
 
 
 def dedup_node(state: PipelineState, prompt_loader: Any, invoker: Callable[[str], str]) -> Dict[str, Any]:
@@ -339,20 +333,17 @@ def dedup_node(state: PipelineState, prompt_loader: Any, invoker: Callable[[str]
     items = state.get("categorized_items") or []
     if not items:
         return {"deduped_items": [], "error": None}
-    try:
-        text = _run_prompt(prompt_loader, invoker, "dedup", json.dumps(items_to_json_list(items), ensure_ascii=False))
-        data = parse_json_from_model_output(text)
-        deduped_items = json_list_to_items(data) if data else []
-        if not deduped_items:
-            deduped_items = _fallback_dedup_items(items)
-        original_by_url = {it.url: it for it in items if it.url}
-        for it in deduped_items:
-            original = original_by_url.get(it.url)
-            if original and original.logo_url and not it.logo_url:
-                it.logo_url = original.logo_url
-        return {"deduped_items": deduped_items, "error": None}
-    except Exception as e:
-        return {"deduped_items": _fallback_dedup_items(items), "error": None}
+    text = _run_prompt(prompt_loader, invoker, "dedup", json.dumps(items_to_json_list(items), ensure_ascii=False))
+    data = parse_json_from_model_output(text)
+    deduped_items = json_list_to_items(data) if data else []
+    if not deduped_items:
+        raise RuntimeError("dedup returned no items; refusing to use fallback output")
+    original_by_url = {it.url: it for it in items if it.url}
+    for it in deduped_items:
+        original = original_by_url.get(it.url)
+        if original and original.logo_url and not it.logo_url:
+            it.logo_url = original.logo_url
+    return {"deduped_items": deduped_items, "error": None}
 
 
 def reflect_node(state: PipelineState, prompt_loader: Any, invoker: Callable[[str], str]) -> Dict[str, Any]:
@@ -360,17 +351,14 @@ def reflect_node(state: PipelineState, prompt_loader: Any, invoker: Callable[[st
     items = state.get("deduped_items") or []
     if not items:
         return {"reflection_notes": {"need_rerun": False, "issues": []}, "error": None}
-    try:
-        text = _run_prompt(prompt_loader, invoker, "reflect", json.dumps(items_to_json_list(items), ensure_ascii=False))
-        notes = parse_json_from_model_output(text)
-        if not isinstance(notes, dict):
-            notes = {"need_rerun": False, "issues": []}
-        out = {"reflection_notes": notes, "error": None}
-        if notes.get("need_rerun"):
-            out["iteration"] = state.get("iteration", 0) + 1
-        return out
-    except Exception as e:
-        return {"reflection_notes": {"need_rerun": False, "issues": []}, "error": str(e)}
+    text = _run_prompt(prompt_loader, invoker, "reflect", json.dumps(items_to_json_list(items), ensure_ascii=False))
+    notes = parse_json_from_model_output(text)
+    if not isinstance(notes, dict):
+        raise RuntimeError("reflect returned invalid JSON object")
+    out = {"reflection_notes": notes, "error": None}
+    if notes.get("need_rerun"):
+        out["iteration"] = state.get("iteration", 0) + 1
+    return out
 
 
 def _route_after_reflect(state: PipelineState) -> str:

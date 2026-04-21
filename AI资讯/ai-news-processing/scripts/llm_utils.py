@@ -3,6 +3,7 @@ Prompt 加载、LLM 调用、模型输出解析。
 """
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any, Callable, List, Optional
 
@@ -40,7 +41,7 @@ def get_llm_invoker() -> Callable[[str], str]:
     default_models = {
         "openai": "gpt-4o-mini",
         "anthropic": "claude-3-5-haiku-latest",
-        "gemini": "gemini-2.5-flash",
+        "gemini": "gemini-3.1-pro",
     }
     model = LLM_CONFIG.get("model") or default_models.get(provider, "gpt-4o-mini")
     api_key = LLM_CONFIG.get("api_key") or ""
@@ -48,7 +49,9 @@ def get_llm_invoker() -> Callable[[str], str]:
     max_tokens = LLM_CONFIG.get("max_tokens", 8192)
 
     if not api_key:
-        raise ValueError("请设置环境变量 OPENAI_API_KEY 或 ANTHROPIC_API_KEY")
+        raise ValueError("请设置环境变量 GEMINI_API_KEY、OPENAI_API_KEY 或 ANTHROPIC_API_KEY")
+
+    print(f"LLM provider={provider}, model={model}", file=sys.stderr)
 
     if provider == "openai":
         from langchain_openai import ChatOpenAI

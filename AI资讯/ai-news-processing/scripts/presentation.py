@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import html as html_lib
+import os
 import re
 from copy import deepcopy
 from difflib import SequenceMatcher
@@ -531,6 +532,63 @@ def _normalize_enrichment_records(records: Any) -> dict[str, dict[str, Any]]:
     return normalized
 
 
+def _has_non_english_script(value: str) -> bool:
+    return bool(re.search(r"[\u3040-\u30ff\u3400-\u9fff]", value or ""))
+
+
+def _enrichment_quality_issues(
+    chunk: list[dict[str, Any]],
+    enrichment_by_url: dict[str, dict[str, Any]],
+) -> list[str]:
+    issues: list[str] = []
+
+    for item in chunk:
+        url = str(item.get("url") or "").strip()
+        record = enrichment_by_url.get(url)
+        if not record:
+            issues.append(f"missing enrichment for {url}")
+            continue
+
+        display_title = _clean_text(str(record.get("display_title", "")))
+        summary = _clean_text(str(record.get("summary", "")))
+        bullets = [_clean_text(str(point)) for point in record.get("key_points") or [] if _clean_text(str(point))]
+
+        if not display_title:
+            issues.append(f"empty display_title for {url}")
+        elif _title_too_close(display_title, str(item.get("title", ""))):
+            issues.append(f"display_title too close to source title for {url}")
+        elif _has_non_english_script(display_title):
+            issues.append(f"display_title is not English for {url}")
+
+        if not summary:
+            issues.append(f"empty summary for {url}")
+        elif _has_non_english_script(summary):
+            issues.append(f"summary is not English for {url}")
+        elif _looks_non_reader_facing(summary):
+            issues.append(f"summary is not reader-facing for {url}")
+        elif _title_too_close(summary, str(item.get("title", ""))):
+            issues.append(f"summary too close to source title for {url}")
+
+        if len(bullets) != 3:
+            issues.append(f"expected 3 bullets for {url}, got {len(bullets)}")
+            continue
+
+        accepted: list[str] = []
+        for bullet in bullets:
+            if _has_non_english_script(bullet):
+                issues.append(f"bullet is not English for {url}")
+                break
+            if _looks_non_reader_facing(bullet):
+                issues.append(f"bullet is not reader-facing for {url}")
+                break
+            if _bullet_repeats_summary(summary, bullet, accepted):
+                issues.append(f"bullet repeats summary or another bullet for {url}")
+                break
+            accepted.append(bullet)
+
+    return issues
+
+
 def enrich_digest_for_display(digest: dict[str, Any], chunk_size: int = 6) -> dict[str, Any]:
     enriched = deepcopy(digest)
     items: list[dict[str, Any]] = []
@@ -542,47 +600,61 @@ def enrich_digest_for_display(digest: dict[str, Any], chunk_size: int = 6) -> di
 
     enrichment_by_url: dict[str, dict[str, Any]] = {}
 
-    try:
-        prompt_loader = PromptLoader()
-        invoker = get_llm_invoker()
-        llm_available = True
-    except Exception:
-        llm_available = False
-        prompt_loader = None
-        invoker = None
+    prompt_loader = PromptLoader()
+    invoker = get_llm_invoker()
+    max_attempts = int(os.environ.get("PRESENTATION_MAX_ATTEMPTS", "3"))
 
-    if llm_available and prompt_loader and invoker:
-        for start in range(0, len(items), chunk_size):
-            chunk = items[start : start + chunk_size]
-            prompt_input = [_prepare_prompt_item(item) for item in chunk]
+    for start in range(0, len(items), chunk_size):
+        chunk = items[start : start + chunk_size]
+        prompt_input = [_prepare_prompt_item(item) for item in chunk]
+        prompt = prompt_loader.load(
+            "present",
+            input_json=json.dumps(prompt_input, ensure_ascii=False, indent=2),
+        )
+        errors: list[str] = []
+
+        for attempt in range(1, max_attempts + 1):
             try:
-                prompt = prompt_loader.load(
-                    "present",
-                    input_json=json.dumps(prompt_input, ensure_ascii=False, indent=2),
-                )
                 text = invoker(prompt)
-                enrichment_by_url.update(_normalize_enrichment_records(parse_json_from_model_output(text)))
-            except Exception:
-                for item in chunk:
-                    enrichment_by_url[item["url"]] = {
-                        "display_title": _fallback_display_title(item),
-                        "summary": _fallback_summary(item),
-                        "key_points": _fallback_key_points(item),
-                    }
+                chunk_enrichment = _normalize_enrichment_records(parse_json_from_model_output(text))
+                issues = _enrichment_quality_issues(chunk, chunk_enrichment)
+                if issues:
+                    raise ValueError("; ".join(issues[:6]))
+                enrichment_by_url.update(chunk_enrichment)
+                break
+            except Exception as exc:
+                errors.append(f"attempt {attempt}: {exc}")
+        else:
+            raise RuntimeError(
+                "Presentation enrichment failed quality checks; refusing fallback content. "
+                + " | ".join(errors)
+            )
 
     for category, category_items in (enriched.get("categories") or {}).items():
         for item in category_items:
             enriched_item = enrichment_by_url.get(item.get("url", "")) or {}
-            item["summary"] = _finalize_summary(item, enriched_item.get("summary") or _fallback_summary(item))
-            candidate_title = enriched_item.get("display_title") or _fallback_display_title(item)
+            if not enriched_item:
+                raise RuntimeError(f"Missing presentation enrichment for {item.get('url', '')}")
+
+            item["summary"] = _finalize_summary(item, enriched_item["summary"])
+            candidate_title = enriched_item["display_title"]
             candidate_title = _strip_leading_source_reference(candidate_title, str(item.get("source", "")))
             if _title_too_close(candidate_title, str(item.get("title", ""))):
-                candidate_title = _editorial_title_from_summary(item, item["summary"])
+                raise RuntimeError(f"Presentation title is too close to source title: {item.get('url', '')}")
             item["display_title"] = _strip_leading_source_reference(
                 candidate_title.rstrip(".:; "),
                 str(item.get("source", "")),
             )
-            bullet_points = enriched_item.get("key_points") or _fallback_key_points(item)
+            bullet_points = enriched_item["key_points"]
             item["key_points"] = _ensure_complementary_bullets(item, item["summary"], bullet_points)
+            final_issues = _enrichment_quality_issues([item], {item.get("url", ""): {
+                "display_title": item["display_title"],
+                "summary": item["summary"],
+                "key_points": item["key_points"],
+            }})
+            if final_issues:
+                raise RuntimeError(
+                    "Presentation enrichment failed final quality checks: " + "; ".join(final_issues[:6])
+                )
 
     return enriched

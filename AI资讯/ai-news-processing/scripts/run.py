@@ -16,12 +16,7 @@ from .editorial_routing import (
     reroute_items_for_digest,
 )
 from .models import PipelineItem
-from .pipeline import (
-    ProcessingPipeline,
-    _fallback_classify_items,
-    _fallback_dedup_items,
-    _fallback_normalize_items,
-)
+from .pipeline import ProcessingPipeline
 from .presentation import enrich_digest_for_display
 
 
@@ -82,13 +77,6 @@ def _merge_final_items(items: list[PipelineItem]) -> list[PipelineItem]:
         merged.append(item)
 
     return merged
-
-
-def _fast_path_process(items: list[dict]) -> list[PipelineItem]:
-    normalized = _fallback_normalize_items(items)
-    classified = _fallback_classify_items(normalized)
-    deduped = _fallback_dedup_items(classified)
-    return sorted(deduped, key=item_sort_key, reverse=False)
 
 
 def _dedup_raw_items(items: list[dict]) -> list[dict]:
@@ -182,27 +170,20 @@ def main():
     items = _dedup_raw_items(items)
     print(f"已读取 {raw_count} 条条目，预去重后 {len(items)} 条，开始运行流水线…")
 
-    fast_path_threshold = int(os.environ.get("PROCESSING_FAST_PATH_THRESHOLD", "24"))
-    force_fast_path = os.environ.get("PROCESSING_FORCE_FAST_PATH", "").lower() in {"1", "true", "yes"}
+    pipeline = ProcessingPipeline()
+    batch_size = max(args.batch_size, 1)
+    merged_items: list[PipelineItem] = []
 
-    if force_fast_path or len(items) > fast_path_threshold:
-        print(f"启用快速路径：{len(items)} 条输入超过阈值 {fast_path_threshold}。")
-        deduped = _fast_path_process(items)
-    else:
-        pipeline = ProcessingPipeline()
-        batch_size = max(args.batch_size, 1)
-        merged_items: list[PipelineItem] = []
+    for index, batch in enumerate(_chunk_list(items, batch_size), start=1):
+        print(f"处理 batch {index}：{len(batch)} 条，使用完整 LLM 流水线。")
+        result = pipeline.run(batch)
+        error = result.get("error")
+        if error:
+            print(f"流水线错误: {error}", file=sys.stderr)
+            sys.exit(2)
+        merged_items.extend(result.get("deduped_items") or [])
 
-        for index, batch in enumerate(_chunk_list(items, batch_size), start=1):
-            print(f"处理 batch {index}：{len(batch)} 条")
-            result = pipeline.run(batch)
-            error = result.get("error")
-            if error:
-                print(f"流水线错误: {error}", file=sys.stderr)
-                sys.exit(2)
-            merged_items.extend(result.get("deduped_items") or [])
-
-        deduped = _merge_final_items(merged_items)
+    deduped = _merge_final_items(merged_items)
 
     print(f"去重后共 {len(deduped)} 条。")
 
