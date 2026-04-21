@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextToken | AI Signal Terminal</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-page="home">
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="grid-overlay"></div>
+
+  <header class="topbar shell">
+    <a class="brandmark" href="./index.html" aria-label="NextToken home">
+      <span class="brandmark__eyebrow">AI SIGNAL</span>
+      <span class="brandmark__name">NEXTTOKEN</span>
+    </a>
+    <nav class="topnav">
+      <a href="./index.html" class="topnav__link topnav__link--active">Home</a>
+      <a href="./explore.html" class="topnav__link">Explore</a>
+      <a href="#subscribe" class="topnav__button">Subscribe</a>
+    </nav>
+  </header>
+
+  <main class="shell page-flow">
+    <section class="hero panel panel--hero">
+      <div class="hero__copy">
+        <div class="hero__heading">
+          <p class="eyebrow" id="hero-eyebrow">AI Signal Terminal</p>
+          <div class="hero__title-row">
+            <h1 class="hero__title">NEXTTOKEN</h1>
+            <div class="hero__pulse">
+              <span class="hero__pulse-dot"></span>
+              <span>Live AI Brief</span>
+            </div>
+          </div>
+        </div>
+        <p class="hero__lede" id="hero-tagline">
+          A high-signal AI briefing surface for breakout products, frontier model shifts, hot news, and category-leading product updates.
+        </p>
+        <div class="hero__module-ribbon">
+          <span class="hero-pill hero-pill--cyan">Breakout Products</span>
+          <span class="hero-pill hero-pill--gold">Hot News</span>
+          <span class="hero-pill hero-pill--violet">Models Frontier</span>
+          <span class="hero-pill hero-pill--lime">Product Updates</span>
+        </div>
+        <div class="hero__stats" id="hero-stats"></div>
+        <div class="hero__actions">
+          <a class="primary-button" href="./explore.html">Open Signal Board</a>
+          <a class="ghost-button" href="#signal-deck">Preview each day’s news</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="subscribe-band panel panel--dark" id="subscribe">
+      <div class="subscribe-band__header">
+        <div class="subscribe-band__copy">
+          <p class="eyebrow eyebrow--lime">Subscription Console</p>
+          <h2>Pick your feed in seconds</h2>
+          <p>Choose one module, combine several, or subscribe to the full brief. The interaction is designed to stay fast and obvious.</p>
+        </div>
+        <div class="subscribe-band__badge">
+          <span>4 Modules</span>
+          <strong>One-click selection</strong>
+        </div>
+      </div>
+
+      <form id="subscription-form" class="subscribe-band__form">
+        <div class="subscribe-band__row">
+          <div class="subscribe-band__field">
+            <label class="field-label" for="subscriber-email">Email</label>
+            <input id="subscriber-email" name="email" class="text-input" type="email" placeholder="you@company.com" required>
+          </div>
+          <button class="primary-button subscribe-band__submit" type="submit">Subscribe to NextToken</button>
+        </div>
+
+        <div class="subscribe-band__modules">
+          <div class="field-label field-label--stacked">
+            Modules
+            <span>Select one, several, or everything.</span>
+          </div>
+          <div id="subscription-modules" class="chip-grid"></div>
+        </div>
+      </form>
+
+      <div id="subscription-feedback" class="subscribe__feedback" aria-live="polite"></div>
+    </section>
+
+    <section class="section-head">
+      <div>
+        <p class="eyebrow eyebrow--cyan">Signal Architecture</p>
+        <h2>Built around four primary briefing tracks</h2>
+      </div>
+      <a class="inline-link" href="./explore.html">Browse the full archive</a>
+    </section>
+
+    <section class="module-overview" id="module-overview"></section>
+
+    <section class="section-head" id="signal-deck">
+      <div>
+        <p class="eyebrow eyebrow--violet">Daily Preview</p>
+        <h2>Preview each day’s news</h2>
+      </div>
+      <div class="section-head__meta" id="signal-meta"></div>
+    </section>
+
+    <section class="panel panel--stage">
+      <div class="module-tabs" id="home-module-tabs"></div>
+      <div class="stage" id="home-module-stage"></div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div>
+      <p class="eyebrow eyebrow--gold">NextToken</p>
+      <p class="footer__text">A scrolling AI signal board designed for daily operators, founders, and product teams.</p>
+    </div>
+    <div class="footer__links">
+      <a href="./explore.html">Explore all signals</a>
+      <a href="#subscribe">Subscribe</a>
+    </div>
+  </footer>
+
+  <script src="./data/site-data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

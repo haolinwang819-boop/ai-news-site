@@ -1,0 +1,8 @@
+# LangGraph 与 LLM
+langgraph>=0.2.0
+langchain-openai>=0.2.0
+langchain-anthropic>=0.2.0
+langchain-core>=0.3.0
+requests>=2.28.0
+
+# 无 OpenAI 时可仅装 langchain-anthropic，并设置 LLM_PROVIDER=anthropic

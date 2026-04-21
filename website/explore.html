@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextToken | Explore the AI Brief</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-page="explore">
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-c"></div>
+  <div class="grid-overlay"></div>
+
+  <header class="topbar shell">
+    <a class="brandmark" href="./index.html" aria-label="NextToken home">
+      <span class="brandmark__eyebrow">AI SIGNAL</span>
+      <span class="brandmark__name">NEXTTOKEN</span>
+    </a>
+    <nav class="topnav">
+      <a href="./index.html" class="topnav__link">Home</a>
+      <a href="./explore.html" class="topnav__link topnav__link--active">Explore</a>
+      <a href="./index.html#subscribe" class="topnav__button">Subscribe</a>
+    </nav>
+  </header>
+
+  <main class="shell page-flow">
+    <section class="explore-hero panel panel--hero panel--compact">
+      <div class="explore-hero__copy">
+        <p class="eyebrow">Signal Browser</p>
+        <h1>Search the brief, switch modules, and page through every story</h1>
+        <p>
+          Default view opens on the latest brief. Every module is searchable, paginated, and switchable by archive date.
+        </p>
+      </div>
+      <div class="explore-hero__stats" id="explore-hero-stats"></div>
+    </section>
+
+    <section class="panel panel--controls">
+      <div class="archive-rail">
+        <div class="field-label field-label--stacked">
+          Archive dates
+          <span id="explore-archive-meta">Switch between daily briefs.</span>
+        </div>
+        <div class="date-tabs" id="explore-date-tabs"></div>
+      </div>
+      <div class="module-tabs module-tabs--wide" id="explore-module-tabs"></div>
+      <div class="controls-bar">
+        <label class="search-shell" for="search-input">
+          <span>Search</span>
+          <input id="search-input" type="search" placeholder="Search titles, summaries, sources, or bullet points">
+        </label>
+        <div class="results-meta">
+          <div id="results-meta"></div>
+          <div class="results-meta__sub">Viewing brief: <span id="explore-current-date"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="results" id="results-section">
+      <div class="results-grid" id="explore-results"></div>
+      <div class="pagination" id="pagination"></div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div>
+      <p class="eyebrow eyebrow--lime">Navigate</p>
+      <p class="footer__text">Jump between tracks, search fast, and move page by page through the full AI brief.</p>
+    </div>
+    <div class="footer__links">
+      <a href="./index.html">Back to home</a>
+      <a href="./index.html#subscribe">Subscribe</a>
+    </div>
+  </footer>
+
+  <script src="./data/site-data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
