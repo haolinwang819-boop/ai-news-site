@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai-news-site.haolin-wang819.workers.dev/sitemap.xml
+Sitemap: https://nextokenainews.com/sitemap.xml

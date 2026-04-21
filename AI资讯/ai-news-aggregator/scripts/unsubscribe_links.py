@@ -11,7 +11,7 @@ from urllib.parse import urlencode
 
 
 WORKSPACE_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_SITE_BASE_URL = "https://ai-news-site.haolin-wang819.workers.dev"
+DEFAULT_SITE_BASE_URL = "https://nextokenainews.com"
 
 
 def _load_root_env_file() -> None:
