@@ -13,6 +13,7 @@ from email.mime.text import MIMEText
 from pathlib import Path
 
 from render_digest_preview import render_assets, render_email_html, render_email_markdown
+from unsubscribe_links import build_unsubscribe_url
 
 
 class EmailSender:
@@ -32,25 +33,35 @@ class EmailSender:
             return True
 
         try:
-            markdown_text = assets["email_md"].read_text(encoding="utf-8")
-            html_content = assets["html"].read_text(encoding="utf-8")
-            return self._send_email_content(digest, html_content, markdown_text)
+            recipients = self._parse_recipients(self.config["recipient_email"])
+            unsubscribe_url = build_unsubscribe_url(recipients[0], self.config) if len(recipients) == 1 else None
+            markdown_text = render_email_markdown(digest, unsubscribe_url=unsubscribe_url)
+            html_content = render_email_html(digest, unsubscribe_url=unsubscribe_url)
+            return self._send_email_content(digest, html_content, markdown_text, recipients=recipients, unsubscribe_url=unsubscribe_url)
         except Exception as e:
             print(f"\n❌ 邮件发送失败: {e}")
             return False
 
     def send_digest_to_recipient(self, digest: dict, recipient_email: str, dry_run: bool = False) -> bool:
-        markdown_text = render_email_markdown(digest)
-        html_content = render_email_html(digest)
+        unsubscribe_url = build_unsubscribe_url(recipient_email, self.config)
+        markdown_text = render_email_markdown(digest, unsubscribe_url=unsubscribe_url)
+        html_content = render_email_html(digest, unsubscribe_url=unsubscribe_url)
 
         if dry_run:
             print(f"\n📄 预演发送到 {recipient_email}")
             print(f"📄 HTML 长度: {len(html_content)}")
             print(f"📄 Markdown 长度: {len(markdown_text)}")
+            print(f"📄 退订链接: {unsubscribe_url}")
             return True
 
         try:
-            return self._send_email_content(digest, html_content, markdown_text, recipients=[recipient_email])
+            return self._send_email_content(
+                digest,
+                html_content,
+                markdown_text,
+                recipients=[recipient_email],
+                unsubscribe_url=unsubscribe_url,
+            )
         except Exception as e:
             print(f"\n❌ 邮件发送失败: {e}")
             return False
@@ -70,6 +81,7 @@ class EmailSender:
         html_content: str,
         markdown_text: str,
         recipients: list[str] | None = None,
+        unsubscribe_url: str | None = None,
     ) -> bool:
         recipients = recipients or self._parse_recipients(self.config["recipient_email"])
         if not recipients:
@@ -79,6 +91,9 @@ class EmailSender:
         msg["Subject"] = self._subject_for_digest(digest)
         msg["From"] = self.config["sender_email"]
         msg["To"] = ", ".join(recipients)
+        if unsubscribe_url:
+            msg["List-Unsubscribe"] = f"<{unsubscribe_url}>"
+            msg["List-Unsubscribe-Post"] = "List-Unsubscribe=One-Click"
 
         msg.attach(MIMEText(markdown_text, "plain", "utf-8"))
         msg.attach(MIMEText(html_content, "html", "utf-8"))

@@ -275,7 +275,7 @@ def render_web_markdown(digest: dict) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def render_email_markdown(digest: dict) -> str:
+def render_email_markdown(digest: dict, unsubscribe_url: str | None = None) -> str:
     sections = iter_display_sections(digest)
     all_items = []
     for section in sections:
@@ -316,6 +316,16 @@ def render_email_markdown(digest: dict) -> str:
             lines.append("")
             lines.append("---")
             lines.append("")
+
+    if unsubscribe_url:
+        lines.extend(
+            [
+                "",
+                "You are receiving this because you subscribed to NextToken.",
+                f"Unsubscribe: {unsubscribe_url}",
+                "",
+            ]
+        )
 
     return "\n".join(lines).rstrip() + "\n"
 
@@ -367,7 +377,7 @@ def _render_html_card(item: dict) -> str:
     """
 
 
-def render_email_html(digest: dict) -> str:
+def render_email_html(digest: dict, unsubscribe_url: str | None = None) -> str:
     display_sections = iter_display_sections(digest)
     sections = []
     for section in display_sections:
@@ -383,6 +393,17 @@ def render_email_html(digest: dict) -> str:
             </section>
             """
         )
+
+    footer_html = ""
+    if unsubscribe_url:
+        footer_html = f"""
+          <tr>
+            <td style="padding:18px 24px 32px;text-align:center;color:#64748b;font-size:13px;line-height:1.6;">
+              <p style="margin:0 0 12px 0;">You are receiving this because you subscribed to NextToken.</p>
+              <a href="{html.escape(unsubscribe_url)}" style="display:inline-block;border:1px solid #cbd5e1;border-radius:999px;padding:10px 18px;color:#334155;text-decoration:none;background:#ffffff;">Unsubscribe</a>
+            </td>
+          </tr>
+        """
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -408,6 +429,7 @@ def render_email_html(digest: dict) -> str:
               {''.join(sections)}
             </td>
           </tr>
+          {footer_html}
         </table>
       </td>
     </tr>
