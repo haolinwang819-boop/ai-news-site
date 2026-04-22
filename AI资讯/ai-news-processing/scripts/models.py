@@ -22,6 +22,8 @@ class PipelineItem:
     author_handle: Optional[str] = None
     source_url: Optional[str] = None
     product_rank: Optional[int] = None
+    selection_score: Optional[int] = None
+    selection_reason: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         d: Dict[str, Any] = {
@@ -46,6 +48,10 @@ class PipelineItem:
             d["source_url"] = self.source_url
         if self.product_rank is not None:
             d["product_rank"] = self.product_rank
+        if self.selection_score is not None:
+            d["selection_score"] = self.selection_score
+        if self.selection_reason is not None:
+            d["selection_reason"] = self.selection_reason
         return d
 
     @classmethod
@@ -65,6 +71,8 @@ class PipelineItem:
             author_handle=d.get("author_handle") if d.get("author_handle") else None,
             source_url=d.get("source_url") if d.get("source_url") else None,
             product_rank=int(d.get("product_rank")) if d.get("product_rank") is not None else None,
+            selection_score=int(d.get("selection_score")) if d.get("selection_score") is not None else None,
+            selection_reason=d.get("selection_reason") if d.get("selection_reason") else None,
         )
 
 

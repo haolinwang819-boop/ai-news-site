@@ -1,0 +1,316 @@
+{
+  "date": "2026-04-19",
+  "generated_at": "2026-04-20T18:15:20.725323",
+  "total_count": 14,
+  "categories": {
+    "breakout_products": [
+      {
+        "title": "Gemini app for Mac",
+        "url": "https://www.producthunt.com/products/gemini-6",
+        "source": "Product Hunt",
+        "published_time": "2026-04-19T00:01:00-07:00",
+        "priority": 1,
+        "content": "Option + Space and Gemini is right there. Product categories: LLMs, AI Chatbots, Predictive AI, AI Infrastructure Tools.",
+        "image_url": "https://ph-files.imgix.net/99b3e788-14c7-4bbb-97ea-d87c23c9318f.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/99b3e788-14c7-4bbb-97ea-d87c23c9318f.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/19?ref=header_nav",
+        "product_rank": 1,
+        "summary": "Users can now summon Google's Gemini chatbot directly on their Mac desktop using a simple keyboard command.",
+        "display_title": "Access the Gemini artificial intelligence assistant instantly on macOS using a dedicated keyboard shortcut",
+        "key_points": [
+          "The assistant launches immediately when users press the Option and Space keys together.",
+          "It provides native desktop access to large language models and predictive artificial intelligence tools.",
+          "The integration removes the need to open a web browser for daily chatbot interactions."
+        ]
+      },
+      {
+        "title": "Vantage in Google Labs",
+        "url": "https://www.producthunt.com/products/google",
+        "source": "Product Hunt",
+        "published_time": "2026-04-19T00:01:00-07:00",
+        "priority": 1,
+        "content": "Practice & assess future-ready skills with AI-simulated team. Product categories: Hiring, Productivity, Artificial Intelligence.",
+        "image_url": "https://ph-files.imgix.net/f27f20c5-816f-4210-bbfa-8bdf797ffa3b.jpeg?auto=format",
+        "logo_url": "https://ph-files.imgix.net/f27f20c5-816f-4210-bbfa-8bdf797ffa3b.jpeg?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/19?ref=header_nav",
+        "product_rank": 2,
+        "summary": "This experimental tool from Google Labs allows users to develop and evaluate their professional capabilities by interacting with an AI-simulated team.",
+        "display_title": "Google Labs introduces an artificial intelligence simulator for practicing and assessing professional team skills",
+        "key_points": [
+          "The platform creates virtual team environments to help users practice future-ready workplace skills.",
+          "It serves as both a training ground and an assessment tool for professional development.",
+          "The system targets hiring and productivity workflows by simulating realistic collaborative scenarios."
+        ]
+      },
+      {
+        "title": "Verdent 2.0",
+        "url": "https://www.producthunt.com/products/verdent-deck",
+        "source": "Product Hunt",
+        "published_time": "2026-04-19T00:01:00-07:00",
+        "priority": 1,
+        "content": "Your AI Technical Cofounder. Verdent is your AI technical cofounder for turning ideas into running businesses. Tell it what you want to build in plain words, and it plans the work, drives execution, and delivers real product progress using your project context. Unlike most code generation tools, Verdent moves the entire product forward end to end, remembers your project, improves over time, and keeps working even when you're offline. Product categories: AI Coding Agents, AI Code Editors, No-Code App Builder.",
+        "image_url": "https://ph-files.imgix.net/9f002820-95c0-4e21-9365-392cd0cbf7a3.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/9f002820-95c0-4e21-9365-392cd0cbf7a3.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/19?ref=header_nav",
+        "product_rank": 3,
+        "summary": "Acting as an artificial intelligence technical cofounder, this platform manages end-to-end software development by planning tasks, writing code, and maintaining project context even while offline.",
+        "display_title": "An autonomous coding agent that translates plain text ideas into fully functional software businesses",
+        "key_points": [
+          "Users can describe their desired application in plain English to initiate the automated development process.",
+          "The system differentiates itself from standard code generators by executing full project plans and remembering historical context.",
+          "The agent continues to build and improve the product autonomously without requiring an active internet connection."
+        ]
+      },
+      {
+        "title": "Perplexity Personal Computer",
+        "url": "https://www.producthunt.com/products/perplexity-ai",
+        "source": "Product Hunt",
+        "published_time": "2026-04-19T00:01:00-07:00",
+        "priority": 1,
+        "content": "Local files. Native apps. Voice control. Always on. Product categories: Search.",
+        "image_url": "https://ph-files.imgix.net/db193b4c-13cc-4700-8cde-ebac26d3c247.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/db193b4c-13cc-4700-8cde-ebac26d3c247.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/19?ref=header_nav",
+        "product_rank": 4,
+        "summary": "Perplexity has introduced a native desktop application that integrates continuous voice control with the ability to search through local files and applications.",
+        "display_title": "Perplexity expands its search capabilities with an always-on desktop interface featuring voice and local file integration",
+        "key_points": [
+          "The software operates as an always-on background utility for immediate search access.",
+          "Users can navigate their system and execute queries using built-in voice commands.",
+          "The tool extends traditional web search by indexing and retrieving information directly from local desktop files."
+        ]
+      },
+      {
+        "title": "Avina",
+        "url": "https://www.producthunt.com/products/avina-2",
+        "source": "Product Hunt",
+        "published_time": "2026-04-19T00:01:00-07:00",
+        "priority": 1,
+        "content": "GTM Agents to Find and Reach Your Next Customer. Find and reach the leads who need your product. Define your ICP and buying triggers, and Avina tracks signals across the web, LinkedIn, job posts, site visitors (RB2B, Vector, and Clearbit built in), and more. Every lead gets enriched with target contacts and scored against your ICP, then rolled into live audiences that refresh daily. Then Avina automatically runs personalized AI email and ABM campaigns, integrated with your existing tools, to reach them wherever they are. Product categories: AI sales tools.",
+        "image_url": "https://ph-files.imgix.net/bfc819b7-7681-4681-9e71-84f424b31fb0.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/bfc819b7-7681-4681-9e71-84f424b31fb0.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/19?ref=header_nav",
+        "product_rank": 5,
+        "summary": "This sales platform deploys artificial intelligence agents to track buying signals across the web, score leads against ideal customer profiles, and execute personalized email campaigns.",
+        "display_title": "Automate lead generation and personalized outreach campaigns using intelligent go-to-market sales agents",
+        "key_points": [
+          "The system monitors platforms like LinkedIn and job boards while utilizing built-in integrations with RB2B, Vector, and Clearbit to identify site visitors.",
+          "Leads are automatically enriched with contact details, scored, and organized into dynamic audience lists that update daily.",
+          "The tool seamlessly connects with existing sales stacks to launch targeted account-based marketing and automated email outreach."
+        ]
+      },
+      {
+        "title": "Fixa.dev",
+        "url": "https://www.producthunt.com/products/fixa-dev",
+        "source": "Product Hunt",
+        "published_time": "2026-04-19T00:01:00-07:00",
+        "priority": 1,
+        "content": "A cloud-native AI agent that can build literally anything. Fixa is the most powerful autonomous AI agent on the web, operating inside a full cloud dev environment to build real software. Powered by frontier models, it autonomously browses the web to read live documentation and dynamically installs whatever dependencies your app needs. Fixa writes production-ready backends and features one-click integrations for Stripe, Supabase, Clerk, and Vercel. With our universal MCP connector, you can link any MCP server to integrate deeply with your workflows. Product categories: AI Coding Agents.",
+        "image_url": "https://ph-files.imgix.net/3a0786cb-46fc-4b88-9ece-f24ea4bd8a96.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/3a0786cb-46fc-4b88-9ece-f24ea4bd8a96.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/19?ref=header_nav",
+        "product_rank": 9,
+        "summary": "Operating entirely within a cloud development environment, this autonomous agent browses the web for current documentation to dynamically install dependencies and write functional application code.",
+        "display_title": "A cloud-native autonomous coding agent that reads live documentation to build production-ready software backends",
+        "key_points": [
+          "The platform includes one-click integrations for essential developer services like Stripe, Supabase, Clerk, and Vercel.",
+          "A universal Model Context Protocol connector allows users to link custom servers for deep workflow integration.",
+          "The agent independently researches live technical documentation to ensure it uses the most up-to-date methods for building software."
+        ]
+      },
+      {
+        "title": "Assemble",
+        "url": "https://www.producthunt.com/products/assemble-2",
+        "source": "Product Hunt",
+        "published_time": "2026-04-19T00:01:00-07:00",
+        "priority": 1,
+        "content": "One /go command for AI work that remembers — zero runtime. Assemble is an open-source configuration generator for AI work: /go, memory, spec-driven workflows, and zero runtime across 21 platforms. Product categories: Open Source, Developer Tools, Artificial Intelligence.",
+        "image_url": "https://ph-files.imgix.net/90097ee2-102f-43be-a3d4-8613478eefb6.octet-stream?auto=format",
+        "logo_url": "https://ph-files.imgix.net/90097ee2-102f-43be-a3d4-8613478eefb6.octet-stream?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/19?ref=header_nav",
+        "product_rank": 12,
+        "summary": "Assemble provides developers with an open-source configuration generator that uses a single command to manage memory and spec-driven AI workflows without requiring a runtime environment.",
+        "display_title": "Open-source configuration generator streamlines AI workflows across multiple platforms",
+        "key_points": [
+          "The open-source tool uses a single \"/go\" command to generate configurations for complex AI tasks.",
+          "The system operates with zero runtime overhead while supporting integrations across 21 different platforms.",
+          "The generator features built-in memory and spec-driven workflows to maintain context across continuous processes."
+        ]
+      }
+    ],
+    "hot_news": [
+      {
+        "title": "OpenAI helps Hyatt advance AI among colleagues",
+        "url": "https://openai.com/index/hyatt-advances-ai-with-chatgpt-enterprise",
+        "source": "OpenAI",
+        "published_time": "2026-04-20T00:00:00+00:00",
+        "priority": 0,
+        "content": "Hyatt deploys ChatGPT Enterprise across its global workforce, using GPT-5.4 and Codex to improve productivity, operations, and guest experiences.",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "site",
+        "source_type": "official",
+        "source_url": "https://openai.com/news/",
+        "summary": "Hyatt has rolled out ChatGPT Enterprise to its global workforce to enhance daily operations, employee productivity, and overall guest experiences.",
+        "display_title": "Global hospitality brand integrates advanced enterprise language models to optimize workforce operations",
+        "key_points": [
+          "The hospitality company is deploying ChatGPT Enterprise across its entire global network of employees.",
+          "The integration utilizes advanced models including GPT-5.4 and Codex to handle diverse operational tasks.",
+          "The initiative targets measurable improvements in both internal employee productivity and external guest-facing services."
+        ]
+      },
+      {
+        "title": "The Micro App Economy: 150K Apps In (2026 State Report)",
+        "url": "https://www.taskade.com/blog/micro-app-economy",
+        "source": "Taskade AI",
+        "published_time": "2026-04-19T09:00:00+00:00",
+        "priority": 0,
+        "content": "Micro apps grew 340% YoY. Taskade built 150,000+. Compare Gizmo, Taskade Genesis, Lovable, Claude Artifacts and see the 5 archetypes that actually retain users.",
+        "image_url": "https://www.taskade.com/static_images/taskade-genesis-mascot-2026.png",
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "site",
+        "source_type": "official",
+        "source_url": "https://www.taskade.com",
+        "summary": "A new state-of-the-industry report highlights a massive surge in micro application development while analyzing successful retention archetypes across major platforms.",
+        "display_title": "Industry report reveals massive year-over-year growth and user retention strategies for micro applications",
+        "key_points": [
+          "The micro application sector experienced a massive 340 percent year-over-year growth rate.",
+          "Taskade alone has facilitated the creation of over 150,000 micro applications on its platform.",
+          "The industry report identifies five specific application archetypes that successfully drive long-term user retention."
+        ]
+      },
+      {
+        "title": "NSA Uses Anthropic’s Mythos Despite Pentagon Blacklist - The Information",
+        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPNmw2RXp4UHR5eGZZdmZqNzA0cXBhNmxYRUl3Q2NPNU9Tajd6WWd5cUl5WTdwTnVUSjUwRkJxV3pDTEEzWkp5Sld3OHMzV3pGWEpCZ20wWHhkQ0hCSGF3bS1LQ2x4c05NUDJ4a0E1ZHY2ZEZrSElqU0E5czV3TWItblAzWXgyd0RmVGpxZW9GSDNPOVhGVG9mSGhR?oc=5",
+        "source": "theinformation",
+        "published_time": "2026-04-20T02:03:00+00:00",
+        "priority": 1,
+        "content": "NSA Uses Anthropic’s Mythos Despite Pentagon Blacklist&nbsp;&nbsp;The Information",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.theinformation.com",
+        "summary": "The National Security Agency is actively utilizing Anthropic's Mythos AI model even though the technology remains on a Pentagon blacklist.",
+        "display_title": "National Security Agency deploys restricted Anthropic language model despite existing defense department prohibitions",
+        "key_points": [
+          "The National Security Agency has integrated Anthropic's Mythos model into its operational workflows.",
+          "The deployment occurs despite an active Pentagon blacklist that explicitly restricts the use of this technology.",
+          "The development highlights a split in technology adoption policies between the intelligence agency and the defense department."
+        ]
+      },
+      {
+        "title": "Google in Talks With Marvell to Build New AI Chips for Inference - The Information",
+        "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPa0stQnRBQVFOb2NrOHNuLVB5Wl9kUDExMTBPYjVYUVR6Q2RYMzk4Y3N5bnZ2VVVvNGNPVlI4UWpRRUt2WjRodGxyc1RWaDl0Vl9GYVgzSUhROVJWaFRBM2Zuem5mdHRvUHljRVBMWGpiMTlzWVpySGlDR0FCbzNFZExBT2p6bnlydFNTVjN1TWpaNTg?oc=5",
+        "source": "theinformation",
+        "published_time": "2026-04-19T13:00:00+00:00",
+        "priority": 1,
+        "content": "Google in Talks With Marvell to Build New AI Chips for Inference&nbsp;&nbsp;The Information",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.theinformation.com",
+        "summary": "Google is currently negotiating with semiconductor company Marvell to design and manufacture a new generation of custom AI inference chips.",
+        "display_title": "Technology giant negotiates hardware partnership to develop specialized processors for artificial intelligence inference",
+        "key_points": [
+          "Google is negotiating a hardware partnership with semiconductor manufacturer Marvell.",
+          "The collaboration focuses specifically on developing new chips optimized for AI inference workloads.",
+          "The initiative represents Google's ongoing effort to design custom silicon for its artificial intelligence operations."
+        ]
+      },
+      {
+        "title": "横扫全球15项SOTA！高德首个面向AGI的全栈具身技术体系大公开",
+        "url": "https://www.qbitai.com/2026/04/403226.html",
+        "source": "量子位",
+        "published_time": "2026-04-19T10:13:54+00:00",
+        "priority": 1,
+        "content": "当行业在底层基础设施上开始成型，局面就会迅速收敛",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.qbitai.com/",
+        "summary": "AutoNavi has publicly detailed its first full-stack embodied technology architecture designed to support artificial general intelligence applications.",
+        "display_title": "Mapping company unveils full-stack embodied artificial intelligence system achieving multiple state-of-the-art benchmarks",
+        "key_points": [
+          "AutoNavi introduced a full-stack embodied technology system designed specifically for artificial general intelligence.",
+          "The new architecture has achieved state-of-the-art performance results across 15 different global benchmarks.",
+          "The release aims to accelerate the convergence of underlying infrastructure standards within the broader AI industry."
+        ]
+      }
+    ],
+    "llm": [
+      {
+        "title": "Kimi新论文：把KVCache玩成新商业模式了",
+        "url": "https://www.qbitai.com/2026/04/403528.html",
+        "source": "量子位",
+        "published_time": "2026-04-19T10:19:45+00:00",
+        "priority": 1,
+        "content": "超长上下文福音",
+        "image_url": null,
+        "logo_url": null,
+        "category": "llm",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.qbitai.com/",
+        "summary": "A new research paper from Kimi introduces a strategy to transform KV Cache into a commercial business model while significantly improving ultra-long context capabilities.",
+        "display_title": "Monetizing KV Cache for Ultra-Long Context Processing in Large Language Models",
+        "key_points": [
+          "The research proposes a framework to turn standard KV Cache operations into a standalone commercial model.",
+          "The methodology is specifically designed to optimize and support ultra-long context processing.",
+          "This approach moves beyond traditional technical optimizations by introducing a business-driven cache architecture."
+        ]
+      },
+      {
+        "title": "How to Structure a Claude Code Project that Thinks Like an Engineer",
+        "url": "https://www.analyticsvidhya.com/blog/2026/04/claude-code-project-structure/",
+        "source": "Analytics Vidhya",
+        "published_time": "2026-04-19T08:18:03+00:00",
+        "priority": 1,
+        "content": "Developers use Claude Code as an enhanced autocomplete system. They open a file, type a prompt, and hope for the best. The system produces decent output which sometimes reaches great quality. The output exhibits inconsistent results. The system loses track of context and repea...",
+        "image_url": null,
+        "logo_url": null,
+        "category": "llm",
+        "platform": "research",
+        "source_type": "research",
+        "source_url": "https://www.analyticsvidhya.com",
+        "summary": "Implementing an engineering-focused project structure helps developers prevent context loss and inconsistent outputs when using Claude Code.",
+        "display_title": "Strategic Project Structuring Prevents Context Loss in Claude Code Development Environments",
+        "key_points": [
+          "Relying on the system as a basic autocomplete tool frequently leads to inconsistent code quality.",
+          "Unstructured prompting causes the model to lose track of project context and repeat previous outputs.",
+          "Organizing the workspace with an engineer-like architecture stabilizes performance and improves overall reliability."
+        ]
+      }
+    ],
+    "image_video": [],
+    "product_updates": []
+  }
+}

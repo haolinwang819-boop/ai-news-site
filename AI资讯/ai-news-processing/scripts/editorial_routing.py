@@ -660,4 +660,5 @@ def item_sort_key(item: PipelineItem):
         published_ts = 0
 
     breakout_rank = item.product_rank if item.category == "breakout_products" and item.product_rank is not None else 999
-    return (item.priority, breakout_rank, -published_ts, item.title.lower())
+    selection_score = item.selection_score if item.selection_score is not None else -1
+    return (item.priority, -selection_score, breakout_rank, -published_ts, item.title.lower())

@@ -11,6 +11,7 @@ from copy import deepcopy
 from difflib import SequenceMatcher
 from typing import Any
 
+from .config import LLM_EDITOR_CONFIG
 from .llm_utils import PromptLoader, get_llm_invoker, parse_json_from_model_output
 
 
@@ -157,6 +158,10 @@ def _normalized_sentences(text: str) -> list[str]:
         for sentence in re.split(r"(?<=[.!?])\s+", _clean_text(text))
         if _normalized_compare_text(sentence)
     ]
+
+
+def _sentence_count(text: str) -> int:
+    return len(_normalized_sentences(text))
 
 
 def _title_too_close(candidate: str, original: str) -> bool:
@@ -568,6 +573,8 @@ def _enrichment_quality_issues(
             issues.append(f"summary is not reader-facing for {url}")
         elif _title_too_close(summary, str(item.get("title", ""))):
             issues.append(f"summary too close to source title for {url}")
+        elif _sentence_count(summary) != 1:
+            issues.append(f"summary is not exactly one sentence for {url}")
 
         if len(bullets) != 3:
             issues.append(f"expected 3 bullets for {url}, got {len(bullets)}")
@@ -589,6 +596,68 @@ def _enrichment_quality_issues(
     return issues
 
 
+def _request_chunk_enrichment(
+    chunk: list[dict[str, Any]],
+    *,
+    prompt_loader: PromptLoader,
+    invoker,
+    max_attempts: int,
+) -> dict[str, dict[str, Any]]:
+    prompt_input = [_prepare_prompt_item(item) for item in chunk]
+    prompt = prompt_loader.load(
+        "present",
+        input_json=json.dumps(prompt_input, ensure_ascii=False, indent=2),
+    )
+    errors: list[str] = []
+
+    for attempt in range(1, max_attempts + 1):
+        try:
+            text = invoker(prompt)
+            chunk_enrichment = _normalize_enrichment_records(parse_json_from_model_output(text))
+            issues = _enrichment_quality_issues(chunk, chunk_enrichment)
+            if issues:
+                raise ValueError("; ".join(issues[:6]))
+            return chunk_enrichment
+        except Exception as exc:  # noqa: BLE001 - explicit chunk retry boundary
+            errors.append(f"attempt {attempt}: {exc}")
+
+    raise RuntimeError(" | ".join(errors))
+
+
+def _enrich_chunk(
+    chunk: list[dict[str, Any]],
+    *,
+    prompt_loader: PromptLoader,
+    invoker,
+    max_attempts: int,
+) -> dict[str, dict[str, Any]]:
+    try:
+        return _request_chunk_enrichment(
+            chunk,
+            prompt_loader=prompt_loader,
+            invoker=invoker,
+            max_attempts=max_attempts,
+        )
+    except Exception as exc:
+        if len(chunk) == 1:
+            raise RuntimeError(
+                "Presentation enrichment failed quality checks; refusing fallback content. "
+                + str(exc)
+            ) from exc
+
+    merged: dict[str, dict[str, Any]] = {}
+    for item in chunk:
+        merged.update(
+            _enrich_chunk(
+                [item],
+                prompt_loader=prompt_loader,
+                invoker=invoker,
+                max_attempts=max_attempts,
+            )
+        )
+    return merged
+
+
 def enrich_digest_for_display(digest: dict[str, Any], chunk_size: int = 6) -> dict[str, Any]:
     enriched = deepcopy(digest)
     items: list[dict[str, Any]] = []
@@ -601,34 +670,19 @@ def enrich_digest_for_display(digest: dict[str, Any], chunk_size: int = 6) -> di
     enrichment_by_url: dict[str, dict[str, Any]] = {}
 
     prompt_loader = PromptLoader()
-    invoker = get_llm_invoker()
+    invoker = get_llm_invoker(LLM_EDITOR_CONFIG, label="editorial")
     max_attempts = int(os.environ.get("PRESENTATION_MAX_ATTEMPTS", "3"))
 
     for start in range(0, len(items), chunk_size):
         chunk = items[start : start + chunk_size]
-        prompt_input = [_prepare_prompt_item(item) for item in chunk]
-        prompt = prompt_loader.load(
-            "present",
-            input_json=json.dumps(prompt_input, ensure_ascii=False, indent=2),
-        )
-        errors: list[str] = []
-
-        for attempt in range(1, max_attempts + 1):
-            try:
-                text = invoker(prompt)
-                chunk_enrichment = _normalize_enrichment_records(parse_json_from_model_output(text))
-                issues = _enrichment_quality_issues(chunk, chunk_enrichment)
-                if issues:
-                    raise ValueError("; ".join(issues[:6]))
-                enrichment_by_url.update(chunk_enrichment)
-                break
-            except Exception as exc:
-                errors.append(f"attempt {attempt}: {exc}")
-        else:
-            raise RuntimeError(
-                "Presentation enrichment failed quality checks; refusing fallback content. "
-                + " | ".join(errors)
+        enrichment_by_url.update(
+            _enrich_chunk(
+                chunk,
+                prompt_loader=prompt_loader,
+                invoker=invoker,
+                max_attempts=max_attempts,
             )
+        )
 
     for category, category_items in (enriched.get("categories") or {}).items():
         for item in category_items:
