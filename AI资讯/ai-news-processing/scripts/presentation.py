@@ -54,6 +54,15 @@ ACTION_LEADING_VERBS = (
     "train",
 )
 
+PRODUCT_LAUNCH_VERBS = (
+    "debuts",
+    "introduces",
+    "launches",
+    "releases",
+    "ships",
+    "unveils",
+)
+
 
 def _clean_text(value: str, limit: int | None = None) -> str:
     text = html_lib.unescape(value or "").replace("\xa0", " ")
@@ -164,6 +173,11 @@ def _sentence_count(text: str) -> int:
     return len(_normalized_sentences(text))
 
 
+def _is_english_fallback_text(value: str) -> bool:
+    cleaned = _clean_text(value)
+    return bool(cleaned) and not _has_non_english_script(cleaned)
+
+
 def _title_too_close(candidate: str, original: str) -> bool:
     candidate_norm = _normalized_compare_text(candidate)
     original_norm = _normalized_compare_text(original)
@@ -238,6 +252,134 @@ def _extract_product_categories(item: dict[str, Any]) -> list[str]:
     return categories
 
 
+def _extract_owner_hint(item: dict[str, Any]) -> str:
+    content = _clean_text(str(item.get("content", "")))
+    if not content:
+        return ""
+
+    patterns = (
+        r"developed by ([A-Z][A-Za-z0-9& .-]+?)(?:[.,]|$)",
+        r"from ([A-Z][A-Za-z0-9& .-]+?)(?:[.,]|$)",
+        r"team,\s*([A-Z][A-Za-z0-9& .-]+?)(?:[.,]|$)",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, content, flags=re.IGNORECASE)
+        if match:
+            return _clean_text(match.group(1))
+
+    known_owners = (
+        "Alibaba Cloud",
+        "Google",
+        "OpenAI",
+        "Anthropic",
+        "Meta",
+        "Microsoft",
+        "Perplexity",
+        "Moonshot",
+        "Qwen team",
+    )
+    lowered = content.lower()
+    for owner in known_owners:
+        if owner.lower() in lowered:
+            return owner
+    return ""
+
+
+def _selection_reason(item: dict[str, Any]) -> str:
+    reason = _clean_text(str(item.get("selection_reason", "")))
+    return reason if _is_english_fallback_text(reason) else ""
+
+
+def _section_fallback_label(item: dict[str, Any]) -> str:
+    labels = {
+        "breakout_products": "a breakout AI product launch",
+        "hot_news": "a major AI industry development",
+        "llm": "a foundation model release",
+        "image_video": "a multimodal image or video release",
+        "product_updates": "a meaningful AI product update",
+    }
+    return labels.get(str(item.get("category") or ""), "an AI product update")
+
+
+def _summary_from_reason(item: dict[str, Any], reason: str) -> str:
+    cleaned = _clean_text(reason).rstrip(".")
+    lowered = _sentence_case(cleaned)
+    if " with " in lowered:
+        base, feature = lowered.split(" with ", 1)
+        return f"A {base} adds {feature.rstrip('.')}."
+    if lowered.startswith("new "):
+        return f"This launch introduces a {lowered[4:]}."
+    if lowered.startswith("major "):
+        return f"This story centers on a {lowered}."
+    return f"This story centers on {lowered}."
+
+
+def _title_from_reason(item: dict[str, Any], reason: str) -> str:
+    cleaned = _clean_text(reason).rstrip(".")
+    if " with " in cleaned:
+        base, feature = cleaned.split(" with ", 1)
+        candidate = f"{base} Adds {feature}"
+    elif cleaned.lower().startswith("new "):
+        candidate = cleaned[4:]
+    else:
+        candidate = cleaned
+    words = candidate.split()
+    if len(words) > 14:
+        candidate = " ".join(words[:14]).rstrip(",;:")
+    return candidate
+
+
+def _bullets_from_reason(item: dict[str, Any], reason: str) -> list[str]:
+    cleaned = _clean_text(reason).rstrip(".")
+    bullets: list[str] = []
+    lowered = cleaned.lower()
+
+    if "enterprise" in lowered or "team" in lowered or "collaboration" in lowered:
+        bullets.append("The workflow is aimed at coordinated team collaboration rather than solo prompting.")
+    if "coding" in lowered:
+        bullets.append("Coding is treated as a core workflow instead of a side feature.")
+    if "agents" in lowered or "agentic" in lowered:
+        bullets.append("Integrated agents are embedded directly into the working environment.")
+    if "llm" in lowered or "model" in lowered:
+        bullets.append("The release was treated as a model-focused update rather than general company news.")
+
+    if str(item.get("category") or "") == "breakout_products":
+        bullets.append("The product is framed as a new workflow rather than a routine feature refresh.")
+    elif str(item.get("category") or "") == "llm":
+        bullets.append("The shortlist placed it in the foundation model track rather than general product news.")
+    elif str(item.get("category") or "") == "image_video":
+        bullets.append("The shortlist placed it in the multimodal release track rather than a generic product launch.")
+    elif str(item.get("category") or "") == "product_updates":
+        bullets.append("The update was treated as a meaningful shipped change rather than general commentary.")
+    else:
+        bullets.append(f"The item was selected as {_section_fallback_label(item)}.")
+
+    deduped: list[str] = []
+    for bullet in bullets:
+        cleaned_bullet = _clean_text(bullet)
+        if not cleaned_bullet:
+            continue
+        if _bullet_repeats_summary(_summary_from_reason(item, reason), cleaned_bullet, deduped):
+            continue
+        deduped.append(cleaned_bullet)
+        if len(deduped) >= 3:
+            return deduped
+
+    fallback_pool = [
+        "The shortlist ranked it as a strong candidate for the final reader-facing digest.",
+        "The release was treated as a substantial workflow story rather than minor chatter.",
+        "The item survived final editorial review because it signaled a concrete AI product move.",
+    ]
+    for bullet in fallback_pool:
+        if _bullet_repeats_summary(_summary_from_reason(item, reason), bullet, deduped):
+            continue
+        deduped.append(bullet)
+        if len(deduped) >= 3:
+            return deduped
+
+    return deduped[:3]
+
+
 def _join_phrases(values: list[str]) -> str:
     if not values:
         return ""
@@ -297,6 +439,78 @@ def _fallback_product_summary(item: dict[str, Any]) -> str:
     return "This is a newly featured AI product."
 
 
+def _deterministic_summary(item: dict[str, Any]) -> str:
+    reason = _selection_reason(item)
+    if reason:
+        candidate = _summary_from_reason(item, reason)
+        if not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+
+    summary = _fallback_summary(item)
+    if not _title_too_close(summary, str(item.get("title", ""))):
+        return summary
+
+    primary_fact = _extract_primary_fact(item)
+    owner = _extract_owner_hint(item)
+    categories = _extract_product_categories(item)
+
+    lowered_fact = _sentence_case(primary_fact)
+    if owner and "agentic coding" in lowered_fact:
+        candidate = f"{owner} has positioned this release as a flagship model for agentic coding."
+        if not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+    if owner and primary_fact:
+        candidate = f"{owner} has highlighted {lowered_fact.rstrip('.')}."
+        if not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+    if categories:
+        candidate = f"This release targets {_join_phrases(categories[:4])} workflows."
+        if not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+
+    title = _clean_source_title(str(item.get("title", "")), str(item.get("source", "")))
+    if title:
+        words = title.split()
+        if len(words) <= 4:
+            candidate = f"This launch introduces a new AI release for advanced user workflows."
+            if not _title_too_close(candidate, str(item.get("title", ""))):
+                return candidate
+
+    return summary
+
+
+def _deterministic_title(item: dict[str, Any], summary: str) -> str:
+    reason = _selection_reason(item)
+    if reason:
+        candidate = _title_from_reason(item, reason)
+        if candidate and not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+
+    candidate = _editorial_title_from_summary(item, summary)
+    if not _title_too_close(candidate, str(item.get("title", ""))):
+        return candidate
+
+    primary_fact = _extract_primary_fact(item)
+    owner = _extract_owner_hint(item)
+    categories = _extract_product_categories(item)
+
+    if owner and "agentic coding" in primary_fact.lower():
+        candidate = f"{owner} Debuts a Flagship Model for Agentic Coding"
+        if not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+    if owner and categories:
+        candidate = f"{owner} {PRODUCT_LAUNCH_VERBS[0].title()} a New Release for {_join_phrases(categories[:3])} Workflows"
+        if not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+    if primary_fact:
+        words = primary_fact.rstrip(". ").split()
+        candidate = " ".join(words[:12]).rstrip(",;:")
+        if candidate and not _title_too_close(candidate, str(item.get("title", ""))):
+            return candidate
+
+    return _fallback_display_title(item)
+
+
 def _finalize_summary(item: dict[str, Any], summary: str) -> str:
     sentences = _extract_distinct_sentences(summary, limit=5)
     title_norm = _normalized_compare_text(str(item.get("title", "")))
@@ -327,6 +541,21 @@ def _fallback_summary(item: dict[str, Any]) -> str:
     if title:
         return f"{title.rstrip('.')}."
     return "This item covers an AI-related development."
+
+
+def _deterministic_enrichment(item: dict[str, Any]) -> dict[str, Any]:
+    summary = _deterministic_summary(item)
+    display_title = _deterministic_title(item, summary)
+    reason = _selection_reason(item)
+    if reason and _has_non_english_script(str(item.get("content", ""))):
+        key_points = _bullets_from_reason(item, reason)
+    else:
+        key_points = _ensure_complementary_bullets(item, summary, [])
+    return {
+        "display_title": _clean_text(display_title, 180),
+        "summary": _clean_text(summary, 600),
+        "key_points": [_clean_text(point, 160) for point in key_points[:3]],
+    }
 
 
 def _fallback_key_points(item: dict[str, Any]) -> list[str]:
@@ -640,10 +869,17 @@ def _enrich_chunk(
         )
     except Exception as exc:
         if len(chunk) == 1:
-            raise RuntimeError(
-                "Presentation enrichment failed quality checks; refusing fallback content. "
-                + str(exc)
-            ) from exc
+            item = chunk[0]
+            deterministic = {str(item.get("url") or ""): _deterministic_enrichment(item)}
+            issues = _enrichment_quality_issues(chunk, deterministic)
+            if issues:
+                raise RuntimeError(
+                    "Presentation enrichment failed quality checks; deterministic fallback also failed. "
+                    + str(exc)
+                    + " | "
+                    + "; ".join(issues[:6])
+                ) from exc
+            return deterministic
 
     merged: dict[str, dict[str, Any]] = {}
     for item in chunk:

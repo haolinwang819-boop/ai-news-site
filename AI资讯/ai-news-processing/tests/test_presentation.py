@@ -7,7 +7,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from scripts.presentation import _enrichment_quality_issues  # noqa: E402
+from scripts.presentation import _deterministic_enrichment, _enrichment_quality_issues  # noqa: E402
 
 
 class PresentationQualityTests(unittest.TestCase):
@@ -54,6 +54,20 @@ class PresentationQualityTests(unittest.TestCase):
 
         issues = _enrichment_quality_issues(chunk, enrichment)
         self.assertTrue(any("summary is not exactly one sentence" in issue for issue in issues))
+
+    def test_deterministic_enrichment_handles_short_product_titles(self) -> None:
+        item = {
+            "url": "https://www.producthunt.com/products/qwen3",
+            "title": "Qwen3.6-Max-Preview",
+            "source": "Product Hunt",
+            "category": "llm",
+            "content": "The flagship Qwen for agentic coding. Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. Product categories: LLMs.",
+        }
+        enrichment = {
+            item["url"]: _deterministic_enrichment(item),
+        }
+        issues = _enrichment_quality_issues([item], enrichment)
+        self.assertEqual(issues, [])
 
 
 if __name__ == "__main__":
