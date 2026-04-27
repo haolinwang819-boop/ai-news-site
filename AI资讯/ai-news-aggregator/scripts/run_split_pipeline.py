@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -102,9 +103,15 @@ def _run_pipeline_mode(groups: list[str], dry_run: bool, recipient: str | None, 
 
     for group in groups:
         print(f"\n=== 采集分段: {group} ===")
+        child_env = None
+        if digest_date:
+            child_env = os.environ.copy()
+            child_env.setdefault("CRAWL_TARGET_DATE", digest_date)
+            child_env.setdefault("PRODUCT_HUNT_LEADERBOARD_DATE", digest_date)
         subprocess.run(
             [sys.executable, "-u", str(Path(__file__).resolve()), "--group", group],
             check=True,
+            env=child_env,
         )
 
     merged_items: list[dict] = []

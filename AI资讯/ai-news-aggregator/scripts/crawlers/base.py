@@ -4,8 +4,10 @@
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
-from datetime import datetime
+import os
+from datetime import datetime, timedelta
 from typing import Callable, List, Optional
+from zoneinfo import ZoneInfo
 
 
 @dataclass
@@ -68,6 +70,18 @@ class BaseCrawler(ABC):
     
     def _is_within_time_range(self, pub_time: datetime, hours: int) -> bool:
         """检查发布时间是否在指定范围内"""
+        target_date = os.environ.get("CRAWL_TARGET_DATE", "").strip()
+        if target_date:
+            target_tz = ZoneInfo(os.environ.get("CRAWL_TARGET_TZ", "America/New_York"))
+            try:
+                start = datetime.fromisoformat(target_date).replace(tzinfo=target_tz)
+            except ValueError:
+                start = None
+            if start is not None:
+                end = start + timedelta(days=1)
+                comparable = pub_time.astimezone(target_tz) if pub_time.tzinfo else pub_time.replace(tzinfo=target_tz)
+                return start <= comparable < end
+
         now = datetime.now(pub_time.tzinfo) if pub_time.tzinfo else datetime.now()
         delta = now - pub_time
         return delta.total_seconds() <= hours * 3600

@@ -1,9 +1,33 @@
 {
   "date": "2026-04-24",
-  "generated_at": "2026-04-25T10:44:13.051904",
-  "total_count": 30,
+  "generated_at": "2026-04-27T00:15:26.776295",
+  "total_count": 25,
   "categories": {
     "breakout_products": [
+      {
+        "title": "DeepSeek-V4",
+        "url": "https://www.producthunt.com/products/deepseek",
+        "source": "Product Hunt",
+        "published_time": "2026-04-24T00:01:00-07:00",
+        "priority": 1,
+        "content": "The open-source era of 1M context intelligence. Open-source LLM optimized for advanced reasoning and code. Product categories: LLMs, AI Chatbots, Foundation Models.",
+        "image_url": "https://ph-files.imgix.net/9d823c04-85e6-4010-a80e-52c793e0e20b.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/9d823c04-85e6-4010-a80e-52c793e0e20b.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/24?ref=header_nav",
+        "product_rank": 3,
+        "selection_score": 95,
+        "selection_reason": "Major release of DeepSeek-V4 with 1M context window and optimized reasoning capabilities.",
+      "summary": "DeepSeek-V4 launches as an open-source language model built around a one-million-token context window for reasoning and code workflows.",
+      "display_title": "DeepSeek-V4 brings open-source reasoning to one-million-token context windows",
+      "key_points": [
+        "The release positions long-context reasoning as the product's central capability rather than a secondary feature.",
+        "Developers can apply the model to code-heavy workflows that require tracking large repositories or extended task history.",
+        "Its Product Hunt traction signals strong demand for open model alternatives in advanced chatbot and foundation-model use cases."
+      ]
+      },
       {
         "title": "Codex 3.0 by OpenAI",
         "url": "https://www.producthunt.com/products/codex-3-0-by-openai",
@@ -18,61 +42,14 @@
         "source_type": "media",
         "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/24?ref=header_nav",
         "product_rank": 5,
-        "selection_score": 95,
-        "selection_reason": "Major update to OpenAI's coding model with autonomous building and debugging capabilities.",
-        "summary": "The latest iteration of OpenAI's coding assistant introduces autonomous capabilities to build, test, and debug software projects without manual intervention.",
-        "display_title": "OpenAI Upgrades Codex With Autonomous Building, Testing, And Debugging Capabilities For Developers",
+        "selection_score": 92,
+        "selection_reason": "Significant update to OpenAI's Codex enabling autonomous building, testing, and debugging.",
+        "summary": "OpenAI's latest iteration of Codex introduces autonomous capabilities that allow the AI to build, test, and debug code without manual intervention.",
+        "display_title": "OpenAI Releases Codex 3.0 with Autonomous Building, Testing, and Debugging Capabilities",
         "key_points": [
           "Functions as an autonomous AI coding agent capable of handling end-to-end development tasks.",
-          "Introduces autopilot features specifically designed for automated software testing and code debugging.",
-          "Streamlines the developer workflow by integrating comprehensive code review tools directly into the process."
-        ]
-      },
-      {
-        "title": "Cursor V3 Explained: The AI Coding Agent That’s Replacing Traditional IDEs in 2026",
-        "url": "https://www.analyticsvidhya.com/blog/2026/04/cursor-v3/",
-        "source": "Analytics Vidhya",
-        "published_time": "2026-04-25T05:34:00+00:00",
-        "priority": 2,
-        "content": "In 2026, AI-powered coding tools began revolutionizing software development, with Cursor v3 emerging as a leading example. Unlike traditional development environments, Cursor v3 offers a new way for developers to interact with their code by utilizing AI agents that assist in c...",
-        "image_url": "https://cdn.analyticsvidhya.com/wp-content/uploads/2026/04/1.png",
-        "logo_url": null,
-        "category": "breakout_products",
-        "platform": "research",
-        "source_type": "research",
-        "source_url": "https://www.analyticsvidhya.com",
-        "selection_score": 86,
-        "selection_reason": "Major update to a leading AI coding agent with significant workflow impact",
-        "summary": "Cursor v3 transforms software development by replacing traditional integrated development environments with advanced AI agents that actively assist developers in writing and managing code.",
-        "display_title": "Next-Generation Cursor V3 Replaces Traditional Development Environments With AI Agents",
-        "key_points": [
-          "Replaces traditional coding environments with an AI-first interface for software development.",
-          "Utilizes embedded AI agents to actively assist developers in interacting with their codebases.",
-          "Represents a major shift in 2026 toward automated, agent-driven programming workflows."
-        ]
-      },
-      {
-        "title": "100 AI Tools For Productivity _________ Meet Cappy AI: the world's first AI video editor: https:/...",
-        "url": "https://captions.ai/features/text-to-edit?utm_source=twitter&utm_medium=influencer&utm_campaign=cappy_april_2026&utm_content=standard&utm_ad_set=ai&utm_ad=muhammedaryan",
-        "source": "@socialwithaayan (X)",
-        "published_time": "2026-04-25T04:38:45+00:00",
-        "priority": 2,
-        "content": "100 AI Tools For Productivity _________ Meet Cappy AI: the world's first AI video editor: https://t.co/G80KMy0qxt https://t.co/qm1jUe7Vqp",
-        "image_url": "https://pbs.twimg.com/media/HGuYc4jbYAALnDz.jpg",
-        "logo_url": null,
-        "category": "breakout_products",
-        "platform": "x",
-        "source_type": "creator",
-        "author_handle": "socialwithaayan",
-        "source_url": "https://x.com/socialwithaayan?s=21",
-        "selection_score": 84,
-        "selection_reason": "Launch of Cappy AI, a new text-to-edit AI video editor.",
-        "summary": "Cappy AI has launched as an automated video editing tool designed to enhance productivity by streamlining the video creation process.",
-        "display_title": "Cappy AI Launches as an Automated Video Editing Solution for Productivity",
-        "key_points": [
-          "The tool functions as an automated AI-driven video editor.",
-          "It is positioned as a productivity enhancer for creators and professionals.",
-          "The platform includes text-to-edit features to simplify video modifications."
+          "Introduces automated testing and debugging features to streamline the software review process.",
+          "Eliminates the need for manual oversight during routine code generation and error resolution."
         ]
       },
       {
@@ -90,88 +67,111 @@
         "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/24?ref=header_nav",
         "product_rank": 2,
         "selection_score": 82,
-        "selection_reason": "Autonomous AI influencers with end-to-end social media management and significant pre-launch traction.",
-        "summary": "Developed by industry veterans, this platform deploys autonomous AI influencers that identify emerging trends, generate on-brand content, and manage cross-platform publishing around the clock.",
-        "display_title": "Autonomous AI influencers manage your social media presence and catch viral trends automatically",
+        "selection_reason": "Autonomous AI influencers for social media with significant pre-launch traction and experienced team.",
+        "summary": "Developed by industry veterans, Spira provides autonomous AI influencers that identify trends, generate on-brand content, and manage cross-platform publishing entirely on their own.",
+        "display_title": "Autonomous AI Influencers Manage Social Media Content and Publishing Around the Clock",
         "key_points": [
-          "Users can deploy a fully autonomous digital influencer in under ten minutes to handle end-to-end social media management.",
-          "The system automatically detects viral trends early and publishes tailored content across platforms like TikTok, Instagram, and X.",
-          "Creators maintain oversight and control of the AI's actions directly through their preferred chat applications."
+          "The platform creates and publishes content across TikTok, Instagram, and X automatically.",
+          "Users can manage the AI influencers via chat apps or allow them to operate fully autonomously.",
+          "The tool generated over 10 million impressions prior to its public launch and requires less than 10 minutes for initial setup."
         ]
       },
       {
-        "title": "KAT + Hermes Practical Case Showcase Step 1: Install the html-ppt skill Step 2: Input your specif...",
-        "url": "https://x.com/KwaiAICoder/status/2047658657484357730",
-        "source": "@KwaiAICoder (X)",
-        "published_time": "2026-04-24T12:47:22+00:00",
-        "priority": 3,
-        "content": "KAT + Hermes Practical Case Showcase Step 1: Install the html-ppt skill Step 2: Input your specific prompt Step 3: Get a perfectly matched output in no time https://t.co/rFOJBIU5Ay",
-        "image_url": "https://pbs.twimg.com/amplify_video_thumb/2047658331830206464/img/hB00LFaWKDfln8r0.jpg",
-        "logo_url": null,
+        "title": "Mozart Studio 1.0",
+        "url": "https://www.producthunt.com/products/mozart-ai",
+        "source": "Product Hunt",
+        "published_time": "2026-04-24T00:01:00-07:00",
+        "priority": 2,
+        "content": "A Generative Audio Workstation with VSTs. Mozart AI is a music creation platform that lets anyone create music using prompts and voice. Mozart AI gives the creator complete creative control and lets them turn ideas into studio grade music and music videos in minutes. Product categories: Music Generation.",
+        "image_url": "https://ph-files.imgix.net/1a032952-2c24-4f4e-a899-b8ad286387f3.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/1a032952-2c24-4f4e-a899-b8ad286387f3.png?auto=format",
         "category": "breakout_products",
-        "platform": "x",
-        "source_type": "official",
-        "author_handle": "KwaiAICoder",
-        "source_url": "https://x.com/kwaiaicoder?s=21",
-        "selection_score": 72,
-        "selection_reason": "Showcase of KAT + Hermes workflow for automated HTML-to-PPT generation.",
-        "summary": "The KAT and Hermes integration allows users to rapidly generate customized presentations by installing a dedicated HTML-to-PPT skill and providing a specific prompt.",
-        "display_title": "KAT and Hermes Combine to Generate Presentations Quickly Using the HTML to PPT Skill",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/24?ref=header_nav",
+        "product_rank": 8,
+        "selection_score": 78,
+        "selection_reason": "Generative audio workstation integrating VSTs for professional-grade music and video creation.",
+        "summary": "This generative audio workstation enables users to produce studio-quality music and accompanying videos in minutes using simple text prompts and voice inputs while maintaining complete creative control through VST integration.",
+        "display_title": "Mozart AI Offers a Generative Audio Workstation for Creating Studio-Grade Music via Prompts and Voice",
         "key_points": [
-          "The core workflow relies on installing a specialized html-ppt skill to enable automated presentation generation.",
-          "Users can directly control and customize the final output by inputting specific text prompts.",
-          "The integrated system is designed to deliver highly accurate and rapid results based on user instructions."
+          "Users can generate original music tracks and music videos using a combination of text prompts and voice inputs.",
+          "The platform functions as a comprehensive audio workstation that includes VST support for advanced editing capabilities.",
+          "Creators maintain full control over the production process, allowing rapid transformation of basic ideas into professional-grade audio."
         ]
       },
       {
-        "title": "7 Practical OpenClaw Use Cases You Should Know",
-        "url": "https://www.kdnuggets.com/7-practical-openclaw-use-cases-you-should-know",
-        "source": "KDnuggets",
-        "published_time": "2026-04-24T12:00:23+00:00",
+        "title": "Opsera Launches Forge, the First Intent and Context-Aware Enterprise Software Factory - HPCwire",
+        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOR2djRnhMRFUteVQwRTY5cXV3R1hILXZqNFFXbWNrME1lV01IWE4xOTEtNndPM2pwTE9VYkNhVWFJc2NiWmQybXBUTkhWRDBlNWNISHdZT3pkdVYwQU9mR0FFeDdGZDFoWlJYbGlka3U5UlVXc2QwWTJkWjZUWV9xczNyQWVYV2ZKYlBJS1UxcWlvRVJjWl9CQ05FSjNfOHNMS0xPdVE2elJvc3ktNDh4Q0w5YTE4d25jbG1oRE1pOTVKQloxVmxJUWFjdURjQVU?oc=5",
+        "source": "Datanami",
+        "published_time": "2026-04-24T07:36:14+00:00",
         "priority": 3,
-        "content": "Learn how people are using OpenClaw to automate workflows, build custom agents, boost productivity, and turn AI into practical action.",
-        "image_url": "https://www.kdnuggets.com/wp-content/uploads/awan_7_practical_openclaw_cases_know_1.png",
+        "content": "Opsera Launches Forge, the First Intent and Context-Aware Enterprise Software Factory&nbsp;&nbsp;HPCwire",
+        "image_url": null,
         "logo_url": null,
         "category": "breakout_products",
         "platform": "news",
         "source_type": "media",
-        "source_url": "https://www.kdnuggets.com/",
-        "selection_score": 68,
-        "selection_reason": "Practical use cases for an open-source AI agent framework.",
-        "summary": "OpenClaw enables users to translate artificial intelligence capabilities into actionable tasks by automating workflows and constructing custom agents.",
-        "display_title": "Discover Seven Practical Ways to Automate Workflows and Build Custom Agents Using OpenClaw",
+        "source_url": "https://www.datanami.com",
+        "selection_score": 72,
+        "selection_reason": "New enterprise AI software factory launch focusing on context-aware automation",
+        "summary": "Opsera has released Forge, a new enterprise software factory designed to be intent and context-aware for development teams.",
+        "display_title": "Opsera Introduces an Intent-Driven Software Factory to Streamline Enterprise Development Workflows",
         "key_points": [
-          "The platform facilitates the automation of complex daily workflows to enhance overall productivity.",
-          "Users can design and deploy custom AI agents tailored to specific operational requirements.",
-          "The tool focuses on converting theoretical AI models into practical, action-oriented business solutions."
+          "The platform operates as an enterprise software factory tailored for development workflows.",
+          "It utilizes intent and context-aware capabilities to guide software creation.",
+          "The release aims to streamline complex enterprise software engineering processes."
         ]
       },
       {
-        "title": "Someone just open-sourced a REST API to send messages through WhatsApp. It's called whatsapp-api....",
-        "url": "https://x.com/simplifyinAI/status/2047984602237599833",
-        "source": "@simplifyinAI (X)",
-        "published_time": "2026-04-25T10:22:33+00:00",
+        "title": "Ask Product Hunt AI",
+        "url": "https://www.producthunt.com/products/producthunt",
+        "source": "Product Hunt",
+        "published_time": "2026-04-24T00:01:00-07:00",
         "priority": 3,
-        "content": "Someone just open-sourced a REST API to send messages through WhatsApp. It's called whatsapp-api. Spin it up with one docker command, scan the QR code, and you can send messages to any number through a simple HTTP endpoint. 100% Open Source. https://t.co/tHsV0j9cmR",
-        "image_url": "https://pbs.twimg.com/media/HGvnEb0bUAAdQ2t.jpg",
-        "logo_url": null,
+        "content": "Find the right product, just ask. Product categories: Productivity, Artificial Intelligence, Product Hunt.",
+        "image_url": "https://ph-files.imgix.net/d618ea86-70ae-4d12-8ec2-0ed78c723ddf.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/d618ea86-70ae-4d12-8ec2-0ed78c723ddf.png?auto=format",
         "category": "breakout_products",
-        "platform": "x",
-        "source_type": "creator",
-        "author_handle": "simplifyinAI",
-        "source_url": "https://x.com/simplifyinai?s=21",
-        "selection_score": 65,
-        "selection_reason": "New open-source REST API for WhatsApp integration, useful for AI agent developers.",
-        "summary": "A newly released open-source tool allows developers to send WhatsApp messages to any number using a basic HTTP endpoint.",
-        "display_title": "Open-Source REST API Enables WhatsApp Messaging Through Simple HTTP Endpoints",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/4/24?ref=header_nav",
+        "product_rank": 1,
+        "selection_score": 70,
+        "selection_reason": "New AI-powered search feature for a major product discovery platform.",
+        "summary": "This conversational search tool helps users discover the right software products through simple natural language queries.",
+        "display_title": "Discover the perfect software tools by asking an artificial intelligence assistant directly",
         "key_points": [
-          "The project is completely open-source and operates under the name whatsapp-api.",
-          "Deployment requires only a single Docker command and a quick QR code scan.",
-          "It enables programmatic messaging capabilities without requiring complex official API approvals."
+          "Users can find specific software solutions by asking direct questions instead of browsing.",
+          "The system categorizes recommendations across productivity and artificial intelligence sectors.",
+          "It streamlines the software discovery process by eliminating manual search and filtering."
         ]
       }
     ],
     "hot_news": [
+      {
+        "title": "谷歌计划向Anthropic投资400亿美元",
+        "url": "https://zhidx.com/p/553165.html",
+        "source": "智东西",
+        "published_time": "2026-04-25T09:18:24+08:00",
+        "priority": 1,
+        "content": "智东西 编译 | ZeR0 编辑 | 漠影 智东西4月25日消息，据外媒报道，谷歌和Anthropic公司表示，谷歌已承诺向Anthropic PBC投资100亿美元（约合人民币684亿元）现金，如果Anthropic达到业绩目标，未来可能还会追加300亿美元（约合人民币2051亿元），并支持Anthropic大幅扩展其计算能力。 Anthropic由OpenAI前高管丹妮拉·阿莫代（Daniela Amodei）和达里奥·阿莫代（Dario Amodei）于2021年创立，已发展成全球估值最高的大模型企业之一。今年2月，该公司宣布完成30亿美元（...",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.zhidx.com",
+        "selection_score": 98,
+        "selection_reason": "Massive $10B-$40B investment commitment from Google into Anthropic.",
+        "summary": "Google has pledged an initial ten billion dollars to Anthropic with the potential for an additional thirty billion tied to performance milestones.",
+        "display_title": "Google Commits Up to Forty Billion Dollars to AI Startup Anthropic for Compute Expansion",
+        "key_points": [
+          "The initial investment includes ten billion dollars in cash to support Anthropic's operations.",
+          "An additional thirty billion dollars is contingent upon the startup meeting specific performance targets.",
+          "The partnership aims to significantly expand Anthropic's computational capabilities for model development."
+        ]
+      },
       {
         "title": "Google to invest up to $40B in Anthropic in cash and compute",
         "url": "https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/",
@@ -186,13 +186,36 @@
         "source_type": "media",
         "source_url": "https://techcrunch.com/category/artificial-intelligence/",
         "selection_score": 98,
-        "selection_reason": "Massive $40B investment deal between major AI players with significant compute implications",
-        "summary": "Google is planning a massive investment of up to $40 billion in Anthropic to provide crucial computing capacity and capital.",
-        "display_title": "Google Commits Up to Forty Billion Dollars to Anthropic for Compute and Cash",
+        "selection_reason": "Massive $40B investment in a top-tier AI lab is market-defining news.",
+        "summary": "Google is planning to invest up to forty billion dollars in Anthropic to secure massive compute capacity amid intensifying artificial intelligence competition.",
+        "display_title": "Google Secures Massive Compute Capacity for Anthropic Through Forty Billion Dollar Investment Plan",
         "key_points": [
-          "The investment package includes both direct cash funding and dedicated computing resources.",
-          "This move follows Anthropic's limited release of its cybersecurity-focused Mythos model.",
-          "The deal highlights the escalating race among tech giants to secure massive AI compute capacity."
+          "The investment package includes both cash and computational resources for the AI startup.",
+          "This funding follows the limited release of Anthropic's cybersecurity-focused Mythos model.",
+          "The deal highlights the escalating race among tech giants to secure massive computing infrastructure."
+        ]
+      },
+      {
+        "title": "Google to Invest Up to $40 Billion in Anthropic, Agrees to Five Gigawatt Compute Deal - The Information",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOV0RybTExa2UzOUlEOXlYdGlPWjh1Qi1wb25nWDY0SHIxUkVxNDVHa09CWEpkczYwbmtvRXhUdW1ZQUNZTDNZSkNtSmdEQ0tIa2RRdlJES3R5R3JIR2psTFBVcjdhYnV2TVF4cWduYVNReTFsWURLVEdMcmpaamNaT0tkU2ZkdndfTFB6V2dudVQ1cHZYdXd1ZTk0OHlKSF9lS1VKWmRicnp3Rk9WMkE?oc=5",
+        "source": "theinformation",
+        "published_time": "2026-04-24T17:54:00+00:00",
+        "priority": 1,
+        "content": "Google to Invest Up to $40 Billion in Anthropic, Agrees to Five Gigawatt Compute Deal&nbsp;&nbsp;The Information",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.theinformation.com",
+        "selection_score": 96,
+        "selection_reason": "Massive $40 billion investment and compute deal between Google and Anthropic.",
+        "summary": "Google has agreed to provide Anthropic with a five-gigawatt compute deal alongside an investment package worth up to forty billion dollars.",
+        "display_title": "Google Finalizes Five Gigawatt Compute Agreement and Massive Funding Package for Anthropic",
+        "key_points": [
+          "The agreement includes a massive five-gigawatt computational infrastructure commitment.",
+          "Google's total financial investment in the AI company could reach forty billion dollars.",
+          "The partnership ensures Anthropic has the necessary hardware scale for future model training."
         ]
       },
       {
@@ -209,36 +232,13 @@
         "source_type": "media",
         "source_url": "https://siliconangle.com",
         "selection_score": 95,
-        "selection_reason": "Major consolidation of two leading LLM startups with significant new funding",
-        "summary": "Artificial intelligence startups Cohere and Aleph Alpha are merging into a single entity backed by a new $600 million funding round.",
-        "display_title": "Enterprise Artificial Intelligence Startups Cohere and Aleph Alpha Announce Merger Agreement",
+        "selection_reason": "Major industry consolidation and funding involving two leading LLM developers",
+        "summary": "Enterprise AI startups Cohere and Aleph Alpha are merging into a single entity backed by a new six hundred million dollar funding round.",
+        "display_title": "Artificial Intelligence Startups Cohere and Aleph Alpha Announce Merger Supported by Major Funding",
         "key_points": [
-          "The merger combines two prominent enterprise-focused AI startups into a unified company.",
+          "The merger combines the operations of Canadian startup Cohere and German AI firm Aleph Alpha.",
           "Germany's largest retailer, Schwarz Group, is backing the strategic transaction.",
-          "Schwarz Group plans to lead a $600 million funding round for the newly combined organization."
-        ]
-      },
-      {
-        "title": "谷歌计划向Anthropic投资400亿美元",
-        "url": "https://zhidx.com/p/553165.html",
-        "source": "智东西",
-        "published_time": "2026-04-25T09:18:24+08:00",
-        "priority": 1,
-        "content": "智东西 编译 | ZeR0 编辑 | 漠影 智东西4月25日消息，据外媒报道，谷歌和Anthropic公司表示，谷歌已承诺向Anthropic PBC投资100亿美元（约合人民币684亿元）现金，如果Anthropic达到业绩目标，未来可能还会追加300亿美元（约合人民币2051亿元），并支持Anthropic大幅扩展其计算能力。 Anthropic由OpenAI前高管丹妮拉·阿莫代（Daniela Amodei）和达里奥·阿莫代（Dario Amodei）于2021年创立，已发展成全球估值最高的大模型企业之一。今年2月，该公司宣布完成30亿美元（...",
-        "image_url": null,
-        "logo_url": null,
-        "category": "hot_news",
-        "platform": "news",
-        "source_type": "media",
-        "source_url": "https://www.zhidx.com",
-        "selection_score": 94,
-        "selection_reason": "Massive $40 billion investment commitment from Google into Anthropic",
-        "summary": "Google has committed an initial $10 billion to Anthropic with the potential for an additional $30 billion based on performance targets.",
-        "display_title": "Google Pledges Massive Financial and Computing Support to AI Startup Anthropic",
-        "key_points": [
-          "The initial investment guarantees $10 billion in cash to support the AI startup.",
-          "An additional $30 billion could be unlocked if Anthropic meets specific performance milestones.",
-          "The partnership is designed to significantly expand Anthropic's computational infrastructure."
+          "Schwarz Group plans to lead a six hundred million dollar investment into the newly combined company."
         ]
       },
       {
@@ -255,36 +255,59 @@
         "source_type": "media",
         "source_url": "https://siliconangle.com",
         "selection_score": 92,
-        "selection_reason": "Massive multibillion-dollar infrastructure deal between two AI giants",
-        "summary": "Amazon Web Services has signed a multiyear, multibillion-dollar agreement to provide Meta with cloud infrastructure powered by its custom processors.",
-        "display_title": "Amazon Web Services Secures Multibillion-Dollar Cloud Infrastructure Agreement With Meta",
+        "selection_reason": "Multibillion-dollar infrastructure deal between major tech giants for AI compute capacity",
+        "summary": "Amazon Web Services has signed a multiyear agreement worth billions of dollars to provide Meta with cloud infrastructure powered by its custom processors.",
+        "display_title": "Amazon Web Services Secures Multibillion Dollar Cloud Infrastructure Agreement with Meta Platforms",
         "key_points": [
-          "The multiyear cloud infrastructure deal is reportedly valued in the billions of dollars.",
-          "The agreement heavily features AWS's internally developed Graviton central processing units.",
-          "The partnership expands Meta's reliance on Amazon for large-scale computing resources."
+          "The multiyear contract is valued at several billion dollars according to recent reports.",
+          "The infrastructure agreement heavily features Amazon's internally developed Graviton central processing units.",
+          "The deal provides Meta with dedicated cloud computing resources to support its ongoing operations."
         ]
       },
       {
-        "title": "Cohere to Buy European AI Firm Aleph Alpha, Raise $600 Million from German Backer - The Information",
-        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNdE95emZOd2NTVnRvZFNZQVBNN01PUkhmbUpFYXZVWnk2eHdSN2pXNGlwRHY0ajRIQ3pFTHFYSnFNVlZpS1ZlZEZEemlGQ19QYjE3U2lLR05pd3I0WnZaRlhIN3ZNQjhOdkdrbjVtdEdteHpTNk9DRG1ZTERKal9WZ0h5RW16Mm9uWkEzYlV3SkZDT3oyX1dRWmlOYjl2Wm9UdW03Y2VoWFpEazMyMlJzb25R?oc=5",
-        "source": "theinformation",
-        "published_time": "2026-04-24T12:56:00+00:00",
+        "title": "Germany’s sovereign AI hope changes hands",
+        "url": "https://www.infoworld.com/article/4163331/germanys-sovereign-ai-hope-changes-hands-2.html",
+        "source": "InfoWorld",
+        "published_time": "2026-04-24T18:33:45+00:00",
         "priority": 1,
-        "content": "Cohere to Buy European AI Firm Aleph Alpha, Raise $600 Million from German Backer&nbsp;&nbsp;The Information",
+        "content": "As Europe seeks to assert its technological independence from the US vendors Aleph Alpha, once seen as Germany’s sovereign AI hope, is the target of a transatlantic takeover. Aleph Alpha is set to merge with Canada’s Cohere in a deal that will bring together Cohere’s global...",
         "image_url": null,
         "logo_url": null,
         "category": "hot_news",
         "platform": "news",
         "source_type": "media",
-        "source_url": "https://www.theinformation.com",
+        "source_url": "https://www.infoworld.com",
         "selection_score": 92,
-        "selection_reason": "Major M&A news: Cohere acquiring Aleph Alpha with significant funding backing.",
-        "summary": "Cohere is acquiring the European artificial intelligence company Aleph Alpha while simultaneously raising $600 million from a German investor.",
-        "display_title": "Cohere Acquires European AI Firm Aleph Alpha Alongside Major Funding Round",
+        "selection_reason": "Major consolidation as Aleph Alpha merges with Cohere, impacting European AI sovereignty.",
+        "summary": "German artificial intelligence company Aleph Alpha is merging with Canadian startup Cohere in a major transatlantic consolidation of enterprise AI developers.",
+        "display_title": "German Artificial Intelligence Developer Aleph Alpha Agrees to Transatlantic Merger with Canada's Cohere",
         "key_points": [
-          "Cohere is expanding its European presence by purchasing Aleph Alpha.",
-          "The acquisition is supported by a new $600 million capital injection.",
-          "The funding round is being driven by a major German financial backer."
+          "The transaction represents a transatlantic takeover of Germany's primary sovereign AI developer.",
+          "The merger combines Aleph Alpha's European presence with Cohere's global enterprise operations.",
+          "The deal highlights ongoing consolidation among independent artificial intelligence model builders."
+        ]
+      },
+      {
+        "title": "Meta’s compute grab continues with agreement to deploy tens of millions of AWS Graviton cores",
+        "url": "https://www.infoworld.com/article/4163384/metas-compute-grab-continues-with-agreement-to-deploy-tens-of-millions-of-aws-graviton-cores-2.html",
+        "source": "InfoWorld",
+        "published_time": "2026-04-24T22:47:14+00:00",
+        "priority": 1,
+        "content": "Meta is continuing its compute grab as the agentic AI race accelerates to a sprint. Today, the company announced a partnership with Amazon Web Services (AWS) that will bring “tens of millions” of AWS Graviton5 cores (one chip contains 192 cores) into its compute portfolio, ...",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.infoworld.com",
+        "selection_score": 90,
+        "selection_reason": "Duplicate of Meta/AWS deal but provides specific technical scale on core counts",
+        "summary": "Meta has partnered with Amazon Web Services to integrate millions of Graviton5 CPU cores into its computing infrastructure to support accelerating agentic AI development.",
+        "display_title": "Meta Secures Tens of Millions of AWS Graviton5 Cores for Agentic AI Workloads",
+        "key_points": [
+          "The agreement involves deploying tens of millions of AWS Graviton5 cores.",
+          "Each Graviton5 chip contains 192 individual processing cores.",
+          "The massive compute acquisition is specifically targeted at powering agentic AI workloads."
         ]
       },
       {
@@ -301,59 +324,13 @@
         "source_type": "media",
         "source_url": "https://techcrunch.com/category/artificial-intelligence/",
         "selection_score": 90,
-        "selection_reason": "Strategic shift in AI infrastructure as Meta adopts Amazon's custom silicon",
-        "summary": "Meta has secured a massive supply of Amazon's custom CPUs to power its AI agent workloads, marking a shift away from exclusive reliance on GPUs.",
-        "display_title": "Meta Secures Millions of Amazon CPUs for AI Agent Workloads",
+        "selection_reason": "Strategic shift in AI infrastructure as Meta adopts Amazon's custom silicon.",
+        "summary": "Meta has secured a massive supply of Amazon's proprietary CPUs rather than traditional GPUs to handle its emerging AI agent workloads.",
+        "display_title": "Meta Shifts Focus to Amazon Custom CPUs for Powering New AI Agent Workloads",
         "key_points": [
-          "Meta is purchasing millions of Amazon's homegrown CPUs.",
-          "The chips are specifically targeted for AI agentic workloads rather than traditional training.",
-          "The deal signals a new phase in the AI hardware race beyond standard GPUs."
-        ]
-      },
-      {
-        "title": "Universal Music Group and Stability AI Announce Strategic Alliance to Co-Develop Professional AI Music Creation Tools —",
-        "url": "https://stability.ai/news-updates/universal-music-group-and-stability-ai-announce-strategic-alliance",
-        "source": "Stable Audio",
-        "published_time": "2026-10-30T00:00:00",
-        "priority": 2,
-        "content": "Universal Music Group and Stability AI today announced a strategic alliance to develop next-generation professional music creation tools, powered by responsibly trained generative AI and&nbsp;built to support the creative process of artists, producers and songwriters globally....",
-        "image_url": "http://static1.squarespace.com/static/6213c340453c3f502425776e/62f2452bc121595f4d87c713/69027ac64dd5be07a211b2a2/1765490304733/UMG+announcement_Thumbnail_1x1_FINAL.png?format=1500w",
-        "logo_url": null,
-        "category": "hot_news",
-        "platform": "site",
-        "source_type": "official",
-        "source_url": "https://stability.ai/news",
-        "selection_score": 89,
-        "selection_reason": "Significant industry alliance for responsible AI music creation with a major global label.",
-        "summary": "Universal Music Group and Stability AI have formed a strategic alliance to co-develop professional, responsibly trained generative AI tools for music creation.",
-        "display_title": "Universal Music Group Partners with Stability AI for Music Creation Tools",
-        "key_points": [
-          "The partnership focuses on building next-generation tools for artists, producers, and songwriters.",
-          "The tools will be powered by responsibly trained generative AI models.",
-          "The collaboration aims to support and enhance the global creative process in the music industry."
-        ]
-      },
-      {
-        "title": "Warner Music Group and Stability AI Join Forces To Build The Next Generation Of Responsible AI Tools For Music Creation",
-        "url": "https://stability.ai/news-updates/warner-music-group-and-stability-ai-join-forces-to-build-next-gen-tools",
-        "source": "Stable Audio",
-        "published_time": "2026-11-19T00:00:00",
-        "priority": 2,
-        "content": "Warner Music Group and Stability AI today announced a collaborative effort to advance the use of responsible AI in music creation, combining WMG’s long-standing advocacy for principled innovation with Stability AI’s expertise and leadership in commercially-safe generative audi...",
-        "image_url": "http://static1.squarespace.com/static/6213c340453c3f502425776e/62f2452bc121595f4d87c713/691b8dd19cd2316952aa0f95/1765490304733/WarnerMusic+Announcement_1x1_v1.png?format=1500w",
-        "logo_url": null,
-        "category": "hot_news",
-        "platform": "site",
-        "source_type": "official",
-        "source_url": "https://stability.ai/news",
-        "selection_score": 88,
-        "selection_reason": "Major strategic partnership between a top music label and a leading AI lab.",
-        "summary": "Warner Music Group has joined forces with Stability AI to develop commercially safe and responsible generative AI tools for music creation.",
-        "display_title": "Warner Music Group and Stability AI Collaborate on Responsible Audio Generation",
-        "key_points": [
-          "The collaboration combines WMG's advocacy for principled innovation with Stability AI's technical expertise.",
-          "The focus is on building commercially safe generative audio models.",
-          "The initiative aims to advance the responsible use of AI in the music creation process."
+          "The deal focuses exclusively on Amazon's homegrown central processing units.",
+          "Meta is utilizing these specific chips to run complex AI agentic tasks.",
+          "The move signals a strategic shift away from relying solely on GPUs for artificial intelligence processing."
         ]
       },
       {
@@ -370,41 +347,40 @@
         "source_type": "media",
         "source_url": "https://techcrunch.com/category/artificial-intelligence/",
         "selection_score": 88,
-        "selection_reason": "Significant funding and valuation for a critical open-source AI media generation tool",
-        "summary": "ComfyUI has raised $30 million, achieving a $500 million valuation as demand grows for tools that offer creators precise control over AI-generated media.",
-        "display_title": "ComfyUI Reaches $500 Million Valuation Following $30 Million Funding Round",
+        "selection_reason": "Significant funding and valuation for a major open-source AI media creation tool.",
+        "summary": "ComfyUI has successfully raised $30 million in new funding to expand its highly customizable artificial intelligence media generation platform.",
+        "display_title": "ComfyUI Reaches Half-Billion Dollar Valuation Following Recent Funding Round for Media Generation Tools",
         "key_points": [
-          "ComfyUI secured $30 million in new funding.",
-          "The company's valuation has reached $500 million.",
-          "The platform provides creators with enhanced control over AI image, video, and audio generation."
+          "The latest funding round pushes the company's total valuation to $500 million.",
+          "The platform provides advanced control mechanisms for generating AI images, video, and audio.",
+          "The investment highlights growing creator demand for precise manipulation of AI-generated media."
+        ]
+      },
+      {
+        "title": "AI-Designed Drugs by a DeepMind Spinoff Are Headed to Human Trials",
+        "url": "https://www.wired.com/story/wired-health-2026-how-ai-is-powering-drug-discovery-max-jaderberg/",
+        "source": "Wired",
+        "published_time": "2026-04-24T17:17:36+00:00",
+        "priority": 2,
+        "content": "Isomorphic Labs president Max Jaderberg said at WIRED Health in London that the startup has built a “broad and exciting pipeline of new medicines.”",
+        "image_url": "https://media.wired.com/photos/69ea468e0e9dbe999945f7fa/master/pass/XT502412.jpg",
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.wired.com",
+        "selection_score": 88,
+        "selection_reason": "Major milestone for AI-designed drugs entering human trials by a DeepMind spinoff",
+        "summary": "Isomorphic Labs has developed a comprehensive pipeline of new artificial intelligence-designed medicines that are now advancing toward human testing phases.",
+        "display_title": "DeepMind Spinoff Isomorphic Labs Prepares to Bring AI-Designed Medications to Human Clinical Trials",
+        "key_points": [
+          "The company is a direct spinoff of the artificial intelligence research lab DeepMind.",
+          "President Max Jaderberg confirmed the progress during the WIRED Health event in London.",
+          "The startup has successfully established a broad pipeline of novel pharmaceutical treatments."
         ]
       }
     ],
     "llm": [
-      {
-        "title": "Update: GPT-5.5 and GPT-5.5 Pro are now available in the API.",
-        "url": "https://x.com/OpenAI/status/2047743592278745425",
-        "source": "@OpenAI (X)",
-        "published_time": "2026-04-24T18:24:52+00:00",
-        "priority": 1,
-        "content": "Update: GPT-5.5 and GPT-5.5 Pro are now available in the API.",
-        "image_url": null,
-        "logo_url": null,
-        "category": "llm",
-        "platform": "x",
-        "source_type": "official",
-        "author_handle": "OpenAI",
-        "source_url": "https://x.com/openai?s=21",
-        "selection_score": 100,
-        "selection_reason": "Major official release of GPT-5.5 and GPT-5.5 Pro via OpenAI's API.",
-        "summary": "OpenAI has officially made its new GPT-5.5 and GPT-5.5 Pro models available to developers through its API.",
-        "display_title": "OpenAI Releases GPT-5.5 and GPT-5.5 Pro to the API",
-        "key_points": [
-          "Both GPT-5.5 and GPT-5.5 Pro are now accessible.",
-          "The models are available directly via the OpenAI API.",
-          "The release expands developer access to OpenAI's latest generation of models."
-        ]
-      },
       {
         "title": "GPT-5.5 is generally available for GitHub Copilot - GitHub Changelog",
         "url": "https://github.blog/changelog/2026-04-24-gpt-5-5-is-generally-available-for-github-copilot",
@@ -419,37 +395,13 @@
         "source_type": "official",
         "source_url": "https://github.blog/changelog/label/copilot/",
         "selection_score": 98,
-        "selection_reason": "Major release of GPT-5.5 for GitHub Copilot, significantly improving agentic coding performance.",
-        "summary": "GitHub Copilot is now rolling out OpenAI's GPT-5.5, which has demonstrated strong performance on complex, multi-step coding tasks during early testing.",
-        "display_title": "GitHub Copilot Rolls Out General Availability for GPT-5.5",
+        "selection_reason": "Major integration of GPT-5.5 into GitHub Copilot for complex agentic coding.",
+        "summary": "GitHub Copilot has officially integrated OpenAI's latest GPT-5.5 model to enhance its automated programming capabilities for all users.",
+        "display_title": "OpenAI Releases GPT-5.5 Model for General Availability Within the GitHub Copilot Ecosystem",
         "key_points": [
-          "GPT-5.5 is now generally available for GitHub Copilot users.",
-          "The model excels at complex, multi-step agentic coding tasks.",
-          "Early testing indicates improved resolution of real-world coding challenges."
-        ]
-      },
-      {
-        "title": "GPT-5.5 is now available in the API. The model brings higher intelligence and stronger token effi...",
-        "url": "https://x.com/OpenAIDevs/status/2047742566410736090",
-        "source": "@OpenAIDevs (X)",
-        "published_time": "2026-04-24T18:20:47+00:00",
-        "priority": 1,
-        "content": "GPT-5.5 is now available in the API. The model brings higher intelligence and stronger token efficiency to complex work, helping tasks get done with fewer retries.",
-        "image_url": null,
-        "logo_url": null,
-        "category": "llm",
-        "platform": "x",
-        "source_type": "official",
-        "author_handle": "OpenAIDevs",
-        "source_url": "https://x.com/openaidevs?s=21",
-        "selection_score": 98,
-        "selection_reason": "Major official release: GPT-5.5 is now available via API with improved intelligence and efficiency.",
-        "summary": "OpenAI has made GPT-5.5 available via API, offering improved intelligence and token efficiency for complex tasks.",
-        "display_title": "OpenAI Releases GPT-5.5 API with Enhanced Intelligence and Token Efficiency",
-        "key_points": [
-          "The model is designed to handle complex work more effectively.",
-          "It features stronger token efficiency compared to previous versions.",
-          "The update aims to reduce the number of retries needed to complete tasks."
+          "The update brings OpenAI's newest flagship model to the general GitHub Copilot user base.",
+          "Early testing indicates superior performance on complex, multi-step agentic coding tasks.",
+          "The model is specifically optimized to resolve real-world software development challenges."
         ]
       },
       {
@@ -466,13 +418,36 @@
         "source_type": "media",
         "source_url": "https://www.technologyreview.com",
         "selection_score": 95,
-        "selection_reason": "DeepSeek V4 release is a major milestone for open-source models and efficiency.",
-        "summary": "Chinese AI company DeepSeek has released a preview of its V4 flagship model, featuring a new design for processing longer prompts.",
-        "display_title": "DeepSeek Previews V4 Flagship Model with Extended Prompt Processing",
+        "selection_reason": "Major release of DeepSeek-V4 with significant improvements in context and efficiency.",
+        "summary": "Chinese artificial intelligence company DeepSeek has launched a preview of its V4 model, introducing a novel architecture designed for highly efficient long-context processing.",
+        "display_title": "DeepSeek Unveils V4 Flagship Model Preview Featuring Significantly Expanded Context Window Capabilities",
         "key_points": [
-          "The V4 model can handle significantly longer prompts than its predecessor.",
-          "A new architectural design improves efficiency when processing large amounts of text.",
-          "The release marks the next generation of DeepSeek's flagship AI models."
+          "The V4 release serves as the company's highly anticipated new flagship AI model.",
+          "A redesigned architecture allows the system to process substantially longer text prompts than previous generations.",
+          "The structural improvements enable more efficient handling of massive text inputs."
+        ]
+      },
+      {
+        "title": "Weekly news roundup: Tim Cook exits Apple, Meta layoffs intensify and Anthropic investigates Claude | TechTarget",
+        "url": "https://www.techtarget.com/searchcio/news/366642373/Weekly-news-roundup-Tim-Cook-exits-Apple-Meta-layoffs-intensify-and-Anthropic-investigates-Claude",
+        "source": "Data Science Central",
+        "published_time": "2026-04-24T08:38:00+00:00",
+        "priority": 1,
+        "content": "Tim Cook steps down, Meta faces AI training scrutiny, Meta and Microsoft reduce headcount, Anthropic probes Claude access and AI giants unveil new models. Plus IPO's and executive moves.",
+        "image_url": "https://www.techtarget.com/rms/onlineimages/maze_g467037520.jpg",
+        "logo_url": null,
+        "category": "llm",
+        "platform": "research",
+        "source_type": "research",
+        "source_url": "https://www.datasciencecentral.com",
+        "selection_score": 95,
+        "selection_reason": "Major industry shifts including Tim Cook's exit and Meta layoffs.",
+        "summary": "A wave of significant developments has hit the tech sector, including Tim Cook's departure from Apple and ongoing investigations into AI models.",
+        "display_title": "Tech Industry Faces Major Leadership Changes and AI Scrutiny",
+        "key_points": [
+          "Tim Cook has stepped down from his role at Apple.",
+          "Meta and Microsoft are reducing their workforce amid AI training scrutiny.",
+          "Anthropic is currently investigating access issues related to its Claude model."
         ]
       },
       {
@@ -489,83 +464,82 @@
         "source_type": "media",
         "source_url": "https://techcrunch.com/category/artificial-intelligence/",
         "selection_score": 92,
-        "selection_reason": "New model preview from a major lab claiming frontier-level performance and efficiency",
-        "summary": "DeepSeek claims its newly previewed models offer greater efficiency and performance than V3.2, nearly matching current leading open and closed models.",
-        "display_title": "DeepSeek's New Models Approach Performance of Leading Frontier AI",
+        "selection_reason": "Major model preview from a leading lab claiming parity with top frontier models.",
+        "summary": "DeepSeek has previewed new AI models that boast significant architectural improvements, making them more efficient and performant than their predecessors.",
+        "display_title": "DeepSeek Unveils Highly Efficient AI Models Rivaling Industry Leaders",
         "key_points": [
-          "The new models feature architectural improvements over DeepSeek V3.2.",
-          "They deliver enhanced efficiency and overall performance.",
-          "DeepSeek states the models have almost closed the gap with top-tier frontier models."
+          "The new models outperform the previous DeepSeek V3.2 iteration.",
+          "Architectural enhancements have driven increased efficiency and performance.",
+          "DeepSeek claims these models nearly match the capabilities of current leading open and closed frontier models."
         ]
       },
       {
-        "title": "Build with DeepSeek V4 Using NVIDIA Blackwell and GPU-Accelerated Endpoints",
-        "url": "https://developer.nvidia.com/blog/build-with-deepseek-v4-using-nvidia-blackwell-and-gpu-accelerated-endpoints/",
-        "source": "NVIDIA Blog",
-        "published_time": "2026-04-24T23:29:56+00:00",
-        "priority": 1,
-        "content": "DeepSeek just launched its fourth generation of flagship models with DeepSeek-V4-Pro and DeepSeek-V4-Flash, both targeted at enabling highly efficient...",
-        "image_url": null,
-        "logo_url": null,
-        "category": "llm",
-        "platform": "site",
-        "source_type": "official",
-        "source_url": "https://developer.nvidia.com/blog",
-        "selection_score": 90,
-        "selection_reason": "Launch of DeepSeek-V4 flagship models optimized for NVIDIA Blackwell",
-        "summary": "DeepSeek has launched its fourth-generation flagship models, DeepSeek-V4-Pro and DeepSeek-V4-Flash, which are supported by NVIDIA Blackwell and GPU-accelerated endpoints.",
-        "display_title": "NVIDIA Supports DeepSeek V4 Models with Blackwell and GPU Acceleration",
-        "key_points": [
-          "The launch includes two models: DeepSeek-V4-Pro and DeepSeek-V4-Flash.",
-          "Both models are targeted at enabling highly efficient AI operations.",
-          "Developers can build with these models using NVIDIA's advanced hardware and endpoints."
-        ]
-      },
-      {
-        "title": "GPT-5.5 is now available on Perplexity for Max subscribers. GPT-5.5 is also rolling out as the de...",
-        "url": "https://x.com/perplexity_ai/status/2047748486767272243",
-        "source": "@perplexity_ai (X)",
-        "published_time": "2026-04-24T18:44:19+00:00",
+        "title": "MIT scientists build the world’s largest collection of Olympiad-level math problems, and open it to everyone",
+        "url": "https://news.mit.edu/2026/mit-scientists-build-worlds-largest-collection-olympiad-level-math-problems-open-0424",
+        "source": "MIT News",
+        "published_time": "2026-04-24T17:00:00+00:00",
         "priority": 2,
-        "content": "GPT-5.5 is now available on Perplexity for Max subscribers. GPT-5.5 is also rolling out as the default orchestration model in Computer for both Pro and Max subscribers. https://t.co/Iqno7W4iQw",
-        "image_url": "https://pbs.twimg.com/media/HGsQZcqaIAAGKso.png",
+        "content": "MIT CSAIL scientists have compiled the largest high-quality dataset of proof-based math problems ever created. It can help researchers test AI models’ mathematical reasoning, while capturing the full range of mathematical perspectives and problem-solving traditions within the ...",
+        "image_url": "https://news.mit.edu/sites/default/files/images/202604/MIT-MathNet.jpg",
         "logo_url": null,
         "category": "llm",
-        "platform": "x",
-        "source_type": "official",
-        "author_handle": "perplexity_ai",
-        "source_url": "https://x.com/perplexity_ai?s=21",
+        "platform": "research",
+        "source_type": "research",
+        "source_url": "https://news.mit.edu/",
         "selection_score": 88,
-        "selection_reason": "Perplexity integrates GPT-5.5 for Max subscribers and as a default orchestration model.",
-        "summary": "Perplexity has made GPT-5.5 available to Max subscribers and is rolling it out as the default orchestration model in Computer for Pro and Max users.",
-        "display_title": "Perplexity Integrates GPT-5.5 for Max Subscribers and Computer Orchestration",
+        "selection_reason": "New high-quality dataset for testing mathematical reasoning in advanced AI models.",
+        "summary": "Scientists at MIT CSAIL have compiled and open-sourced the largest high-quality dataset of proof-based math problems to help evaluate AI mathematical reasoning.",
+        "display_title": "MIT Releases Massive Open Dataset of Olympiad-Level Math Problems",
         "key_points": [
-          "GPT-5.5 is now accessible to Perplexity Max subscribers.",
-          "It serves as the default orchestration model in the Computer feature.",
-          "The Computer integration is available for both Pro and Max subscription tiers."
+          "The dataset is the largest collection of Olympiad-level math problems ever created.",
+          "It is designed to test and improve the mathematical reasoning capabilities of AI models.",
+          "The collection captures a wide range of mathematical perspectives and problem-solving traditions."
         ]
       },
       {
-        "title": "Claude in Chrome updates",
-        "url": "https://support.claude.com/en/articles/12138966-release-notes#claude-in-chrome-updates",
-        "source": "Claude",
-        "published_time": "2026-10-25T00:00:00",
+        "title": "Former OpenAI research scientist launches new AI model for Tencent",
+        "url": "https://www.infoworld.com/article/4163276/former-openai-research-scientist-launches-new-ai-model-for-tencent.html",
+        "source": "InfoWorld",
+        "published_time": "2026-04-24T17:22:39+00:00",
         "priority": 2,
-        "content": "Claude in Chrome is now available in beta to all paid plan subscribers, including Pro, Team, and Enterprise plans.",
+        "content": "Tencent has updated its Hunyuan AI model, its first major release since it recruited Yao Shunyu, a leading AI scientist from OpenAI. Tencent’s Hy3 model, currently available in preview, offers improvements in areas from complex reasoning to coding. The Chinese technology co...",
         "image_url": null,
+        "logo_url": null,
+        "category": "llm",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.infoworld.com",
+        "selection_score": 85,
+        "selection_reason": "Tencent's Hy3 model release led by former OpenAI talent shows significant reasoning improvements.",
+        "summary": "Tencent has released a preview of its updated Hy3 AI model, featuring enhanced complex reasoning and coding capabilities following the recruitment of a leading AI scientist.",
+        "display_title": "Tencent Previews Upgraded Hunyuan AI Model Led by Former OpenAI Scientist",
+        "key_points": [
+          "The update is Tencent's first major release since hiring former OpenAI scientist Yao Shunyu.",
+          "The new Hy3 model is currently available in preview mode.",
+          "It offers significant improvements in complex reasoning and coding tasks."
+        ]
+      },
+      {
+        "title": "Find out what’s new in the Gemini app in April's Gemini Drop.",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-april-2026/",
+        "source": "Gemini",
+        "published_time": "2026-04-24T00:00:00",
+        "priority": 2,
+        "content": "Gemini Drops is our regular monthly update on how to get the most out of the Gemini app.",
+        "image_url": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/00_Drops_10_Cover_Art_1920x1080_v01.max-1440x810.png",
         "logo_url": null,
         "category": "llm",
         "platform": "site",
         "source_type": "official",
-        "source_url": "https://support.claude.com/en/articles/12138966-release-notes",
+        "source_url": "https://blog.google/products-and-platforms/products/gemini/",
         "selection_score": 85,
-        "selection_reason": "Claude's Chrome extension expansion to all paid tiers significantly improves workflow accessibility.",
-        "summary": "The Claude in Chrome extension is now available in beta for users on Pro, Team, and Enterprise paid plans.",
-        "display_title": "Claude in Chrome Beta Opens to All Paid Subscribers",
+        "selection_reason": "Official monthly feature drop for the Gemini app with new user capabilities.",
+        "summary": "Google has released its April Gemini Drop, providing users with the latest updates and tips on how to maximize their use of the Gemini app.",
+        "display_title": "Google Details April Updates and Tips for the Gemini App",
         "key_points": [
-          "The feature is currently in its beta testing phase.",
-          "Access is restricted to paid plan subscribers.",
-          "Supported tiers include Pro, Team, and Enterprise plans."
+          "The update is part of the regular monthly Gemini Drops series.",
+          "It focuses on helping users get the most out of the Gemini application.",
+          "The release covers new features and improvements introduced in April."
         ]
       }
     ],
@@ -583,83 +557,14 @@
         "platform": "research",
         "source_type": "research",
         "source_url": "https://www.analyticsvidhya.com",
-        "selection_score": 95,
-        "selection_reason": "Major release of GPT 5.5 and ChatGPT Images 2.0 represents a significant industry milestone.",
-        "summary": "OpenAI has introduced GPT 5.5, a major new model release that follows the recent launch of ChatGPT Images 2.0.",
-        "display_title": "OpenAI Unveils GPT 5.5 Following the Release of Its Upgraded Image Generation Model",
+        "selection_score": 98,
+        "selection_reason": "Major release of GPT-5.5 and new image generation capabilities from OpenAI.",
+        "summary": "Following the release of ChatGPT Images 2.0, OpenAI has launched a highly anticipated new version of its GPT model, promising significant advancements.",
+        "display_title": "OpenAI Follows Image Generator Release with Powerful New GPT Version",
         "key_points": [
-          "OpenAI launched GPT 5.5 as its latest major model iteration.",
-          "The release closely follows the debut of the ChatGPT Images 2.0 generation model.",
-          "The new version is described as a larger and more significant update to the company's AI lineup."
-        ]
-      },
-      {
-        "title": "Stability AI Introduces Stable Audio 2.5, the First Audio Model Built for Enterprise Sound Production at Scale — Stabili",
-        "url": "https://stability.ai/news-updates/stability-ai-introduces-stable-audio-25-the-first-audio-model-built-for-enterprise-sound-production-at-scale",
-        "source": "Stable Audio",
-        "published_time": "2026-09-10T00:00:00",
-        "priority": 1,
-        "content": "We’re excited to release Stable Audio 2.5, our latest audio model and the first developed for enterprise-grade use cases. Stable Audio 2.5 introduces advancements in quality and control that address the demand for dynamic compositions that can be adapted for custom brand needs.",
-        "image_url": "http://static1.squarespace.com/static/6213c340453c3f502425776e/62f2452bc121595f4d87c713/68af30c1f7616137793f399f/1765490304733/StableAudio2.5_Thumbnail_1x1_v5+%281%29.png?format=1500w",
-        "logo_url": null,
-        "category": "image_video",
-        "platform": "site",
-        "source_type": "official",
-        "source_url": "https://stability.ai/news",
-        "selection_score": 92,
-        "selection_reason": "Release of Stable Audio 2.5, a major enterprise-grade generative audio model update.",
-        "summary": "Stability AI has released Stable Audio 2.5, an enterprise-grade audio model designed to generate dynamic compositions tailored for custom brand requirements.",
-        "display_title": "Stability AI Launches Stable Audio 2.5 for Enterprise Sound Production and Dynamic Composition",
-        "key_points": [
-          "Stable Audio 2.5 is specifically developed for enterprise-scale sound production use cases.",
-          "The model introduces enhanced quality and control features for audio generation.",
-          "It allows businesses to adapt dynamic musical compositions to fit specific brand needs."
-        ]
-      },
-      {
-        "title": "自动驾驶赛道 DeepSeek，轻舟智航率先进军物理 AI",
-        "url": "https://www.bestblogs.dev/article/393fc6a7",
-        "source": "RadarAI",
-        "published_time": "2026-04-25T15:22:22+08:00",
-        "priority": 2,
-        "content": "📌 一句话摘要 轻舟智航提出物理 AI 第一性原理，通过世界模型加强化学习架构，在 500+TOPS 算力下实现全场景智能驾驶，将自动驾驶公司定位为物理 AI 公司。 📝 详细摘要 本文报道了轻舟智航在北京车展上发布的「轻舟乘风 MAX」量产方案，核心亮点是在 500+TOPS 算力下将世界模型装上车，实现车位到车位的全场景智能驾驶。文章详细介绍了轻舟的技术架构：云端世界模...",
-        "image_url": null,
-        "logo_url": null,
-        "category": "image_video",
-        "platform": "news",
-        "source_type": "media",
-        "source_url": "https://radarai.top",
-        "selection_score": 82,
-        "selection_reason": "Qingzhou Zhihang's world model for autonomous driving represents a significant physical AI advancement.",
-        "summary": "QCraft has unveiled its mass-production autonomous driving solution, utilizing a world model and reinforcement learning architecture to achieve full-scenario navigation.",
-        "display_title": "QCraft Introduces World Model Architecture for Full-Scenario Autonomous Driving Under Physical AI",
-        "key_points": [
-          "The system operates on 500+ TOPS of computing power to enable parking-space-to-parking-space autonomous driving.",
-          "QCraft combines a world model with reinforcement learning to establish a physical AI foundation.",
-          "The technology was officially showcased as the mass-producible QCraft Chengfeng MAX solution at the Beijing Auto Show."
-        ]
-      },
-      {
-        "title": "直击北京车展 | 元戎 CEO 周光：目标成为物理世界的 AI 基础设施",
-        "url": "https://www.leiphone.com/category/industrynews/Uqsy0h8NiLX5iqpA.html",
-        "source": "雷锋网",
-        "published_time": "2026-04-25T16:25:00+08:00",
-        "priority": 2,
-        "content": "4 月 25 日，元戎启行在第十九届北京国际汽车展览会（以下简称“北京车展”）举办发布会。会上，元戎 CEO 周光回顾创业初心，并介绍了公司在物理AI领域的最新进展与愿景。随后，元戎首席科学家阮翀发表首次公开演讲，系统分享公司在基座模型上的技术架构，此举被视为元戎抢占物理 AI 高地，定义下一代自动驾驶范式的里程碑。元戎启行 CEO 周光演讲周光：目标成为物理世界的 AI 基础设施发布会开场，CEO 周光讲述了 2016 年创业初期一次发生在身边的交通事故。“当时我就在想，能否用 AI 技术去解救更多的生命。”周光表示，尽管当前自动驾驶并不完美，M...",
-        "image_url": null,
-        "logo_url": null,
-        "category": "image_video",
-        "platform": "news",
-        "source_type": "media",
-        "source_url": "https://www.leiphone.com",
-        "selection_score": 78,
-        "selection_reason": "Deep-dive into physical AI and base model architectures for autonomous driving.",
-        "summary": "DeepRoute.ai executives detailed the company's foundation model architecture and its strategic goal to serve as the AI infrastructure for the physical world.",
-        "display_title": "DeepRoute Outlines Vision to Become Physical AI Infrastructure at the Beijing Auto Show",
-        "key_points": [
-          "CEO Zhou Guang announced the company's vision to build foundational AI infrastructure for physical environments.",
-          "Chief Scientist Ruan Chong publicly detailed the technical architecture of DeepRoute's base model for the first time.",
-          "The presentation at the Beijing Auto Show marks a strategic shift toward defining the next generation of autonomous driving paradigms."
+          "The release follows closely on the heels of the ChatGPT Images 2.0 launch.",
+          "The new model is described as a major update and a larger release than the image generator.",
+          "Early impressions suggest the new version offers substantial improvements over previous iterations."
         ]
       }
     ],
@@ -669,7 +574,7 @@
         "url": "https://www.computerworld.com/article/4163305/agent-mode-is-now-available-in-microsoft-word-excel-and-powerpoint.html",
         "source": "Computerworld",
         "published_time": "2026-04-24T18:13:36+00:00",
-        "priority": 2,
+        "priority": 1,
         "content": "Microsoft has beefed up Copilot’s capabilities in Word, Excel and PowerPoint, claiming its Agent Mode will help speed up workers’ output. The new features, announced last year, mean that Copilot can work more efficiently with Office applications, for example, understanding ...",
         "image_url": null,
         "logo_url": null,
@@ -677,38 +582,14 @@
         "platform": "news",
         "source_type": "media",
         "source_url": "https://www.computerworld.com",
-        "selection_score": 88,
-        "selection_reason": "Significant rollout of Agent Mode in Microsoft Office suite enhances enterprise productivity.",
-        "summary": "Microsoft has rolled out Agent Mode for Copilot across its core Office applications to help users generate output more efficiently.",
-        "display_title": "Microsoft Integrates Copilot Agent Mode into Word, Excel, and PowerPoint Applications",
+        "selection_score": 90,
+        "selection_reason": "Significant rollout of Agent Mode across Microsoft's core Office productivity suite.",
+        "summary": "Microsoft has officially rolled out Agent Mode for Copilot within Word, Excel, and PowerPoint to enhance workflow efficiency and speed up task completion.",
+        "display_title": "Microsoft Integrates Copilot Agent Mode Into Core Office Applications to Accelerate Worker Productivity",
         "key_points": [
-          "Agent Mode is now actively available within Microsoft Word, Excel, and PowerPoint.",
-          "The feature allows Copilot to interact more deeply and efficiently with Office application workflows.",
-          "Microsoft designed the update to significantly accelerate worker productivity and document generation."
-        ]
-      },
-      {
-        "title": "From a new way to organize your chats to a native Mac app, here's a look at this month's Gemini D...",
-        "url": "https://x.com/GeminiApp/status/2047707652264767710",
-        "source": "@GeminiApp (X)",
-        "published_time": "2026-04-24T16:02:03+00:00",
-        "priority": 2,
-        "content": "From a new way to organize your chats to a native Mac app, here's a look at this month's Gemini Drops:",
-        "image_url": null,
-        "logo_url": null,
-        "category": "product_updates",
-        "platform": "x",
-        "source_type": "official",
-        "author_handle": "GeminiApp",
-        "source_url": "https://x.com/geminiapp?s=21",
-        "selection_score": 85,
-        "selection_reason": "Official Google Gemini monthly update featuring a new native Mac app and chat organization tools.",
-        "summary": "The latest Gemini update introduces a dedicated native application for Mac users alongside new tools for organizing chat histories.",
-        "display_title": "Google Releases Native Mac Application and Chat Organization Features for Gemini",
-        "key_points": [
-          "Gemini now offers a native desktop application specifically built for macOS.",
-          "The update includes a redesigned system for users to organize and manage their past conversations.",
-          "These features were announced as part of the platform's monthly feature drop."
+          "The update brings advanced Copilot capabilities directly into core Office applications.",
+          "Agent Mode is specifically designed to accelerate worker output and improve application efficiency.",
+          "These newly implemented features were originally announced by Microsoft last year."
         ]
       }
     ]
