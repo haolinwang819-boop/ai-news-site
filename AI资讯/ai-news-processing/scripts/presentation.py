@@ -7,6 +7,7 @@ import json
 import html as html_lib
 import os
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from difflib import SequenceMatcher
 from typing import Any
@@ -908,17 +909,40 @@ def enrich_digest_for_display(digest: dict[str, Any], chunk_size: int = 6) -> di
     prompt_loader = PromptLoader()
     invoker = get_llm_invoker(LLM_EDITOR_CONFIG, label="editorial")
     max_attempts = int(os.environ.get("PRESENTATION_MAX_ATTEMPTS", "3"))
+    max_workers = max(1, int(os.environ.get("LLM_EDITOR_MAX_WORKERS", "3")))
 
-    for start in range(0, len(items), chunk_size):
-        chunk = items[start : start + chunk_size]
-        enrichment_by_url.update(
-            _enrich_chunk(
-                chunk,
-                prompt_loader=prompt_loader,
-                invoker=invoker,
-                max_attempts=max_attempts,
+    chunks = [items[start : start + chunk_size] for start in range(0, len(items), chunk_size)]
+    if max_workers == 1 or len(chunks) == 1:
+        for chunk in chunks:
+            enrichment_by_url.update(
+                _enrich_chunk(
+                    chunk,
+                    prompt_loader=prompt_loader,
+                    invoker=invoker,
+                    max_attempts=max_attempts,
+                )
             )
-        )
+    else:
+        with ThreadPoolExecutor(max_workers=min(max_workers, len(chunks))) as executor:
+            futures = {
+                executor.submit(
+                    _enrich_chunk,
+                    chunk,
+                    prompt_loader=prompt_loader,
+                    invoker=invoker,
+                    max_attempts=max_attempts,
+                ): index
+                for index, chunk in enumerate(chunks, start=1)
+            }
+            failures: list[str] = []
+            for future in as_completed(futures):
+                index = futures[future]
+                try:
+                    enrichment_by_url.update(future.result())
+                except Exception as exc:
+                    failures.append(f"chunk {index}: {exc}")
+            if failures:
+                raise RuntimeError("Presentation enrichment failed: " + " | ".join(failures[:4]))
 
     for category, category_items in (enriched.get("categories") or {}).items():
         for item in category_items:
