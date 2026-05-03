@@ -88,23 +88,90 @@
     });
   }
 
-  function createDigestTabs(container, activeDate, onClick) {
+  function createDigestPicker(container, activeDate, onClick) {
     if (!container) return;
-    container.innerHTML = digests
-      .map((digest) => {
-        const activeClass = digest.date === activeDate ? " date-tab--active" : "";
-        return `
-          <button class="date-tab${activeClass}" type="button" data-digest-date="${escapeHtml(digest.date)}">
-            <strong>${escapeHtml(digest.date)}</strong>
-            <span>${digest.totalCount} stories</span>
-          </button>
-        `;
-      })
-      .join("");
+    const activeDigest = getDigest(activeDate);
+    const latestDate = (digests[0] && digests[0].date) || defaultDigestDate;
+    const menuId = "archive-date-menu";
+
+    container.innerHTML = `
+      <div class="date-picker" data-date-picker>
+        <button
+          class="date-picker__button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="${menuId}"
+        >
+          <span class="date-picker__copy">
+            <span class="date-picker__eyebrow">Selected brief</span>
+            <strong>${escapeHtml(activeDigest.date || activeDate || "")}</strong>
+            <span>${Number(activeDigest.totalCount || 0)} stories${activeDigest.date === latestDate ? " · Latest" : ""}</span>
+          </span>
+          <span class="date-picker__action">Change date</span>
+        </button>
+        <div class="date-picker__menu" id="${menuId}" role="listbox" hidden>
+          <div class="date-picker__menu-header">
+            <span>Choose archive date</span>
+            <span>${digests.length} briefs</span>
+          </div>
+          <div class="date-picker__options">
+            ${digests
+              .map((digest) => {
+                const activeClass = digest.date === activeDate ? " date-option--active" : "";
+                return `
+                  <button
+                    class="date-option${activeClass}"
+                    type="button"
+                    role="option"
+                    aria-selected="${digest.date === activeDate ? "true" : "false"}"
+                    data-digest-date="${escapeHtml(digest.date)}"
+                  >
+                    <strong>${escapeHtml(digest.date)}</strong>
+                    <span>${digest.totalCount} stories</span>
+                  </button>
+                `;
+              })
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `;
+
+    const picker = container.querySelector("[data-date-picker]");
+    const trigger = container.querySelector(".date-picker__button");
+    const menu = container.querySelector(".date-picker__menu");
+
+    function setOpen(isOpen) {
+      if (!trigger || !menu) return;
+      trigger.setAttribute("aria-expanded", String(isOpen));
+      menu.hidden = !isOpen;
+    }
+
+    trigger?.addEventListener("click", () => {
+      const isOpen = trigger.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
 
     container.querySelectorAll("[data-digest-date]").forEach((button) => {
       button.addEventListener("click", () => onClick(button.dataset.digestDate));
     });
+
+    if (container._datePickerOutsideClick) {
+      document.removeEventListener("click", container._datePickerOutsideClick);
+    }
+
+    container._datePickerOutsideClick = (event) => {
+      if (!picker || picker.contains(event.target)) return;
+      setOpen(false);
+    };
+    document.addEventListener("click", container._datePickerOutsideClick);
+
+    container.onkeydown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        trigger?.focus();
+      }
+    };
   }
 
   function logoMarkup(item, className) {
@@ -535,7 +602,7 @@
 
       updateExploreUrl(state);
       renderDigestHeroStats(document.getElementById("explore-hero-stats"), digest);
-      createDigestTabs(dateTabs, state.date, (digestDate) => {
+      createDigestPicker(dateTabs, state.date, (digestDate) => {
         const nextDigest = getDigest(digestDate);
         state = {
           date: nextDigest.date || defaultDigestDate,
