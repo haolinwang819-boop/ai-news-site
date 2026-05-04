@@ -90,70 +90,180 @@
 
   function createDigestPicker(container, activeDate, onClick) {
     if (!container) return;
-    const activeDigest = getDigest(activeDate);
+    const activeIndex = Math.max(0, digests.findIndex((digest) => digest.date === activeDate));
+    const activeDigest = digests[activeIndex] || getDigest(activeDate);
+    const olderDigest = digests[activeIndex + 1] || null;
+    const newerDigest = digests[activeIndex - 1] || null;
     const latestDate = (digests[0] && digests[0].date) || defaultDigestDate;
     const menuId = "archive-date-menu";
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    function parseArchiveDate(date) {
+      const [year, month, day] = String(date || "").split("-").map(Number);
+      if (!year || !month || !day) return null;
+      return { year, month, day };
+    }
+
+    function monthLabel(month) {
+      return monthNames[Number(month) - 1] || String(month);
+    }
+
+    const dateParts = digests
+      .map((digest) => ({ digest, parts: parseArchiveDate(digest.date) }))
+      .filter((entry) => entry.parts);
+    const years = [...new Set(dateParts.map((entry) => entry.parts.year))].sort((a, b) => b - a);
+    const activeParts = parseArchiveDate(activeDigest.date) || dateParts[0]?.parts || { year: "", month: "", day: "" };
+
+    function monthsForYear(year) {
+      return [...new Set(dateParts
+        .filter((entry) => String(entry.parts.year) === String(year))
+        .map((entry) => entry.parts.month))]
+        .sort((a, b) => b - a);
+    }
+
+    function digestsForMonth(year, month) {
+      return dateParts
+        .filter((entry) => String(entry.parts.year) === String(year) && String(entry.parts.month) === String(month))
+        .sort((a, b) => b.parts.day - a.parts.day);
+    }
 
     container.innerHTML = `
-      <div class="date-picker" data-date-picker>
-        <button
-          class="date-picker__button"
-          type="button"
-          aria-expanded="false"
-          aria-controls="${menuId}"
-        >
-          <span class="date-picker__copy">
-            <span class="date-picker__eyebrow">Selected brief</span>
-            <strong>${escapeHtml(activeDigest.date || activeDate || "")}</strong>
-            <span>${Number(activeDigest.totalCount || 0)} stories${activeDigest.date === latestDate ? " · Latest" : ""}</span>
-          </span>
-          <span class="date-picker__action">Change date</span>
+      <div class="date-navigator" data-date-picker>
+        <button class="date-step" type="button" data-date-nav="previous" data-digest-date="${escapeHtml(olderDigest?.date || "")}" ${olderDigest ? "" : "disabled"}>
+          <span class="date-step__label">Previous day</span>
+          <strong>${escapeHtml(olderDigest?.date || "Oldest brief")}</strong>
+          <span>${olderDigest ? `${Number(olderDigest.totalCount || 0)} stories` : "No earlier archive"}</span>
         </button>
-        <div class="date-picker__menu" id="${menuId}" role="listbox" hidden>
-          <div class="date-picker__menu-header">
-            <span>Choose archive date</span>
-            <span>${digests.length} briefs</span>
-          </div>
-          <div class="date-picker__options">
-            ${digests
-              .map((digest) => {
-                const activeClass = digest.date === activeDate ? " date-option--active" : "";
-                return `
-                  <button
-                    class="date-option${activeClass}"
-                    type="button"
-                    role="option"
-                    aria-selected="${digest.date === activeDate ? "true" : "false"}"
-                    data-digest-date="${escapeHtml(digest.date)}"
-                  >
-                    <strong>${escapeHtml(digest.date)}</strong>
-                    <span>${digest.totalCount} stories</span>
-                  </button>
-                `;
-              })
-              .join("")}
+        <div class="date-picker">
+          <button
+            class="date-picker__button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="${menuId}"
+          >
+            <span class="date-picker__copy">
+              <span class="date-picker__eyebrow">Selected brief</span>
+              <strong>${escapeHtml(activeDigest.date || activeDate || "")}</strong>
+              <span>${Number(activeDigest.totalCount || 0)} stories${activeDigest.date === latestDate ? " · Latest" : ""}</span>
+            </span>
+            <span class="date-picker__action">Choose date</span>
+          </button>
+          <div class="date-picker__menu" id="${menuId}" hidden>
+            <div class="date-picker__menu-header">
+              <span>Choose exact date</span>
+              <span>${digests.length} briefs</span>
+            </div>
+            <div class="date-picker__selectors">
+              <label class="date-select-field">
+                <span>Year</span>
+                <select data-date-year>
+                  ${years.map((year) => `<option value="${year}" ${year === activeParts.year ? "selected" : ""}>${year}</option>`).join("")}
+                </select>
+              </label>
+              <label class="date-select-field">
+                <span>Month</span>
+                <select data-date-month></select>
+              </label>
+            </div>
+            <p class="date-picker__hint">Only days with a stored brief are shown.</p>
+            <div class="date-calendar" data-date-calendar role="listbox"></div>
           </div>
         </div>
+        <button class="date-step" type="button" data-date-nav="next" data-digest-date="${escapeHtml(newerDigest?.date || "")}" ${newerDigest ? "" : "disabled"}>
+          <span class="date-step__label">Next day</span>
+          <strong>${escapeHtml(newerDigest?.date || "Latest brief")}</strong>
+          <span>${newerDigest ? `${Number(newerDigest.totalCount || 0)} stories` : "You are up to date"}</span>
+        </button>
       </div>
     `;
 
     const picker = container.querySelector("[data-date-picker]");
     const trigger = container.querySelector(".date-picker__button");
     const menu = container.querySelector(".date-picker__menu");
+    const yearSelect = container.querySelector("[data-date-year]");
+    const monthSelect = container.querySelector("[data-date-month]");
+    const calendar = container.querySelector("[data-date-calendar]");
+
+    function renderMonthOptions() {
+      if (!yearSelect || !monthSelect) return;
+      const months = monthsForYear(yearSelect.value);
+      const selectedMonth = months.includes(Number(monthSelect.value))
+        ? Number(monthSelect.value)
+        : (months.includes(activeParts.month) ? activeParts.month : months[0]);
+      monthSelect.innerHTML = months
+        .map((month) => `<option value="${month}" ${month === selectedMonth ? "selected" : ""}>${escapeHtml(monthLabel(month))}</option>`)
+        .join("");
+    }
+
+    function renderCalendar() {
+      if (!yearSelect || !monthSelect || !calendar) return;
+      const monthDigests = digestsForMonth(yearSelect.value, monthSelect.value);
+      calendar.innerHTML = monthDigests
+        .map(({ digest, parts }) => {
+          const activeClass = digest.date === activeDigest.date ? " date-day--active" : "";
+          return `
+            <button
+              class="date-day${activeClass}"
+              type="button"
+              role="option"
+              aria-selected="${digest.date === activeDigest.date ? "true" : "false"}"
+              data-digest-date="${escapeHtml(digest.date)}"
+            >
+              <strong>${String(parts.day).padStart(2, "0")}</strong>
+              <span>${Number(digest.totalCount || 0)} stories</span>
+            </button>
+          `;
+        })
+        .join("");
+    }
 
     function setOpen(isOpen) {
       if (!trigger || !menu) return;
       trigger.setAttribute("aria-expanded", String(isOpen));
       menu.hidden = !isOpen;
+      if (isOpen) {
+        renderMonthOptions();
+        renderCalendar();
+      }
     }
+
+    renderMonthOptions();
+    renderCalendar();
 
     trigger?.addEventListener("click", () => {
       const isOpen = trigger.getAttribute("aria-expanded") === "true";
       setOpen(!isOpen);
     });
 
-    container.querySelectorAll("[data-digest-date]").forEach((button) => {
+    container.querySelectorAll("[data-date-nav]").forEach((button) => {
       button.addEventListener("click", () => onClick(button.dataset.digestDate));
+    });
+
+    yearSelect?.addEventListener("change", () => {
+      renderMonthOptions();
+      renderCalendar();
+    });
+
+    monthSelect?.addEventListener("change", renderCalendar);
+
+    calendar?.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const button = target?.closest("[data-digest-date]");
+      if (!button) return;
+      onClick(button.dataset.digestDate);
     });
 
     if (container._datePickerOutsideClick) {
