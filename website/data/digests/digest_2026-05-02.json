@@ -1,0 +1,420 @@
+{
+  "date": "2026-05-02",
+  "generated_at": "2026-05-05T21:38:02.022980",
+  "total_count": 17,
+  "categories": {
+    "breakout_products": [
+      {
+        "title": "🚨 BREAKING: Warp just dropped its entire source code. 42,000 GitHub stars. Written in Rust. And i...",
+        "url": "https://x.com/socialwithaayan/status/2050484676918382961",
+        "source": "@socialwithaayan (X)",
+        "published_time": "2026-05-02T07:56:57+00:00",
+        "priority": 1,
+        "content": "🚨 BREAKING: Warp just dropped its entire source code. 42,000 GitHub stars. Written in Rust. And it just made the traditional terminal obsolete. This is not a terminal with AI features bolted on. This is an agentic development environment where coding agents operate with full autonomy. From issue to PR. No babysitting. Here's how it works: → You plug in Claude Code, Codex, or Gemini CLI → You give it a GitHub issue → The agent reads the codebase, writes the spec, implements the fix → It opens a PR with full context → You review and merge That's the entire workflow. No prompting. No copy-pasting. No hand-holding. Here's how far ahead they are: At build. warp. dev you can watch thousands of AI agents building Warp's own codebase. Live. Right now. Triaging real issues. Writing real code. Submitting real PRs. Click into any session. Watch the agent work in a real terminal. In your browser. They are building the product with the product. OpenAI is the founding sponsor. GPT powers the agentic management layer. The entire client is Rust-native and GPU-accelerated. Works on macOS, Linux, and Windows. Your terminal types commands. Warp ships features. 100% Open Source. AGPL-3.0 + MIT. (Link in the comments)",
+        "image_url": "https://pbs.twimg.com/media/HHTI8mUaQAAjkph.jpg",
+        "logo_url": null,
+        "category": "breakout_products",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "socialwithaayan",
+        "source_url": "https://x.com/socialwithaayan?s=21",
+        "selection_score": 92,
+        "selection_reason": "Warp terminal open-sourcing and major shift to agentic development environment.",
+        "summary": "The GPU-accelerated terminal Warp has open-sourced its entire codebase, transforming into an autonomous development environment where AI agents can independently resolve GitHub issues and submit pull requests.",
+        "display_title": "Warp Open-Sources Its Rust-Based Agentic Terminal Environment for Autonomous Coding Workflows",
+        "key_points": [
+          "Developers can integrate models like Claude or Gemini to autonomously read codebases, implement fixes, and open pull requests without manual prompting.",
+          "The Rust-native, GPU-accelerated client is now fully open-source under AGPL-3.0 and MIT licenses across macOS, Linux, and Windows.",
+          "A live demonstration site currently showcases thousands of AI agents actively building and triaging issues for Warp's own codebase in real-time."
+        ]
+      },
+      {
+        "title": "Microsoft Copilot Health",
+        "url": "https://www.producthunt.com/products/copilot-health",
+        "source": "Product Hunt",
+        "published_time": "2026-05-02T00:01:00-07:00",
+        "priority": 2,
+        "content": "Dedicated space to bring your personal health data together. You've got data from your Oura, your hospital, your blood panels. None of it talks to each other. None of it tells you what to do. Copilot Health fixes that. It's a secure space inside Copilot where your health records (50,000+ US health systems), wearables (50+ devices), and lab results (via Function) come together. Medical AI analyzes the full picture and surfaces insights you can act on, grounded in sources like Harvard Health. Product categories: Medical.",
+        "image_url": "https://ph-files.imgix.net/61df0af0-291e-45de-8cfe-fe912b9009b9.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/61df0af0-291e-45de-8cfe-fe912b9009b9.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/5/2?ref=header_nav",
+        "product_rank": 4,
+        "selection_score": 88,
+        "selection_reason": "Major Microsoft expansion into personal health data synthesis and AI analysis.",
+        "summary": "This secure space within Microsoft Copilot aggregates fragmented personal health data from wearables, hospitals, and labs to provide actionable, AI-driven medical insights.",
+        "display_title": "Microsoft Introduces Copilot Health to Unify Personal Medical Data and Wearable Insights",
+        "key_points": [
+          "Integrates data from over 50,000 US health systems, 50 wearable devices, and various lab results.",
+          "Utilizes medical AI to analyze comprehensive health profiles and generate personalized recommendations.",
+          "Grounds its health insights in reputable medical sources such as Harvard Health to ensure reliability."
+        ]
+      },
+      {
+        "title": "Someone just open-sourced shadcn-style map components for React. It's called mapcn. Theme-aware,...",
+        "url": "https://x.com/simplifyinAI/status/2050628672252719411",
+        "source": "@simplifyinAI (X)",
+        "published_time": "2026-05-02T17:29:08+00:00",
+        "priority": 2,
+        "content": "Someone just open-sourced shadcn-style map components for React. It's called mapcn. Theme-aware, fully composable, and built on MapLibre GL so you get full mapping power without the Mapbox bill. 100% Open Source. https://t.co/67cRYGbXsa",
+        "image_url": "https://pbs.twimg.com/media/HHVL5Noa8AA-KHA.jpg",
+        "logo_url": null,
+        "category": "breakout_products",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "simplifyinAI",
+        "source_url": "https://x.com/simplifyinai?s=21",
+        "selection_score": 82,
+        "selection_reason": "New open-source React map component library with theme-aware features.",
+        "summary": "Mapcn provides developers with theme-aware, fully composable React map components built on MapLibre GL to avoid expensive mapping bills.",
+        "display_title": "Open-Source React Map Components Offer Shadcn-Style Design Without Mapbox Fees",
+        "key_points": [
+          "Delivers fully composable, shadcn-style map components designed specifically for React applications.",
+          "Built on MapLibre GL to provide robust mapping capabilities without incurring Mapbox usage costs.",
+          "Features a completely open-source architecture that includes built-in theme awareness for seamless UI integration."
+        ]
+      },
+      {
+        "title": "Cloud Computer by Manus",
+        "url": "https://www.producthunt.com/products/manus",
+        "source": "Product Hunt",
+        "published_time": "2026-05-02T00:01:00-07:00",
+        "priority": 2,
+        "content": "A dedicated cloud machine for bots and software. Product categories: Automation tools, AI Workflow Automation.",
+        "image_url": "https://ph-files.imgix.net/a842fb62-c77e-4466-8206-86bf8780e048.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/a842fb62-c77e-4466-8206-86bf8780e048.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/5/2?ref=header_nav",
+        "product_rank": 2,
+        "selection_score": 78,
+        "selection_reason": "Dedicated cloud infrastructure specifically designed for AI agents and bots.",
+        "summary": "Manus provides a specialized cloud-based machine tailored to host and execute automated bots and AI-driven workflows.",
+        "display_title": "Manus introduces a dedicated cloud computing environment designed specifically for bots and automated software workflows",
+        "key_points": [
+          "Functions as a dedicated cloud environment built specifically for running automated software.",
+          "Eliminates the need for local hosting by providing specialized infrastructure for bot deployment.",
+          "Streamlines AI workflow automation by centralizing operations within a purpose-built virtual machine."
+        ]
+      },
+      {
+        "title": "Someone built a tool that generates a full design system directly from your project requirements....",
+        "url": "https://x.com/simplifyinAI/status/2050519017086230873",
+        "source": "@simplifyinAI (X)",
+        "published_time": "2026-05-02T10:13:25+00:00",
+        "priority": 2,
+        "content": "Someone built a tool that generates a full design system directly from your project requirements. https://t.co/pkO60iLMda",
+        "image_url": "https://pbs.twimg.com/media/HHToDTMboAAGBWR.jpg",
+        "logo_url": null,
+        "category": "breakout_products",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "simplifyinAI",
+        "source_url": "https://x.com/simplifyinai?s=21",
+        "selection_score": 75,
+        "selection_reason": "AI tool that generates full design systems from project requirements.",
+        "summary": "A newly highlighted tool allows developers and designers to automatically create comprehensive design systems simply by inputting their project requirements.",
+        "display_title": "New AI tool automatically generates complete design systems based on specific project requirements",
+        "key_points": [
+          "Transforms basic project requirements into fully fleshed-out design systems.",
+          "Eliminates the manual effort of building UI components and style guides from scratch.",
+          "Accelerates the initial design phase for product teams and independent developers."
+        ]
+      },
+      {
+        "title": "Scholé",
+        "url": "https://www.producthunt.com/products/schole-2",
+        "source": "Product Hunt",
+        "published_time": "2026-05-02T00:01:00-07:00",
+        "priority": 3,
+        "content": "Turn everyday work into personalized AI learning. Most AI learning is disconnected from the work people actually need to do. Scholé changes that by giving professionals and teams personalized, task-based learning in real time, right in the flow of work. Grounded in learning science and powered by adaptive AI, Scholé helps learners practice, improve, and apply AI skills as they work so learning is more relevant, more effective, and immediately useful. Product categories: Online learning.",
+        "image_url": "https://ph-files.imgix.net/e69331ce-e853-48ca-9671-9ce028bfeb01.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/e69331ce-e853-48ca-9671-9ce028bfeb01.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/5/2?ref=header_nav",
+        "product_rank": 1,
+        "selection_score": 72,
+        "selection_reason": "Personalized AI learning tool integrated into professional workflows.",
+        "summary": "This story centers on personalized AI learning tool integrated into professional workflows.",
+        "display_title": "Personalized AI learning tool integrated into professional workflows",
+        "key_points": [
+          "Turn everyday work into personalized AI learning.",
+          "Most AI learning is disconnected from the work people actually need to do.",
+          "Scholé changes that by giving professionals and teams personalized, task-based learning in real time, right in the flow of work."
+        ]
+      },
+      {
+        "title": "Filect",
+        "url": "https://www.producthunt.com/products/filect",
+        "source": "Product Hunt",
+        "published_time": "2026-05-02T00:01:00-07:00",
+        "priority": 3,
+        "content": "Organize Your Files With AI. Filect automatically organizes your files into clean folder structures using AI. You can run it on autopilot or set custom rules, either way, your Desktop, Downloads, and Documents stay clean without lifting a finger. It can also find any specific file instantly. Just describe it in plain English \"that invoice I made for client X last Tuesday\" and Filect finds it in seconds. Built for creators, coders, designers, video editors, drowning in files. Mac and Windows. Free 10-day trial. Product categories: Search.",
+        "image_url": "https://ph-files.imgix.net/82f0a392-0d0b-469b-a02e-5744d0fcceba.png?auto=format",
+        "logo_url": "https://ph-files.imgix.net/82f0a392-0d0b-469b-a02e-5744d0fcceba.png?auto=format",
+        "category": "breakout_products",
+        "platform": "site",
+        "source_type": "media",
+        "source_url": "https://www.producthunt.com/leaderboard/daily/2026/5/2?ref=header_nav",
+        "product_rank": 8,
+        "selection_score": 70,
+        "selection_reason": "AI-powered file organization and natural language search for local storage.",
+        "summary": "This story centers on aI-powered file organization and natural language search for local storage.",
+        "display_title": "AI-powered file organization and natural language search for local storage",
+        "key_points": [
+          "Organize Your Files With AI.",
+          "Filect automatically organizes your files into clean folder structures using AI.",
+          "You can run it on autopilot or set custom rules, either way, your Desktop, Downloads, and Documents stay clean without lifting a finger."
+        ]
+      }
+    ],
+    "hot_news": [
+      {
+        "title": "Anthropic in Talks to Buy AI Chips From U.K. Startup - The Information",
+        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPbk9GTG50U29sdjAtbWhpTHhySVVHTnBjSmUwNG01R0RvZFhhUWNteVZFVUVIUTA1YlBGazV4NVRVNzZlaUZSNjgza2JOUEl5a3p2Y0xGN1FuQVVYemRQRDloOUxab2oyYXFQbVNVbVdoYlcyM0FKSnRrOEVZN2swdGVrS3pETjQ?oc=5",
+        "source": "theinformation",
+        "published_time": "2026-05-02T14:00:00+00:00",
+        "priority": 2,
+        "content": "Anthropic in Talks to Buy AI Chips From U.K. Startup&nbsp;&nbsp;The Information",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.theinformation.com",
+        "selection_score": 88,
+        "selection_reason": "Significant strategic move by Anthropic to diversify AI chip supply chain via UK startup.",
+        "summary": "Anthropic is currently negotiating a potential hardware acquisition deal with an unnamed artificial intelligence chip startup based in the United Kingdom.",
+        "display_title": "AI Research Firm Anthropic Explores Purchasing Hardware From Emerging British Chip Developer",
+        "key_points": [
+          "Anthropic is actively seeking new hardware supply chains to support its artificial intelligence models.",
+          "The potential hardware supplier is an emerging chip development company located in the United Kingdom.",
+          "The negotiations highlight the growing demand for specialized silicon among leading generative AI research organizations."
+        ]
+      },
+      {
+        "title": "Uber wants to turn its millions of drivers into a sensor grid for self-driving companies | TechCrunch",
+        "url": "https://techcrunch.com/2026/05/01/uber-wants-to-turn-its-millions-of-drivers-into-a-sensor-grid-for-self-driving-companies/",
+        "source": "TechCrunch",
+        "published_time": "2026-05-02T06:36:28+00:00",
+        "priority": 2,
+        "content": "Praveen Neppalli Naga, Uber's chief technology officer, revealed the plan in an interview at TechCrunch's StrictlyVC event in San Francisco on Thursday night, describing it as a natural extension of a nascent program the company announced in late January called AV Labs.",
+        "image_url": "https://techcrunch.com/wp-content/uploads/2026/05/GettyImages-2259104536.jpg?resize=1200,800",
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://techcrunch.com",
+        "selection_score": 86,
+        "selection_reason": "Strategic Uber initiative to monetize driver data for autonomous vehicle training.",
+        "summary": "Uber's chief technology officer announced a strategy to leverage the company's vast network of drivers to collect sensor data for autonomous driving companies.",
+        "display_title": "Uber plans to utilize its driver network as a massive sensor grid for autonomous vehicle development",
+        "key_points": [
+          "The initiative was revealed by Uber CTO Praveen Neppalli Naga at a recent San Francisco event.",
+          "The data collection strategy is designed to support the development efforts of self-driving technology companies.",
+          "The project serves as an expansion of Uber's recently launched AV Labs program."
+        ]
+      },
+      {
+        "title": "Doom Ban, Meme Coins and 7 More Highlights from Musk v. OpenAI - The Information",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNdjJrTEI3b2c0ZVRUQ19vU0g3V1hRYVh0d0tHcnk1Z0JobXAwR2VYbkRMZEdWSlB5WTBGSE9LOUtjbjYwQml5RDdDOGU1d3V0bm9zVkRsdHA3VFpXOFVXVEZ4R1g3VXh1c2xUX05MZTVySDZwNE41YmVyMXF4M0o0UWpTNUlMUEI1bU5mcTcyV2plWC00VXh2ZEl3a0I1R3F6ak00?oc=5",
+        "source": "theinformation",
+        "published_time": "2026-05-02T15:00:00+00:00",
+        "priority": 3,
+        "content": "Doom Ban, Meme Coins and 7 More Highlights from Musk v. OpenAI&nbsp;&nbsp;The Information",
+        "image_url": null,
+        "logo_url": null,
+        "category": "hot_news",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.theinformation.com",
+        "selection_score": 72,
+        "selection_reason": "Key updates on high-profile legal battle between Musk and OpenAI with industry implications.",
+        "summary": "Recent developments in the lawsuit between Elon Musk and OpenAI have revealed several notable highlights, including discussions around meme coins and a potential ban on the game Doom.",
+        "display_title": "Key Takeaways Emerge from the Ongoing Legal Battle Between Elon Musk and OpenAI",
+        "key_points": [
+          "The ongoing legal dispute between Elon Musk and OpenAI continues to generate significant public interest.",
+          "Recent highlights from the case include mentions of meme coins and a proposed ban on the video game Doom.",
+          "The Information has compiled a list of nine key takeaways from the latest developments in the lawsuit."
+        ]
+      }
+    ],
+    "llm": [
+      {
+        "title": "The DeepSeek V2 Chat and DeepSeek Coder V2 models have been merged and upgraded into the new model, DeepSeek V2.5.",
+        "url": "https://api-docs.deepseek.com/updates/#the-deepseek-v2-chat-and-deepseek-coder-v2-models-have-been-",
+        "source": "DeepSeek",
+        "published_time": "2026-05-02T00:00:00",
+        "priority": 2,
+        "content": "For backward compatibility, API users can access the new model through either deepseek-coder or deepseek-chat .",
+        "image_url": null,
+        "logo_url": null,
+        "category": "llm",
+        "platform": "site",
+        "source_type": "official",
+        "source_url": "https://api-docs.deepseek.com/updates/",
+        "selection_score": 85,
+        "selection_reason": "DeepSeek merging and upgrading V2 models into a unified V2.5 release.",
+        "summary": "DeepSeek has merged its V2 Chat and Coder V2 models into a single, upgraded model called DeepSeek V2.5.",
+        "display_title": "DeepSeek Consolidates Chat and Coder Models into Upgraded V2.5 Release",
+        "key_points": [
+          "The new DeepSeek V2.5 model combines the capabilities of the previous Chat and Coder models.",
+          "API users can access the upgraded model using either the deepseek-coder or deepseek-chat endpoints.",
+          "This consolidation aims to provide backward compatibility while offering enhanced performance."
+        ]
+      }
+    ],
+    "image_video": [
+      {
+        "title": "美国暂停对华虹半导体部分供货？中方回应；东方甄选奖励300名员工市值4亿股份，人均超140万元；DeepSeek正在灰度测试「识图模式」",
+        "url": "https://www.leiphone.com/category/zaobao/Yhq9TTDgatWOOdDC.html",
+        "source": "雷锋网",
+        "published_time": "2026-05-02T19:21:00+08:00",
+        "priority": 2,
+        "content": "要闻提示1.5月1日起，北京禁飞、禁售无人机！2.美国暂停对华虹半导体部分供货？中方回应3.DeepSeek 终于能“看图”了！灰度“识图模式”，图片理解功能内测4.一加、realme合并：成立子系列事业部，李炳忠任总经理5.主播离职潮后，东方甄选奖励300名员工市值4亿股份，人均超140万元6.阿里高绩效员工年终奖上浮1-2个月，新员工长期激励首年归属近1/37.官方通报网民称霸王茶姬喝出水银：异物为购买人自己投放8.SpaceX批准马斯克天价薪酬，若达成市值与火星殖民目标可获2亿股今日头条5月1日起，北京禁飞、禁售无人机！4月29日消息，从5月...",
+        "image_url": null,
+        "logo_url": null,
+        "category": "image_video",
+        "platform": "news",
+        "source_type": "media",
+        "source_url": "https://www.leiphone.com",
+        "selection_score": 82,
+        "selection_reason": "DeepSeek testing new multimodal vision capabilities for its model.",
+        "summary": "DeepSeek is currently conducting a limited beta test of a new \"image recognition mode\" that allows the model to understand and process visual inputs.",
+        "display_title": "DeepSeek Begins Beta Testing New Image Recognition Capabilities",
+        "key_points": [
+          "The new feature enables DeepSeek to analyze and comprehend images, expanding its capabilities beyond text.",
+          "The image recognition mode is currently in a limited beta testing phase.",
+          "This development marks a significant step forward in DeepSeek's multimodal capabilities."
+        ]
+      },
+      {
+        "title": "This is not just “image generation.” It’s automatic translation of product complexity into advert...",
+        "url": "https://www.buzzy.now/",
+        "source": "@AI_GuruX (X)",
+        "published_time": "2026-05-02T11:15:20+00:00",
+        "priority": 2,
+        "content": "This is not just “image generation.” It’s automatic translation of product complexity into advertising clarity. Buzzy turns any product into a studio-quality Infographic Ad that is already optimized for marketing performance. 🎨 https://t.co/aFCyaWfDvV https://t.co/ymnnp7a4N3",
+        "image_url": "https://pbs.twimg.com/amplify_video_thumb/2050534513147789313/img/ETQawB1dltzuAo3c.jpg",
+        "logo_url": null,
+        "category": "image_video",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "AI_GuruX",
+        "source_url": "https://x.com/ai_gurux?s=21",
+        "selection_score": 80,
+        "selection_reason": "AI tool converting product complexity into studio-quality infographic ads.",
+        "summary": "Buzzy is an image generation tool that automatically converts complex product details into marketing-optimized infographic advertisements.",
+        "display_title": "Buzzy Transforms Complex Products into Studio-Quality Infographic Advertisements",
+        "key_points": [
+          "Generates studio-quality infographic ads directly from product information.",
+          "Optimizes output specifically for marketing performance and clarity.",
+          "Translates complex product features into easily understandable visual formats."
+        ]
+      }
+    ],
+    "product_updates": [
+      {
+        "title": "本地可视化 Claude Code 的使用情况——会话、token 费用、缓存命中率、工具调用和每日明细。 https://t.co/SEbJqTEtr5 https://t.co/hLhWp6...",
+        "url": "https://github.com/foyzulkarim/claude-lens",
+        "source": "@geekbb (X)",
+        "published_time": "2026-05-02T11:20:00+00:00",
+        "priority": 2,
+        "content": "本地可视化 Claude Code 的使用情况——会话、token 费用、缓存命中率、工具调用和每日明细。 https://t.co/SEbJqTEtr5 https://t.co/hLhWp6WpfT",
+        "image_url": "https://pbs.twimg.com/media/HHTOKO8aoAAr4qo.jpg",
+        "logo_url": null,
+        "category": "product_updates",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "geekbb",
+        "source_url": "https://x.com/geekbb?s=21",
+        "selection_score": 78,
+        "selection_reason": "Useful open-source tool for monitoring Claude Code usage and costs.",
+        "summary": "Claude Lens is a new tool that allows developers to locally visualize their Claude Code usage metrics and expenses.",
+        "display_title": "Claude Lens Provides Local Visualization for Claude Code Usage and Token Costs",
+        "key_points": [
+          "Tracks detailed session data and daily usage breakdowns.",
+          "Monitors token costs and cache hit rates for cost optimization.",
+          "Displays tool call metrics to analyze agent interactions."
+        ]
+      },
+      {
+        "title": "My favorite AI stack for each use case: Daily Use → ChatGPT 5.5 Desktop Tasks → Claude Cowork Cod...",
+        "url": "https://x.com/dr_cintas/status/2050588234128732310",
+        "source": "@dr_cintas (X)",
+        "published_time": "2026-05-02T14:48:27+00:00",
+        "priority": 3,
+        "content": "My favorite AI stack for each use case: Daily Use → ChatGPT 5.5 Desktop Tasks → Claude Cowork Coding Agent → Claude Code Local → Google Gemma 4 Video gen → Seedance 2.0, Kling 3 Image → GPT-Image-2, Midjourney Edit Images → Nano Banana 2 Video Analysis → Gemini 3.1 Text to Speech (TTS) → ElevenLabs Speech to Text → Typeless (PC), Wispr Video avatars → HeyGen Presentations → Gamma Automation/Workflows → n8n Agent → OpenClaw, Perplexity Computer",
+        "image_url": null,
+        "logo_url": null,
+        "category": "product_updates",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "dr_cintas",
+        "source_url": "https://x.com/dr_cintas?s=21",
+        "selection_score": 72,
+        "selection_reason": "Comprehensive list of current top-tier AI tools across multiple categories.",
+        "summary": "A curated list of recommended AI tools categorizes top applications across various use cases including daily tasks, coding, and media generation.",
+        "display_title": "Comprehensive AI Tool Stack Recommendations for Coding, Video Generation, and Automation",
+        "key_points": [
+          "Highlights ChatGPT 5.5 for daily use and Claude Cowork for desktop tasks.",
+          "Recommends Seedance 2.0 and Kling 3 for video generation alongside Gemini 3.1 for video analysis.",
+          "Suggests OpenClaw and Perplexity Computer for agent-based workflows and n8n for automation."
+        ]
+      },
+      {
+        "title": "想让你的博客或网站的中文排版更优雅？ 可以让AI开发时参考这两个Github库： ① chinese-copywriting-guidelines，中英文之间的空格，标点符号要怎么用等等，15k...",
+        "url": "https://x.com/vista8/status/2050585451686138147",
+        "source": "@vista8 (X)",
+        "published_time": "2026-05-02T14:37:24+00:00",
+        "priority": 3,
+        "content": "想让你的博客或网站的中文排版更优雅？ 可以让AI开发时参考这两个Github库： ① chinese-copywriting-guidelines，中英文之间的空格，标点符号要怎么用等等，15k Star。 ② 赫蹏（hètí）是专为中文内容展示设计的排版样式增强。它基于通行的中文排版规范而来，可以为网站的读者带来更好的文章阅读体验。 地址见评论区",
+        "image_url": "https://pbs.twimg.com/media/HHUj5M9aIAAoj9L.jpg",
+        "logo_url": null,
+        "category": "product_updates",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "vista8",
+        "source_url": "https://x.com/vista8?s=21",
+        "selection_score": 68,
+        "selection_reason": "Practical resources for improving AI-generated Chinese typography and layout.",
+        "summary": "Developers can improve Chinese web typography by referencing two popular GitHub repositories that provide copywriting guidelines and style enhancements.",
+        "display_title": "Two GitHub Repositories Offer Guidelines and Styles for Elegant Chinese Web Typography",
+        "key_points": [
+          "The chinese-copywriting-guidelines repository offers rules for punctuation and spacing between Chinese and English text.",
+          "The hètí repository provides typography style enhancements based on standard Chinese typesetting norms.",
+          "These resources can be used as references for AI during development to ensure a better reading experience."
+        ]
+      },
+      {
+        "title": "解决 Codex 用久了本地状态膨胀导致变慢的问题。清理本地堆积的聊天、worktree、日志和过期配置。 Keep Codex Fast https://t.co/WfRHk7br4A htt...",
+        "url": "https://github.com/vibeforge1111/keep-codex-fast",
+        "source": "@geekbb (X)",
+        "published_time": "2026-05-03T03:54:46+00:00",
+        "priority": 3,
+        "content": "解决 Codex 用久了本地状态膨胀导致变慢的问题。清理本地堆积的聊天、worktree、日志和过期配置。 Keep Codex Fast https://t.co/WfRHk7br4A https://t.co/UwIqzW0ZzR",
+        "image_url": "https://pbs.twimg.com/media/HHXaiwaagAANMOy.jpg",
+        "logo_url": null,
+        "category": "product_updates",
+        "platform": "x",
+        "source_type": "creator",
+        "author_handle": "geekbb",
+        "source_url": "https://x.com/geekbb?s=21",
+        "selection_score": 65,
+        "selection_reason": "Utility tool for optimizing local Codex performance and state management.",
+        "summary": "A new utility called Keep Codex Fast resolves performance degradation in Codex by clearing accumulated local data.",
+        "display_title": "Keep Codex Fast Utility Cleans Local State Bloat to Restore Performance",
+        "key_points": [
+          "The tool addresses slowdowns caused by local state bloat after prolonged use of Codex.",
+          "It automatically cleans up piled-up chat histories and worktrees.",
+          "The utility also removes old logs and expired configurations to maintain optimal speed."
+        ]
+      }
+    ]
+  }
+}
